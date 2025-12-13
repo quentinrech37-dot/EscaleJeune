@@ -47,7 +47,7 @@ function iconForAnnonce(cat) {
 function iconForEvent(type) {
   if (type === "messe") return { src: "./assets/img/messe.png", alt: "Messe" };
   if (type === "repas") return { src: "./assets/img/repas.png", alt: "Repas" };
-  if (type === "soiree") return { src: "./assets/img/soireediscussion.png", alt: "Soirée / discussion" };
+  if (type === "soiree") return { src: "./assets/img/soiree.png", alt: "Soirée / discussion" };
   if (type === "sortie") return { src: "./assets/img/sortie.png", alt: "Sortie" };
   return { src: "./assets/img/prochainesactivites.png", alt: "Activité" };
 }
