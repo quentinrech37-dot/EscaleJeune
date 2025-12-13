@@ -4,25 +4,28 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Repas — L’Escale</title>
+
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" href="./assets/img/favicon.png">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="stylesheet" href="./css/styles.css">
+
   <script type="module" src="./js/app.js"></script>
 </head>
+
 <body>
   <header class="topbar">
     <div class="wrap topbar__inner">
       <div class="brand">
         <div class="brand__logo">
-	  <img src="./assets/img/icon-192.png" alt="Logo" class="brand-logo">
-	</div>
-
+          <img src="./assets/img/icon-192.png" alt="Logo" class="brand-logo">
+        </div>
         <div class="brand__text">
           <div class="brand__title">Repas du mercredi</div>
           <div class="brand__subtitle">Organisation & volontaires</div>
         </div>
       </div>
+
       <a class="btn btn--ghost" href="./index.html">Accueil</a>
     </div>
   </header>
@@ -48,20 +51,23 @@
         <strong>Astuce :</strong> l’objectif est que tout se fasse ici. Le Google Sheet reste la base “coulisses”.
       </div>
 
+      <!-- Liste des repas (remplie automatiquement par app.js via l'Apps Script) -->
       <div id="repasList" class="list"></div>
 
       <div class="spacer"></div>
 
       <div class="panel__head">
         <h2>Je me propose / je m’inscris</h2>
-        <span class="muted">Formulaires (à brancher).</span>
+        <span class="muted">Formulaires.</span>
       </div>
 
       <div class="grid2">
         <div class="card">
           <h3>Je cuisine</h3>
           <p>Se porter volontaire pour préparer le repas (seul ou à plusieurs).</p>
-          <a class="btn" href="#" aria-disabled="true">Formulaire “Je cuisine” (à venir)</a>
+
+          <!-- Le lien est branché automatiquement dans app.js (setupRepasFormLink) -->
+          <a class="btn" id="btnJeCuisine" href="#" aria-disabled="true">Formulaire “Je cuisine” (à brancher)</a>
         </div>
       </div>
     </section>
@@ -72,7 +78,5 @@
       </div>
     </footer>
   </main>
-
-  <script type="module" src="./js/app.js"></script>
 </body>
 </html>

@@ -1,9 +1,20 @@
 // js/app.js
-const REPAS_STATUS_URL = "https://script.google.com/macros/s/AKfycbz3QLIT13b9jzU47MVLT7SJj_umAwZBIUgzKT2Adi2rSJ3K4Du0bKdF8ukJyIsQNeRAlA/exec";
+
+/* ==================== CONFIG ==================== */
+
+// Statut repas (Apps Script Web App)
+const REPAS_STATUS_URL =
+  "https://script.google.com/macros/s/AKfycbz3QLIT13b9jzU47MVLT7SJj_umAwZBIUgzKT2Adi2rSJ3K4Du0bKdF8ukJyIsQNeRAlA/exec";
+
+// >>> COLLEZ ICI l'URL "Répondre au formulaire" (viewform) <<<
+const FORM_JE_CUISINE_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSeHjuGyrIIbL-_Whse2Na3LI5J2pQQvIOeiRgIqgz2nT42ggg/viewform";
+
 
 let deferredPrompt = null;
 
-/* -------------------- utils -------------------- */
+/* ==================== UTILS ==================== */
+
 function escapeHtml(s) {
   return String(s ?? "")
     .replaceAll("&", "&amp;")
@@ -14,7 +25,6 @@ function escapeHtml(s) {
 }
 
 function byDateAsc(a, b) {
-  // attend des objets avec a.date / b.date au format YYYY-MM-DD (ou ISO)
   return new Date(a.date).getTime() - new Date(b.date).getTime();
 }
 
@@ -38,7 +48,8 @@ function badge(type, text) {
   return `<span class="${cls}">${escapeHtml(text)}</span>`;
 }
 
-/* -------------------- icons -------------------- */
+/* ==================== ICONS ==================== */
+
 function iconForAnnonce(cat) {
   if (cat === "info") return { src: "./assets/img/info.png", alt: "Info" };
   if (cat === "service") return { src: "./assets/img/service.png", alt: "Service" };
@@ -54,7 +65,8 @@ function iconForEvent(type) {
   return { src: "./assets/img/prochainesactivites.png", alt: "Activité" };
 }
 
-/* -------------------- PWA -------------------- */
+/* ==================== PWA ==================== */
+
 function registerSW() {
   if (!("serviceWorker" in navigator)) return;
   navigator.serviceWorker.register("./sw.js", { scope: "./" }).catch(() => {});
@@ -79,7 +91,28 @@ function setupInstallButton() {
   });
 }
 
-/* -------------------- HOME -------------------- */
+/* ==================== REPAS: FORM LINK ==================== */
+
+function setupRepasFormLink() {
+  const a = document.getElementById("btnJeCuisine");
+  if (!a) return;
+
+  if (FORM_JE_CUISINE_URL && FORM_JE_CUISINE_URL.startsWith("http")) {
+    a.href = FORM_JE_CUISINE_URL;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.removeAttribute("aria-disabled");
+    a.textContent = "Formulaire “Je cuisine”";
+  } else {
+    // Pas encore branché : on laisse un lien inactif proprement.
+    a.href = "#";
+    a.setAttribute("aria-disabled", "true");
+    a.addEventListener("click", (e) => e.preventDefault());
+  }
+}
+
+/* ==================== HOME ==================== */
+
 async function initHome() {
   const aC = document.getElementById("homeAnnonces");
   const eC = document.getElementById("homeNextEvent");
@@ -89,7 +122,7 @@ async function initHome() {
     const annonces = (await loadJSON("./data/annonces.json")).slice(0, 3);
     if (aC) {
       aC.innerHTML = "";
-      annonces.forEach(a => {
+      annonces.forEach((a) => {
         const ic = iconForAnnonce(a.categorie || "info");
         renderItem(aC, `
           <div class="item">
@@ -109,7 +142,7 @@ async function initHome() {
 
     const events = (await loadJSON("./data/calendrier.json")).sort(byDateAsc);
     const now = Date.now();
-    const next = events.find(e => new Date(e.date).getTime() >= now) || events[0];
+    const next = events.find((e) => new Date(e.date).getTime() >= now) || events[0];
 
     if (eC) {
       eC.innerHTML = "";
@@ -139,7 +172,8 @@ async function initHome() {
   }
 }
 
-/* -------------------- ANNONCES -------------------- */
+/* ==================== ANNONCES ==================== */
+
 async function initAnnonces() {
   const list = document.getElementById("annoncesList");
   if (!list) return;
@@ -161,15 +195,15 @@ async function initAnnonces() {
     list.innerHTML = "";
 
     data
-      .filter(a => (f === "all" ? true : (a.categorie === f)))
-      .filter(a => {
+      .filter((a) => (f === "all" ? true : a.categorie === f))
+      .filter((a) => {
         if (!q) return true;
         return (
           (a.titre || "").toLowerCase().includes(q) ||
           (a.texte || "").toLowerCase().includes(q)
         );
       })
-      .forEach(a => {
+      .forEach((a) => {
         const ic = iconForAnnonce(a.categorie || "info");
         renderItem(list, `
           <div class="item">
@@ -196,12 +230,14 @@ async function initAnnonces() {
   draw();
 }
 
-/* -------------------- CALENDRIER -------------------- */
+/* ==================== CALENDRIER ==================== */
+
 async function initCalendrier() {
   const list = document.getElementById("eventsList");
   if (!list) return;
 
   const filter = document.getElementById("eventsFilter");
+
   let data = [];
   try {
     data = (await loadJSON("./data/calendrier.json")).sort(byDateAsc);
@@ -215,8 +251,8 @@ async function initCalendrier() {
     list.innerHTML = "";
 
     data
-      .filter(e => (f === "all" ? true : (e.type === f)))
-      .forEach(e => {
+      .filter((e) => (f === "all" ? true : e.type === f))
+      .forEach((e) => {
         const ic = iconForEvent(e.type || "");
         renderItem(list, `
           <div class="item">
@@ -243,7 +279,8 @@ async function initCalendrier() {
   draw();
 }
 
-/* -------------------- REPAS -------------------- */
+/* ==================== REPAS ==================== */
+
 async function initRepas() {
   const list = document.getElementById("repasList");
   if (!list) return;
@@ -257,11 +294,12 @@ async function initRepas() {
   }
 
   list.innerHTML = "";
-  data.forEach(r => {
+  data.forEach((r) => {
     const manque = Math.max(0, (r.besoin_cuisiniers || 0) - (r.cuisiniers || 0));
     const statusBadge =
-      manque > 0 ? badge("need", `Il manque ${manque} volontaire${manque > 1 ? "s" : ""}`) :
-                  badge("ok", "Équipe complète");
+      manque > 0
+        ? badge("need", `Il manque ${manque} volontaire${manque > 1 ? "s" : ""}`)
+        : badge("ok", "Équipe complète");
 
     renderItem(list, `
       <div class="item">
@@ -280,10 +318,14 @@ async function initRepas() {
   });
 }
 
-/* -------------------- BOOT -------------------- */
+/* ==================== BOOT ==================== */
+
 registerSW();
 setupInstallButton();
+setupRepasFormLink();
+
 initHome();
 initAnnonces();
 initCalendrier();
 initRepas();
+
