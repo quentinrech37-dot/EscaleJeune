@@ -52,12 +52,14 @@ body{
 /* Marque */
 .brand{display:flex; align-items:center; gap:12px;}
 .brand__logo{
-  width:44px; height:44px; border-radius: 14px;
-  display:grid; place-items:center;
-  background: radial-gradient(circle at 30% 30%, rgba(31,111,235,.22), rgba(22,163,74,.10));
-  border: 1px solid rgba(31,111,235,.18);
-  box-shadow: var(--shadow);
-  font-size: 18px;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display:grid;
+  place-items:center;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(17,24,39,.10);
+  box-shadow: 0 8px 18px rgba(17,24,39,.08);
 }
 .brand__title{font-weight:800; letter-spacing:.2px}
 .brand__subtitle{font-size:.92rem; color:var(--muted)}
@@ -256,9 +258,10 @@ body{
   color: var(--muted);
 }
 .brand-logo{
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   display:block;
+  object-fit: contain;
 }
 .card__head{
   display:flex;
@@ -268,10 +271,10 @@ body{
 }
 
 .card__icon{
-  width:44px;
-  height:44px;
-  flex: 0 0 auto;
-  opacity: .9;
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  opacity: .92;
 }
 
 .item__left{
@@ -280,9 +283,9 @@ body{
   gap:12px;
 }
 .item__icon{
-  width:34px;
-  height:34px;
-  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
   opacity: .95;
 }
 

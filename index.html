@@ -8,21 +8,26 @@
   <meta name="theme-color" content="#ffffff" />
 
   <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="icon" href="./assets/img/icon-192.png" />
+
+  <!-- favicon (onglet) -->
+  <link rel="icon" href="./assets/icons/icon-192.png" />
+
   <link rel="stylesheet" href="./css/styles.css" />
 </head>
+
 <body>
   <header class="topbar">
     <div class="wrap topbar__inner">
       <div class="brand">
-        <div class="brand__logo">
-	  <img src="./assets/img/icon-192.png" alt="Logo" class="brand-logo">
-	</div>
+        <div class="brand__logo" aria-hidden="true">
+          <img src="./assets/icons/icon-192.png" alt="" class="brand-logo" />
+        </div>
         <div class="brand__text">
           <div class="brand__title">L’Escale</div>
           <div class="brand__subtitle">Communauté — Besançon</div>
         </div>
       </div>
+
       <button id="installBtn" class="btn btn--ghost hidden" type="button">Installer</button>
     </div>
   </header>
@@ -40,9 +45,8 @@
   <main class="wrap">
     <section class="hero">
       <h1>Bienvenue</h1>
-      <p>
-        Ici : annonces, prochaines activités, organisation des repas, propositions de sujets et services.
-      </p>
+      <p>Ici : annonces, prochaines activités, organisation des repas, propositions de sujets et services.</p>
+
       <div class="hero__grid">
         <a class="card" href="./repas.html">
           <div class="card__head">
@@ -76,7 +80,6 @@
           <p>Un sujet, une idée, un service, une activité.</p>
         </a>
       </div>
-
     </section>
 
     <section class="grid2">

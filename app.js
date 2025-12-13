@@ -2,13 +2,13 @@ import { loadJSON, byDateAsc, escapeHtml } from "./data.js";
 
 let deferredPrompt = null;
 
-/* ----------------------- ICON MAPPING ----------------------- */
+/* ---------------- ICONS ---------------- */
 
 function iconForAnnonce(cat) {
-  // cat: "info" | "service" | "urgent" | autre
-  if (cat === "info") return { src: "./assets/img/info.png", alt: "Info" };
-  if (cat === "service") return { src: "./assets/img/service.png", alt: "Service" };
-  if (cat === "urgent") return { src: "./assets/img/annonce.png", alt: "Annonce" };
+  const c = (cat || "").toString().trim().toLowerCase();
+  if (c === "info") return { src: "./assets/img/info.png", alt: "Info" };
+  if (c === "service") return { src: "./assets/img/service.png", alt: "Service" };
+  if (c === "urgent") return { src: "./assets/img/annonce.png", alt: "Annonce" };
   return { src: "./assets/img/annonce.png", alt: "Annonce" };
 }
 
@@ -18,22 +18,16 @@ function iconForEvent(type) {
     .trim()
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, ""); // enlève les accents
+    .replace(/[\u0300-\u036f]/g, "");
 
   if (t === "messe") return { src: "./assets/img/messe.png", alt: "Messe" };
-
   if (t === "repas") return { src: "./assets/img/repas.png", alt: "Repas" };
-
-  // accepte: "soiree", "soiree topo", "soiree discussion", "soireediscussion"…
   if (t.startsWith("soiree")) return { src: "./assets/img/soireediscussion.png", alt: "Soirée / discussion" };
-
   if (t === "sortie") return { src: "./assets/img/sortie.png", alt: "Sortie" };
-
   return { src: "./assets/img/prochainesactivites.png", alt: "Activité" };
 }
 
-
-/* ----------------------- PWA INSTALL / SW ----------------------- */
+/* ---------------- PWA ---------------- */
 
 function registerSW() {
   if ("serviceWorker" in navigator) {
@@ -60,7 +54,7 @@ function setupInstallButton() {
   });
 }
 
-/* ----------------------- HELPERS ----------------------- */
+/* ---------------- UI HELPERS ---------------- */
 
 function renderItem(container, html) {
   if (!container) return;
@@ -76,7 +70,7 @@ function badge(type, text) {
   return `<span class="${cls}">${escapeHtml(text)}</span>`;
 }
 
-/* ----------------------- HOME ----------------------- */
+/* ---------------- HOME ---------------- */
 
 async function initHome() {
   const aC = document.getElementById("homeAnnonces");
@@ -84,11 +78,10 @@ async function initHome() {
   if (!aC && !eC) return;
 
   try {
-    /* ----- HOME: ANNONCES ----- */
     const annonces = (await loadJSON("./data/annonces.json")).slice(0, 3);
     if (aC) {
       aC.innerHTML = "";
-      annonces.forEach(a => {
+      annonces.forEach((a) => {
         const ic = iconForAnnonce(a.categorie || "info");
         renderItem(aC, `
           <div class="item">
@@ -96,7 +89,6 @@ async function initHome() {
               ${badge(a.categorie || "info", a.categorie || "info")}
               <span class="muted">${escapeHtml(a.date || "")}</span>
             </div>
-
             <div class="item__left">
               <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
               <div>
@@ -109,9 +101,8 @@ async function initHome() {
       });
     }
 
-    /* ----- HOME: NEXT EVENT ----- */
     const events = (await loadJSON("./data/calendrier.json")).sort(byDateAsc);
-    const next = events.find(e => new Date(e.date).getTime() >= Date.now()) || events[0];
+    const next = events.find((e) => new Date(e.date).getTime() >= Date.now()) || events[0];
 
     if (eC) {
       eC.innerHTML = "";
@@ -123,7 +114,6 @@ async function initHome() {
               ${badge(next.type || "info", next.type || "activité")}
               <span class="muted">${escapeHtml(next.date || "")} ${escapeHtml(next.heure || "")}</span>
             </div>
-
             <div class="item__left">
               <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
               <div>
@@ -144,7 +134,7 @@ async function initHome() {
   }
 }
 
-/* ----------------------- ANNONCES PAGE ----------------------- */
+/* ---------------- ANNONCES PAGE ---------------- */
 
 async function initAnnonces() {
   const list = document.getElementById("annoncesList");
@@ -167,15 +157,15 @@ async function initAnnonces() {
     list.innerHTML = "";
 
     data
-      .filter(a => (f === "all" ? true : (a.categorie === f)))
-      .filter(a => {
+      .filter((a) => (f === "all" ? true : a.categorie === f))
+      .filter((a) => {
         if (!q) return true;
         return (
           (a.titre || "").toLowerCase().includes(q) ||
           (a.texte || "").toLowerCase().includes(q)
         );
       })
-      .forEach(a => {
+      .forEach((a) => {
         const ic = iconForAnnonce(a.categorie || "info");
         renderItem(list, `
           <div class="item">
@@ -183,7 +173,6 @@ async function initAnnonces() {
               ${badge(a.categorie || "info", a.categorie || "info")}
               <span class="muted">${escapeHtml(a.date || "")}</span>
             </div>
-
             <div class="item__left">
               <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
               <div>
@@ -205,7 +194,7 @@ async function initAnnonces() {
   draw();
 }
 
-/* ----------------------- CALENDRIER PAGE ----------------------- */
+/* ---------------- CALENDRIER PAGE ---------------- */
 
 async function initCalendrier() {
   const list = document.getElementById("eventsList");
@@ -225,8 +214,8 @@ async function initCalendrier() {
     list.innerHTML = "";
 
     data
-      .filter(e => (f === "all" ? true : (e.type === f)))
-      .forEach(e => {
+      .filter((e) => (f === "all" ? true : e.type === f))
+      .forEach((e) => {
         const ic = iconForEvent(e.type || "all");
         renderItem(list, `
           <div class="item">
@@ -234,7 +223,6 @@ async function initCalendrier() {
               ${badge(e.type || "info", e.type || "activité")}
               <span class="muted">${escapeHtml(e.date || "")} ${escapeHtml(e.heure || "")}</span>
             </div>
-
             <div class="item__left">
               <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
               <div>
@@ -256,7 +244,7 @@ async function initCalendrier() {
   draw();
 }
 
-/* ----------------------- REPAS PAGE ----------------------- */
+/* ---------------- REPAS PAGE ---------------- */
 
 async function initRepas() {
   const list = document.getElementById("repasList");
@@ -271,7 +259,7 @@ async function initRepas() {
   }
 
   list.innerHTML = "";
-  data.forEach(r => {
+  data.forEach((r) => {
     const manque = Math.max(0, (r.besoin_cuisiniers || 0) - (r.cuisiniers || 0));
     const statusBadge =
       manque > 0
@@ -284,7 +272,6 @@ async function initRepas() {
           ${statusBadge}
           <span class="muted">${escapeHtml(r.date || "")} ${escapeHtml(r.heure || "")}</span>
         </div>
-
         <div class="item__left">
           <img class="item__icon" src="./assets/img/repas.png" alt="Repas">
           <div>
@@ -298,7 +285,7 @@ async function initRepas() {
   });
 }
 
-/* ----------------------- BOOT ----------------------- */
+/* ---------------- BOOT ---------------- */
 
 registerSW();
 setupInstallButton();
