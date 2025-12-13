@@ -1,4 +1,4 @@
-const CACHE = "escale-v5";
+const CACHE = "escale-v6";
 
 const ASSETS = [
   "./",
@@ -18,6 +18,7 @@ const ASSETS = [
   "./data/calendrier.json",
   "./data/repas.json",
 
+  // Images (tout est chez vous dans assets/img)
   "./assets/img/annonce.png",
   "./assets/img/info.png",
   "./assets/img/messe.png",
@@ -25,20 +26,26 @@ const ASSETS = [
   "./assets/img/proposer.png",
   "./assets/img/repas.png",
   "./assets/img/service.png",
-  "./assets/img/soireediscussion.png",
+  "./assets/img/soiree.png",
   "./assets/img/sortie.png",
 
-  "./assets/icons/icon-192.png",
-  "./assets/icons/icon-512.png",
+  // Icônes PWA / logo
+  "./assets/img/favicon.png",
+  "./assets/img/icon-192.png",
+  "./assets/img/icon-512.png",
+  "./assets/img/icon-1200.png",
+
+  // Background si utilisé
+  "./assets/img/besancon.png"
 ];
 
-// Install: pré-cache
+// Install
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(ASSETS)));
   self.skipWaiting();
 });
 
-// Activate: purge anciens caches
+// Activate
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
@@ -48,19 +55,18 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Fetch: Network-first pour HTML (toujours à jour), Cache-first pour le reste
+// Fetch
 self.addEventListener("fetch", (event) => {
   const req = event.request;
   const url = new URL(req.url);
 
-  // on ne gère que notre origine
   if (url.origin !== self.location.origin) return;
 
-  // HTML -> network first
   const isHTML =
     req.mode === "navigate" ||
     (req.headers.get("accept") || "").includes("text/html");
 
+  // HTML: network-first (pour éviter l'effet Ctrl+F5)
   if (isHTML) {
     event.respondWith(
       fetch(req)
@@ -74,18 +80,15 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // CSS/JS/images/json -> cache first
+  // Autres assets: cache-first
   event.respondWith(
     caches.match(req).then((cached) => {
       if (cached) return cached;
-      return fetch(req)
-        .then((res) => {
-          const copy = res.clone();
-          caches.open(CACHE).then((cache) => cache.put(req, copy));
-          return res;
-        })
-        .catch(() => cached);
+      return fetch(req).then((res) => {
+        const copy = res.clone();
+        caches.open(CACHE).then((cache) => cache.put(req, copy));
+        return res;
+      });
     })
   );
 });
-
