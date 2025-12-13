@@ -27,6 +27,16 @@ function escapeHtml(s) {
     .replaceAll("'", "&#039;");
 }
 
+function formatDateFR(iso) {
+  const [y, m, d] = String(iso).split("-").map(Number);
+  const dt = new Date(y, m - 1, d);
+  return dt.toLocaleDateString("fr-FR", {
+    weekday: "long",
+    day: "numeric",
+    month: "long"
+  });
+}
+
 function parseISODateToUTC(dateStr) {
   // dateStr attendu: "YYYY-MM-DD"
   // On force une comparaison propre sans dépendre du fuseau local.
@@ -308,24 +318,25 @@ async function initRepas() {
     return;
   }
 
-  // Tri
+  // 1) Trier par date
   data.sort(byDateAsc);
 
-  // Filtrer passé + limiter
-  const todayUtc = Date.now();
-  if (REPAS_ONLY_UPCOMING) {
-    data = data.filter((r) => parseISODateToUTC(r.date) >= todayUtc);
-  }
-  data = data.slice(0, REPAS_MAX_AFFICHAGE);
+  // 2) Garder uniquement les repas à venir
+  const todayISO = new Date().toISOString().slice(0, 10);
+  const upcoming = data.filter(r => String(r.date) >= todayISO);
+
+  // 3) Limiter à 5 repas
+  const toShow = upcoming.slice(0, 5);
 
   list.innerHTML = "";
 
-  if (!data.length) {
-    list.innerHTML = `<div class="item"><p class="muted">Aucun repas à afficher.</p></div>`;
+  if (!toShow.length) {
+    list.innerHTML = `<div class="item"><p class="muted">Aucun repas à venir.</p></div>`;
     return;
   }
 
-  data.forEach((r) => {
+  // 4) Affichage “humain”
+  toShow.forEach((r) => {
     const besoin = Number(r.besoin_cuisiniers ?? 0);
     const cuisiniers = Number(r.cuisiniers ?? 0);
     const manque = Math.max(0, besoin - cuisiniers);
@@ -335,8 +346,12 @@ async function initRepas() {
         ? badge("need", `Il manque ${manque} volontaire${manque > 1 ? "s" : ""}`)
         : badge("ok", "Équipe complète");
 
-    // optionnel: affichage d’un petit résumé du menu si votre Apps Script renvoie r.plat
-    const plat = r.plat ? `<p class="muted" style="margin-top:8px">À cuisiner : ${escapeHtml(r.plat)}</p>` : "";
+    const label = formatDateFR(r.date);            // ex: "mercredi 24 décembre"
+    const titre = `Repas du ${label}`;             // joli titre
+
+    const platHtml = r.plat
+      ? `<p class="muted" style="margin-top:6px">Plat : ${escapeHtml(r.plat)}</p>`
+      : "";
 
     renderItem(list, `
       <div class="item">
@@ -345,17 +360,16 @@ async function initRepas() {
             <img class="item__icon" src="./assets/img/repas.png" alt="Repas">
             ${statusBadge}
           </div>
-          <span class="muted">${escapeHtml(r.date)} ${escapeHtml(r.heure || "")}</span>
+          <span class="muted">${escapeHtml(label)}</span>
         </div>
 
-        <h3>${escapeHtml(r.titre || "Repas communautaire")}</h3>
-        <p>${escapeHtml(r.lieu || "")}</p>
-        ${r.note ? `<p class="muted" style="margin-top:8px">${escapeHtml(r.note)}</p>` : ""}
-        ${plat}
+        <h3>${escapeHtml(titre)}</h3>
+        ${platHtml}
       </div>
     `);
   });
 }
+
 
 /* ==================== BOOT ==================== */
 
