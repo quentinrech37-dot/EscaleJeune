@@ -1,4 +1,5 @@
-const CACHE = "escale-v6";
+// sw.js (à la racine)
+const CACHE = "escale-v7";
 
 const ASSETS = [
   "./",
@@ -11,14 +12,13 @@ const ASSETS = [
 
   "./css/styles.css",
   "./js/app.js",
-  "./js/data.js",
+
   "./manifest.webmanifest",
 
-  "./data/annonces.json",
-  "./data/calendrier.json",
-  "./data/repas.json",
+  "./assets/img/favicon.png",
+  "./assets/img/icon-192.png",
+  "./assets/img/icon-512.png",
 
-  // Images (tout est chez vous dans assets/img)
   "./assets/img/annonce.png",
   "./assets/img/info.png",
   "./assets/img/messe.png",
@@ -26,69 +26,66 @@ const ASSETS = [
   "./assets/img/proposer.png",
   "./assets/img/repas.png",
   "./assets/img/service.png",
-  "./assets/img/soiree.png",
+  "./assets/img/soireediscussion.png",
   "./assets/img/sortie.png",
 
-  // Icônes PWA / logo
-  "./assets/img/favicon.png",
-  "./assets/img/icon-192.png",
-  "./assets/img/icon-512.png",
-  "./assets/img/icon-1200.png",
-
-  // Background si utilisé
-  "./assets/img/besancon.png"
+  "./data/annonces.json",
+  "./data/calendrier.json",
+  "./data/repas.json",
 ];
 
-// Install
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(ASSETS)));
   self.skipWaiting();
-});
-
-// Activate
-self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.map((k) => (k === CACHE ? null : caches.delete(k))))
-    )
+    caches.open(CACHE).then((cache) => cache.addAll(ASSETS)).catch(() => {})
   );
-  self.clients.claim();
 });
 
-// Fetch
+self.addEventListener("activate", (event) => {
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.map((k) => (k === CACHE ? null : caches.delete(k))));
+    await self.clients.claim();
+  })());
+});
+
+// HTML : network-first (pour voir les mises à jour)
+// assets/json : cache-first
 self.addEventListener("fetch", (event) => {
   const req = event.request;
   const url = new URL(req.url);
 
-  if (url.origin !== self.location.origin) return;
+  // uniquement dans le scope GitHub Pages
+  if (url.origin !== location.origin) return;
 
-  const isHTML =
-    req.mode === "navigate" ||
-    (req.headers.get("accept") || "").includes("text/html");
+  const isHTML = req.mode === "navigate" || (req.headers.get("accept") || "").includes("text/html");
 
-  // HTML: network-first (pour éviter l'effet Ctrl+F5)
   if (isHTML) {
-    event.respondWith(
-      fetch(req)
-        .then((res) => {
-          const copy = res.clone();
-          caches.open(CACHE).then((cache) => cache.put(req, copy));
-          return res;
-        })
-        .catch(() => caches.match(req).then((c) => c || caches.match("./index.html")))
-    );
+    event.respondWith((async () => {
+      try {
+        const fresh = await fetch(req);
+        const cache = await caches.open(CACHE);
+        cache.put(req, fresh.clone());
+        return fresh;
+      } catch {
+        const cached = await caches.match(req);
+        return cached || caches.match("./index.html");
+      }
+    })());
     return;
   }
 
-  // Autres assets: cache-first
-  event.respondWith(
-    caches.match(req).then((cached) => {
-      if (cached) return cached;
-      return fetch(req).then((res) => {
-        const copy = res.clone();
-        caches.open(CACHE).then((cache) => cache.put(req, copy));
-        return res;
-      });
-    })
-  );
+  event.respondWith((async () => {
+    const cached = await caches.match(req);
+    if (cached) return cached;
+
+    try {
+      const fresh = await fetch(req);
+      const cache = await caches.open(CACHE);
+      cache.put(req, fresh.clone());
+      return fresh;
+    } catch {
+      return cached;
+    }
+  })());
 });
