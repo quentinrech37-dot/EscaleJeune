@@ -1,15 +1,18 @@
-// js/app.js
-
 /* ==================== CONFIG ==================== */
 
-// Statut repas (Apps Script Web App)
+// 1) URL de l'Apps Script Web App (endpoint JSON pour les repas)
 const REPAS_STATUS_URL =
   "https://script.google.com/macros/s/AKfycbz3QLIT13b9jzU47MVLT7SJj_umAwZBIUgzKT2Adi2rSJ3K4Du0bKdF8ukJyIsQNeRAlA/exec";
 
-// >>> COLLEZ ICI l'URL "Répondre au formulaire" (viewform) <<<
+// 2) URL "Répondre au formulaire" (Google Form / viewform)
 const FORM_JE_CUISINE_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSeHjuGyrIIbL-_Whse2Na3LI5J2pQQvIOeiRgIqgz2nT42ggg/viewform";
+  "https://docs.google.com/forms/d/e/1FAIpQLSeHjuGyrIIbL-_Whse2Na3LI5J2pQQvIOeiRgIqgz2nT42ggg/viewform?usp=header";
 
+// 3) Nombre max de repas à afficher sur la page Repas
+const REPAS_MAX_AFFICHAGE = 5;
+
+// 4) Afficher uniquement les repas à venir (true recommandé)
+const REPAS_ONLY_UPCOMING = true;
 
 let deferredPrompt = null;
 
@@ -24,13 +27,22 @@ function escapeHtml(s) {
     .replaceAll("'", "&#039;");
 }
 
-function byDateAsc(a, b) {
-  return new Date(a.date).getTime() - new Date(b.date).getTime();
+function parseISODateToUTC(dateStr) {
+  // dateStr attendu: "YYYY-MM-DD"
+  // On force une comparaison propre sans dépendre du fuseau local.
+  if (!dateStr) return NaN;
+  const [y, m, d] = String(dateStr).split("-").map(Number);
+  if (!y || !m || !d) return NaN;
+  return Date.UTC(y, m - 1, d);
 }
 
-async function loadJSON(path) {
-  const r = await fetch(path, { cache: "no-store" });
-  if (!r.ok) throw new Error(`HTTP ${r.status} on ${path}`);
+function byDateAsc(a, b) {
+  return parseISODateToUTC(a.date) - parseISODateToUTC(b.date);
+}
+
+async function loadJSON(pathOrUrl) {
+  const r = await fetch(pathOrUrl, { cache: "no-store" });
+  if (!r.ok) throw new Error(`HTTP ${r.status} on ${pathOrUrl}`);
   return await r.json();
 }
 
@@ -97,17 +109,19 @@ function setupRepasFormLink() {
   const a = document.getElementById("btnJeCuisine");
   if (!a) return;
 
-  if (FORM_JE_CUISINE_URL && FORM_JE_CUISINE_URL.startsWith("http")) {
+  const ok = typeof FORM_JE_CUISINE_URL === "string" && FORM_JE_CUISINE_URL.startsWith("http");
+
+  if (ok) {
     a.href = FORM_JE_CUISINE_URL;
     a.target = "_blank";
     a.rel = "noopener";
     a.removeAttribute("aria-disabled");
     a.textContent = "Formulaire “Je cuisine”";
   } else {
-    // Pas encore branché : on laisse un lien inactif proprement.
     a.href = "#";
     a.setAttribute("aria-disabled", "true");
     a.addEventListener("click", (e) => e.preventDefault());
+    a.textContent = "Formulaire “Je cuisine” (à venir)";
   }
 }
 
@@ -141,8 +155,8 @@ async function initHome() {
     }
 
     const events = (await loadJSON("./data/calendrier.json")).sort(byDateAsc);
-    const now = Date.now();
-    const next = events.find((e) => new Date(e.date).getTime() >= now) || events[0];
+    const nowUtc = Date.now();
+    const next = events.find((e) => parseISODateToUTC(e.date) >= nowUtc) || events[0];
 
     if (eC) {
       eC.innerHTML = "";
@@ -287,19 +301,42 @@ async function initRepas() {
 
   let data = [];
   try {
-    data = (await loadJSON(REPAS_STATUS_URL)).sort(byDateAsc);
+    data = await loadJSON(REPAS_STATUS_URL);
+    if (!Array.isArray(data)) throw new Error("Repas: JSON inattendu");
   } catch {
     list.innerHTML = `<div class="item"><p class="muted">Impossible de charger les repas.</p></div>`;
     return;
   }
 
+  // Tri
+  data.sort(byDateAsc);
+
+  // Filtrer passé + limiter
+  const todayUtc = Date.now();
+  if (REPAS_ONLY_UPCOMING) {
+    data = data.filter((r) => parseISODateToUTC(r.date) >= todayUtc);
+  }
+  data = data.slice(0, REPAS_MAX_AFFICHAGE);
+
   list.innerHTML = "";
+
+  if (!data.length) {
+    list.innerHTML = `<div class="item"><p class="muted">Aucun repas à afficher.</p></div>`;
+    return;
+  }
+
   data.forEach((r) => {
-    const manque = Math.max(0, (r.besoin_cuisiniers || 0) - (r.cuisiniers || 0));
+    const besoin = Number(r.besoin_cuisiniers ?? 0);
+    const cuisiniers = Number(r.cuisiniers ?? 0);
+    const manque = Math.max(0, besoin - cuisiniers);
+
     const statusBadge =
       manque > 0
         ? badge("need", `Il manque ${manque} volontaire${manque > 1 ? "s" : ""}`)
         : badge("ok", "Équipe complète");
+
+    // optionnel: affichage d’un petit résumé du menu si votre Apps Script renvoie r.plat
+    const plat = r.plat ? `<p class="muted" style="margin-top:8px">À cuisiner : ${escapeHtml(r.plat)}</p>` : "";
 
     renderItem(list, `
       <div class="item">
@@ -310,9 +347,11 @@ async function initRepas() {
           </div>
           <span class="muted">${escapeHtml(r.date)} ${escapeHtml(r.heure || "")}</span>
         </div>
+
         <h3>${escapeHtml(r.titre || "Repas communautaire")}</h3>
         <p>${escapeHtml(r.lieu || "")}</p>
         ${r.note ? `<p class="muted" style="margin-top:8px">${escapeHtml(r.note)}</p>` : ""}
+        ${plat}
       </div>
     `);
   });
@@ -328,4 +367,3 @@ initHome();
 initAnnonces();
 initCalendrier();
 initRepas();
-
