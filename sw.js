@@ -1,4 +1,4 @@
-const CACHE = "escale-v1";
+const CACHE = "escale-v2";
 const ASSETS = [
   "./",
   "./index.html",
