@@ -1,5 +1,5 @@
 // sw.js (à la racine)
-const CACHE = "escale-v8";
+const CACHE = "escale-v9";
 
 const ASSETS = [
   "./",
@@ -31,7 +31,6 @@ const ASSETS = [
 
   "./data/annonces.json",
   "./data/calendrier.json",
-  "./data/repas.json",
 ];
 
 self.addEventListener("install", (event) => {

@@ -1,4 +1,6 @@
 // js/app.js
+const REPAS_STATUS_URL = "https://script.google.com/macros/s/AKfycbz3QLIT13b9jzU47MVLT7SJj_umAwZBIUgzKT2Adi2rSJ3K4Du0bKdF8ukJyIsQNeRAlA/exec";
+
 let deferredPrompt = null;
 
 /* -------------------- utils -------------------- */
@@ -248,7 +250,7 @@ async function initRepas() {
 
   let data = [];
   try {
-    data = (await loadJSON("./data/repas.json")).sort(byDateAsc);
+    data = (await loadJSON(REPAS_STATUS_URL)).sort(byDateAsc);
   } catch {
     list.innerHTML = `<div class="item"><p class="muted">Impossible de charger les repas.</p></div>`;
     return;
