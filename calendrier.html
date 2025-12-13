@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Activités — L’Escale</title>
+  <meta name="theme-color" content="#0b1b3a" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <div class="brand">
+        <div class="brand__logo">⛵</div>
+        <div class="brand__text">
+          <div class="brand__title">Activités</div>
+          <div class="brand__subtitle">Calendrier — Escale Jeunes</div>
+        </div>
+      </div>
+      <a class="btn btn--ghost" href="./index.html">Accueil</a>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__link" href="./index.html">Accueil</a>
+      <a class="nav__link" href="./annonces.html">Annonces</a>
+      <a class="nav__link nav__link--active" href="./calendrier.html">Activités</a>
+      <a class="nav__link" href="./repas.html">Repas</a>
+      <a class="nav__link" href="./proposer.html">Proposer</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="panel__head">
+        <h1>Prochaines activités</h1>
+        <span class="muted">Triées par date.</span>
+      </div>
+
+      <div class="toolbar">
+        <select id="eventsFilter" class="select">
+          <option value="all">Tout</option>
+          <option value="messe">Messe</option>
+          <option value="repas">Repas</option>
+          <option value="soiree">Soirée</option>
+          <option value="sortie">Sortie</option>
+        </select>
+      </div>
+
+      <div id="eventsList" class="list"></div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <a class="link" href="./mentions.html">Mentions & données</a>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

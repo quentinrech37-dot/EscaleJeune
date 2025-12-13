@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Repas — L’Escale</title>
+  <meta name="theme-color" content="#0b1b3a" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <div class="brand">
+        <div class="brand__logo">⛵</div>
+        <div class="brand__text">
+          <div class="brand__title">Repas du mercredi</div>
+          <div class="brand__subtitle">Organisation & volontaires</div>
+        </div>
+      </div>
+      <a class="btn btn--ghost" href="./index.html">Accueil</a>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__link" href="./index.html">Accueil</a>
+      <a class="nav__link" href="./annonces.html">Annonces</a>
+      <a class="nav__link" href="./calendrier.html">Activités</a>
+      <a class="nav__link nav__link--active" href="./repas.html">Repas</a>
+      <a class="nav__link" href="./proposer.html">Proposer</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="panel__head">
+        <h1>Prochains mercredis</h1>
+        <span class="muted">Besoin de volontaires, inscriptions, infos pratiques.</span>
+      </div>
+
+      <div class="notice">
+        <strong>Astuce :</strong> l’objectif est que tout se fasse ici. Le Google Sheet reste la base “coulisses”.
+      </div>
+
+      <div id="repasList" class="list"></div>
+
+      <div class="spacer"></div>
+
+      <div class="panel__head">
+        <h2>Je me propose / je m’inscris</h2>
+        <span class="muted">Formulaires (à brancher).</span>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>Je cuisine</h3>
+          <p>Se porter volontaire pour préparer le repas (seul ou à plusieurs).</p>
+          <a class="btn" href="#" aria-disabled="true">Formulaire “Je cuisine” (à venir)</a>
+        </div>
+        <div class="card">
+          <h3>Je viens manger</h3>
+          <p>Optionnel si vous souhaitez mieux estimer les quantités.</p>
+          <a class="btn btn--ghost" href="#" aria-disabled="true">Formulaire “Je m’inscris” (à venir)</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <a class="link" href="./mentions.html">Mentions & données</a>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

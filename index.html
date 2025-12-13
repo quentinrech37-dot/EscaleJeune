@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>L’Escale — Communauté</title>
+  <meta name="description" content="Escale Jeunes — infos, annonces, repas, activités." />
+  <meta name="theme-color" content="#0b1b3a" />
+
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <div class="brand">
+        <div class="brand__logo">⛵</div>
+        <div class="brand__text">
+          <div class="brand__title">L’Escale</div>
+          <div class="brand__subtitle">Communauté — Besançon</div>
+        </div>
+      </div>
+      <button id="installBtn" class="btn btn--ghost hidden" type="button">Installer</button>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__link nav__link--active" href="./index.html">Accueil</a>
+      <a class="nav__link" href="./annonces.html">Annonces</a>
+      <a class="nav__link" href="./calendrier.html">Activités</a>
+      <a class="nav__link" href="./repas.html">Repas</a>
+      <a class="nav__link" href="./proposer.html">Proposer</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Bienvenue</h1>
+      <p>
+        Ici : annonces, prochaines activités, organisation des repas, propositions de sujets et services.
+      </p>
+      <div class="hero__grid">
+        <a class="card" href="./repas.html">
+          <h2>Repas du mercredi</h2>
+          <p>Voir les besoins, se porter volontaire, s’inscrire.</p>
+        </a>
+        <a class="card" href="./calendrier.html">
+          <h2>Prochaines activités</h2>
+          <p>Messe, repas, soirées, sorties…</p>
+        </a>
+        <a class="card" href="./annonces.html">
+          <h2>Annonces</h2>
+          <p>Infos rapides, services, nouvelles de la communauté.</p>
+        </a>
+        <a class="card" href="./proposer.html">
+          <h2>Proposer</h2>
+          <p>Un sujet, une idée, un service, une activité.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="grid2">
+      <article class="panel">
+        <div class="panel__head">
+          <h2>À la une</h2>
+          <a class="link" href="./annonces.html">Tout voir →</a>
+        </div>
+        <div id="homeAnnonces" class="list"></div>
+      </article>
+
+      <article class="panel">
+        <div class="panel__head">
+          <h2>Prochaine activité</h2>
+          <a class="link" href="./calendrier.html">Calendrier →</a>
+        </div>
+        <div id="homeNextEvent" class="list"></div>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <a class="link" href="./mentions.html">Mentions & données</a>
+        <span class="muted">•</span>
+        <span class="muted">Version MVP</span>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
