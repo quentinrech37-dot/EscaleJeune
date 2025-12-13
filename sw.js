@@ -1,4 +1,4 @@
-const CACHE = "escale-v3";
+const CACHE = "escale-v4";
 const ASSETS = [
   "./",
   "./index.html",
@@ -14,6 +14,18 @@ const ASSETS = [
   "./data/annonces.json",
   "./data/calendrier.json",
   "./data/repas.json"
+  "./assets/img/annonce.png",
+  "./assets/img/info.png",
+  "./assets/img/messe.png",
+  "./assets/img/prochainesactivites.png",
+  "./assets/img/proposer.png",
+  "./assets/img/repas.png",
+  "./assets/img/service.png",
+  "./assets/img/soireediscussion.png",
+  "./assets/img/sortie.png",
+  "./assets/icons/icon-192.png",
+  "./assets/icons/icon-512.png"
+
 ];
 
 self.addEventListener("install", (event) => {

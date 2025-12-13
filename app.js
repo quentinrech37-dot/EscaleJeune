@@ -13,13 +13,25 @@ function iconForAnnonce(cat) {
 }
 
 function iconForEvent(type) {
-  // type: "messe" | "repas" | "soiree" | "sortie" | autre
-  if (type === "messe") return { src: "./assets/img/messe.png", alt: "Messe" };
-  if (type === "repas") return { src: "./assets/img/repas.png", alt: "Repas" };
-  if (type === "soiree") return { src: "./assets/img/soireediscussion.png", alt: "Soirée / discussion" };
-  if (type === "sortie") return { src: "./assets/img/sortie.png", alt: "Sortie" };
+  const t = (type || "")
+    .toString()
+    .trim()
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, ""); // enlève les accents
+
+  if (t === "messe") return { src: "./assets/img/messe.png", alt: "Messe" };
+
+  if (t === "repas") return { src: "./assets/img/repas.png", alt: "Repas" };
+
+  // accepte: "soiree", "soiree topo", "soiree discussion", "soireediscussion"…
+  if (t.startsWith("soiree")) return { src: "./assets/img/soireediscussion.png", alt: "Soirée / discussion" };
+
+  if (t === "sortie") return { src: "./assets/img/sortie.png", alt: "Sortie" };
+
   return { src: "./assets/img/prochainesactivites.png", alt: "Activité" };
 }
+
 
 /* ----------------------- PWA INSTALL / SW ----------------------- */
 
