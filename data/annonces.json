@@ -1,0 +1,5 @@
+[
+  { "date": "2025-12-11", "categorie": "info", "titre": "Bienvenue sur le site interne", "texte": "Ce site est en version MVP. Les formulaires seront branchés ensuite." },
+  { "date": "2025-12-10", "categorie": "service", "titre": "Besoin de bras", "texte": "Qui peut aider à ranger après le repas ? (10 minutes suffisent.)" },
+  { "date": "2025-12-09", "categorie": "urgent", "titre": "Repas : volontaires recherchés", "texte": "Il manque des personnes pour préparer le prochain mercredi." }
+]
