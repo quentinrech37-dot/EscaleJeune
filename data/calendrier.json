@@ -1,5 +1,7 @@
 [
-  { "date": "2025-12-17", "heure": "19:00", "type": "messe", "titre": "Messe de semaine", "lieu": "Chapelle (à préciser)", "details": "Messe suivie du repas communautaire." },
-  { "date": "2025-12-17", "heure": "20:00", "type": "repas", "titre": "Repas du mercredi", "lieu": "Escale Jeunes", "details": "Inscription et volontaires sur la page Repas." },
-  { "date": "2025-12-20", "heure": "20:30", "type": "soiree", "titre": "Soirée topo / discussion", "lieu": "Escale Jeunes", "details": "Thème à confirmer." }
+  { "date": "2025-12-17", "heure": "19:00", "type": "messe", "titre": "Messe de semaine", "lieu": "Chapelle de l'Escale", "details": "Messe suivie du repas communautaire." },
+  { "date": "2025-12-17", "heure": "19:45", "type": "repas", "titre": "Repas du mercredi", "lieu": "Escale Jeunes", "details": "Inscription et volontaires sur la page Repas." },
+  { "date": "2025-12-24", "heure": "19:45", "type": "repas", "titre": "Repas de Noël", "lieu": "Escale Jeunes", "details": "Le repas de Noël de l'Escale ! Venez nombreux, et pensez à rapporter un petit dessert (gâteau, fruits, biscuits, etc) ! Inscription et volontaires sur la page Repas." },
+  { "date": "2025-12-20", "heure": "20:30", "type": "soiree", "titre": "Soirée Rock", "lieu": "Escale Jeunes - Rue Chifflet", "details": "Venez nombreux pour cette soirée Rock de Noël !" },
+  { "date": "2025-12-17", "heure": "20:30", "type": "soiree", "titre": "Soirée d'adoration eucharistique", "lieu": "Chapelle de l'Escale", "details": "Soirée d'adoration eucharistique dans la chappelle de l'Escale ! Avec la possibilité de se confesser." }
 ]
