@@ -1,5 +1,5 @@
 // sw.js (à la racine)
-const CACHE = "escale-v7";
+const CACHE = "escale-v8";
 
 const ASSETS = [
   "./",
@@ -26,7 +26,7 @@ const ASSETS = [
   "./assets/img/proposer.png",
   "./assets/img/repas.png",
   "./assets/img/service.png",
-  "./assets/img/soireediscussion.png",
+  "./assets/img/soiree.png",
   "./assets/img/sortie.png",
 
   "./data/annonces.json",
