@@ -257,30 +257,39 @@ async function initAnnonces() {
       .forEach((a) => {
         const ic = iconForAnnonce(a.categorie || "info");
         renderItem(
-          list,
-          `
-          <details class="item">
-            <summary class="item__summary">
-              <div class="item__top">
-                <div class="item__left">
-                  <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
-                  ${badge(a.categorie || "info", a.categorie || "info")}
-                </div>
-                <span class="muted">${escapeHtml(a.date ?? "")}</span>
-              </div>
+	  list,
+  `
+	  <details class="item item--with-image">
 
-              <h3>${escapeHtml(a.titre)}</h3>
-              <p>${escapeHtml(a.resume || a.texte || "")}</p>
-            </summary>
+	    ${a.image ? `
+	      <div class="item__image">
+	        <img src="${escapeHtml(a.image)}" alt="${escapeHtml(a.titre || "Annonce")}">
+	      </div>
+	    ` : ""}
 
-            <div class="item__details">
-              ${a.texte ? `<p>${escapeHtml(a.texte)}</p>` : `<p class="muted">Aucun détail.</p>`}
-              ${a.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(a.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
-              ${a.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(a.contact)}</p>` : ""}
-            </div>
-          </details>
-        `
-        );
+	    <summary class="item__summary">
+	      <div class="item__top">
+	        <div class="item__left">
+	          <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
+	          ${badge(a.categorie || "info", a.categorie || "info")}
+	        </div>
+	        <span class="muted">${escapeHtml(a.date ?? "")}</span>
+	      </div>
+
+	      <h3>${escapeHtml(a.titre)}</h3>
+	      <p>${escapeHtml(a.resume || a.texte || "")}</p>
+	    </summary>
+
+	    <div class="item__details">
+	      ${a.texte ? `<p>${escapeHtml(a.texte)}</p>` : `<p class="muted">Aucun détail.</p>`}
+	      ${a.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(a.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
+	      ${a.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(a.contact)}</p>` : ""}
+	    </div>
+
+	  </details>
+`
+	);
+
       });
 
     if (!list.children.length) {

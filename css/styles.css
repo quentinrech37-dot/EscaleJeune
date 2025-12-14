@@ -363,39 +363,38 @@ body{
   border-top: 1px solid #e5e7eb;
 }
 
-/* === Événements avec image === */
+/* === Cartes avec image (toujours visible, taille fixe) === */
 
-.item--with-image {
-  display: flex;
-  gap: 16px;
-  align-items: stretch;
+.item--with-image{
+  display:flex;
+  gap:16px;
+  align-items:flex-start; /* important : ne pas étirer l’image */
 }
 
-.item__image {
-  flex: 0 0 160px;
-  border-radius: 12px;
-  overflow: hidden;
+.item__image{
+  flex: 0 0 160px;        /* largeur fixe */
+  width:160px;
+  height:110px;           /* hauteur fixe => plus d’image géante */
+  border-radius:12px;
+  overflow:hidden;
+  align-self:flex-start;  /* important */
+  border: 1px solid rgba(0,0,0,0.06);
+  background: rgba(17,24,39,.03);
 }
 
-.item__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.item__image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
 /* Mobile : image au-dessus */
-@media (max-width: 700px) {
-  .item--with-image {
-    flex-direction: column;
-  }
-
-  .item__image {
-    width: 100%;
-    height: 180px;
+@media (max-width: 700px){
+  .item--with-image{flex-direction:column;}
+  .item__image{
+    width:100%;
+    flex: 0 0 auto;
+    height:180px;
   }
 }
-
-
-
-
