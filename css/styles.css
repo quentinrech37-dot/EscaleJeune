@@ -23,7 +23,7 @@ body{
 
   /* Image + voile clair pour la lisibilité */
   background:
-    linear-gradient(180deg, rgba(246,247,251,.92), rgba(246,247,251,.92)),
+    linear-gradient(180deg, rgba(246,247,251,.85), rgba(246,247,251,.85)),
     url("../assets/img/besancon.jpg");
   background-size: cover;
   background-position: center;
@@ -398,3 +398,64 @@ body{
     height:180px;
   }
 }
+
+/* --- Vignettes (images visibles même sans ouvrir la bulle) --- */
+.item__summary {
+  list-style: none;
+  cursor: pointer;
+}
+.item__summary::-webkit-details-marker {
+  display: none;
+}
+
+/* corps de la bulle (texte + vignette) */
+.item__body {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.item__main {
+  flex: 1;
+  min-width: 0;
+}
+
+.item__thumb {
+  flex: 0 0 200px;
+  width: 200px;
+}
+.item__thumb img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.08);
+  display: block;
+}
+
+/* grande image dans les détails */
+.item__media {
+  margin: 10px 0 14px;
+}
+.item__media img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.08);
+  display: block;
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .item__body {
+    flex-direction: column;
+  }
+  .item__thumb {
+    width: 100%;
+    flex-basis: auto;
+  }
+  .item__thumb img {
+    height: 180px;
+  }
+}
+

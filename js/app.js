@@ -226,71 +226,83 @@ async function initHome() {
 
 async function initAnnonces() {
   const list = document.getElementById("annoncesList");
-  if (!list) return;
-
   const search = document.getElementById("annoncesSearch");
   const filter = document.getElementById("annoncesFilter");
+  if (!list) return;
 
   let data = [];
   try {
     data = await loadJSON("./data/annonces.json");
   } catch {
-    list.innerHTML = `<div class="item"><p class="muted">Impossible de charger les annonces.</p></div>`;
+    list.innerHTML = `<div class="item"><p class="muted">Données indisponibles.</p></div>`;
     return;
   }
 
   function draw() {
     const q = (search?.value || "").trim().toLowerCase();
-    const f = filter?.value || "all";
+    const cat = filter?.value || "Toutes";
+
+    const items = data
+      .filter((a) => {
+        const okCat = cat === "Toutes" ? true : (a.categorie || "info") === cat;
+        const text = `${a.titre || ""} ${a.resume || ""} ${a.texte || ""} ${a.details || ""}`.toLowerCase();
+        const okQ = q ? text.includes(q) : true;
+        return okCat && okQ;
+      })
+      .sort(byDateDesc);
+
     list.innerHTML = "";
 
-    data
-      .filter((a) => (f === "all" ? true : a.categorie === f))
-      .filter((a) => {
-        if (!q) return true;
-        return (
-          (a.titre || "").toLowerCase().includes(q) ||
-          (a.texte || "").toLowerCase().includes(q) ||
-          (a.resume || "").toLowerCase().includes(q)
-        );
-      })
-      .forEach((a) => {
-        const ic = iconForAnnonce(a.categorie || "info");
-        renderItem(
-	  list,
-  `
-	  <details class="item item--with-image">
+    items.forEach((a) => {
+      const ic = iconForAnnonce(a.categorie || "info");
+      const thumb = a.image
+        ? `
+          <div class="item__thumb" aria-hidden="true">
+            <img src="${escapeHtml(a.image)}" alt="">
+          </div>
+        `
+        : "";
 
-	    ${a.image ? `
-	      <div class="item__image">
-	        <img src="${escapeHtml(a.image)}" alt="${escapeHtml(a.titre || "Annonce")}">
-	      </div>
-	    ` : ""}
+      const media = a.image
+        ? `
+          <div class="item__media">
+            <img src="${escapeHtml(a.image)}" alt="${escapeHtml(a.titre || "Illustration")}">
+          </div>
+        `
+        : "";
 
-	    <summary class="item__summary">
-	      <div class="item__top">
-	        <div class="item__left">
-	          <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
-	          ${badge(a.categorie || "info", a.categorie || "info")}
-	        </div>
-	        <span class="muted">${escapeHtml(a.date ?? "")}</span>
-	      </div>
+      renderItem(
+        list,
+        `
+        <details class="item ${a.image ? "item--with-thumb" : ""}">
+          <summary class="item__summary">
+            <div class="item__top">
+              <div class="item__left">
+                <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
+                ${badge(a.categorie || "info", a.categorie || "info")}
+              </div>
+              <span class="muted">${escapeHtml(a.date ?? "")}</span>
+            </div>
 
-	      <h3>${escapeHtml(a.titre)}</h3>
-	      <p>${escapeHtml(a.resume || a.texte || "")}</p>
-	    </summary>
+            <div class="item__body">
+              <div class="item__main">
+                <h3>${escapeHtml(a.titre)}</h3>
+                <p>${escapeHtml(a.resume || a.texte || "")}</p>
+              </div>
+              ${thumb}
+            </div>
+          </summary>
 
-	    <div class="item__details">
-	      ${a.texte ? `<p>${escapeHtml(a.texte)}</p>` : `<p class="muted">Aucun détail.</p>`}
-	      ${a.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(a.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
-	      ${a.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(a.contact)}</p>` : ""}
-	    </div>
-
-	  </details>
-`
-	);
-
-      });
+          <div class="item__details">
+            ${media}
+            ${a.texte ? `<p>${escapeHtml(a.texte)}</p>` : `<p class="muted">Aucun détail.</p>`}
+            ${a.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(a.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
+            ${a.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(a.contact)}</p>` : ""}
+          </div>
+        </details>
+        `
+      );
+    });
 
     if (!list.children.length) {
       list.innerHTML = `<div class="item"><p class="muted">Aucun résultat.</p></div>`;
@@ -302,66 +314,81 @@ async function initAnnonces() {
   draw();
 }
 
+
 /* ==================== CALENDRIER ==================== */
 
 async function initCalendrier() {
-  const list = document.getElementById("eventsList");
+  const list = document.getElementById("calendrierList");
+  const filter = document.getElementById("calendrierFilter");
   if (!list) return;
-
-  const filter = document.getElementById("eventsFilter");
 
   let data = [];
   try {
-    data = (await loadJSON("./data/calendrier.json")).sort(byDateAsc);
+    data = await loadJSON("./data/calendrier.json");
   } catch {
-    list.innerHTML = `<div class="item"><p class="muted">Impossible de charger le calendrier.</p></div>`;
+    list.innerHTML = `<div class="item"><p class="muted">Données indisponibles.</p></div>`;
     return;
   }
 
   function draw() {
-    const f = filter?.value || "all";
+    const type = filter?.value || "Tout";
+    const items = [...data]
+      .filter((e) => (type === "Tout" ? true : (e.type || "info") === type))
+      .sort(byDateAsc);
+
     list.innerHTML = "";
 
-    data
-      .filter((e) => (f === "all" ? true : e.type === f))
-      .forEach((e) => {
-        const ic = iconForEvent(e.type || "");
-        renderItem(
-	  list,
-  `
-	  <details class="item item--with-image">
-    
-	    ${e.image ? `
-	      <div class="item__image">
-	        <img src="${escapeHtml(e.image)}" alt="${escapeHtml(e.titre)}">
-	      </div>
-	    ` : ""}
+    items.forEach((e) => {
+      const ic = iconForEvent(e.type || "");
+      const thumb = e.image
+        ? `
+          <div class="item__thumb" aria-hidden="true">
+            <img src="${escapeHtml(e.image)}" alt="">
+          </div>
+        `
+        : "";
 
-	    <summary class="item__summary">
-	      <div class="item__top">
-	        <div class="item__left">
-	          <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
-	          ${badge(e.type || "info", e.type || "activité")}
-	        </div>
-	        <span class="muted">${escapeHtml(e.date)} ${escapeHtml(e.heure || "")}</span>
-	      </div>
+      const media = e.image
+        ? `
+          <div class="item__media">
+            <img src="${escapeHtml(e.image)}" alt="${escapeHtml(e.titre || "Illustration")}">
+          </div>
+        `
+        : "";
 
-	      <h3>${escapeHtml(e.titre)}</h3>
-	      <p>${escapeHtml(e.lieu || "")}</p>
-	      ${e.resume ? `<p class="muted" style="margin-top:6px">${escapeHtml(e.resume)}</p>` : ""}
-	    </summary>
+      renderItem(
+        list,
+        `
+        <details class="item ${e.image ? "item--with-thumb" : ""}">
+          <summary class="item__summary">
+            <div class="item__top">
+              <div class="item__left">
+                <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
+                ${badge(e.type || "info", e.type || "activité")}
+              </div>
+              <span class="muted">${escapeHtml(e.date)} ${escapeHtml(e.heure || "")}</span>
+            </div>
 
-	    <div class="item__details">
-	      ${e.details ? `<p>${escapeHtml(e.details)}</p>` : `<p class="muted">Aucun détail.</p>`}
-	      ${e.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(e.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
-	      ${e.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(e.contact)}</p>` : ""}
-	    </div>
+            <div class="item__body">
+              <div class="item__main">
+                <h3>${escapeHtml(e.titre)}</h3>
+                <p>${escapeHtml(e.lieu || "")}</p>
+                ${e.resume ? `<p class="muted" style="margin-top:8px">${escapeHtml(e.resume)}</p>` : ""}
+              </div>
+              ${thumb}
+            </div>
+          </summary>
 
-	  </details>
-`
-	);
-
-      });
+          <div class="item__details">
+            ${media}
+            ${e.details ? `<p>${escapeHtml(e.details)}</p>` : `<p class="muted">Aucun détail.</p>`}
+            ${e.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(e.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
+            ${e.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(e.contact)}</p>` : ""}
+          </div>
+        </details>
+        `
+      );
+    });
 
     if (!list.children.length) {
       list.innerHTML = `<div class="item"><p class="muted">Aucune activité.</p></div>`;
@@ -371,6 +398,7 @@ async function initCalendrier() {
   filter?.addEventListener("change", draw);
   draw();
 }
+
 
 /* ==================== REPAS ==================== */
 
