@@ -33,13 +33,11 @@ function formatDateFR(iso) {
   return dt.toLocaleDateString("fr-FR", {
     weekday: "long",
     day: "numeric",
-    month: "long"
+    month: "long",
   });
 }
 
 function parseISODateToUTC(dateStr) {
-  // dateStr attendu: "YYYY-MM-DD"
-  // On force une comparaison propre sans dépendre du fuseau local.
   if (!dateStr) return NaN;
   const [y, m, d] = String(dateStr).split("-").map(Number);
   if (!y || !m || !d) return NaN;
@@ -61,99 +59,15 @@ function renderItem(container, html) {
   container.insertAdjacentHTML("beforeend", html);
 }
 
-function safeUrl(u) {
-  if (!u) return "";
-  try {
-    const url = new URL(u, window.location.href);
-    if (url.protocol === "http:" || url.protocol === "https:") return url.href;
-  } catch {}
-  return "";
-}
-
-function excerpt(text, n = 120) {
-  const t = (text || "").trim();
-  if (t.length <= n) return t;
-  return t.slice(0, n - 1) + "…";
-}
-
-function cardAnnonce(a) {
-  const ico = iconForAnnonce(a.categorie || "info");
-  const link = safeUrl(a.lien);
-  const img = safeUrl(a.image);
-
-  const titre = escapeHtml(a.titre || "");
-  const date = escapeHtml(a.date || "");
-  const cat = escapeHtml(a.categorie || "info");
-  const texte = escapeHtml(a.texte || "");
-  const contact = escapeHtml(a.contact || "");
-  const resume = escapeHtml(a.resume || excerpt(a.texte || "", 140));
-
-  return `
-    <details class="item item--expand">
-      <summary>
-        <div class="item__meta">
-          <img class="item__icon" src="${ico.src}" alt="${escapeHtml(ico.alt)}">
-          ${badge(a.categorie || "info", cat)}
-          <span class="muted" style="margin-left:auto">${date}</span>
-        </div>
-        <h3>${titre}</h3>
-        ${resume ? `<p class="muted">${resume}</p>` : ""}
-      </summary>
-
-      <div class="item__body">
-        ${texte ? `<p>${texte}</p>` : ""}
-        ${contact ? `<p class="muted"><strong>Contact :</strong> ${contact}</p>` : ""}
-        ${link ? `<a class="btn btn--ghost item__link" href="${link}" target="_blank" rel="noopener">Plus d’infos</a>` : ""}
-        ${img ? `<img class="item__img" src="${img}" alt="" loading="lazy">` : ""}
-      </div>
-    </details>
-  `;
-}
-
-function cardEvent(e) {
-  const ico = iconForEvent(e.type || "activité");
-  const link = safeUrl(e.lien);
-  const img = safeUrl(e.image);
-
-  const titre = escapeHtml(e.titre || "");
-  const type = escapeHtml(e.type || "activité");
-  const date = escapeHtml(e.date || "");
-  const heure = escapeHtml(e.heure || "");
-  const lieu = escapeHtml(e.lieu || "");
-  const details = escapeHtml(e.details || "");
-  const contact = escapeHtml(e.contact || "");
-  const resume = escapeHtml(e.resume || excerpt(e.details || "", 140));
-
-  return `
-    <details class="item item--expand">
-      <summary>
-        <div class="item__meta">
-          <img class="item__icon" src="${ico.src}" alt="${escapeHtml(ico.alt)}">
-          ${badge(e.type || "info", type)}
-          <span class="muted" style="margin-left:auto">${date} ${heure}</span>
-        </div>
-        <h3>${titre}</h3>
-        ${lieu ? `<p class="muted">${lieu}</p>` : ""}
-        ${resume ? `<p class="muted">${resume}</p>` : ""}
-      </summary>
-
-      <div class="item__body">
-        ${details ? `<p>${details}</p>` : ""}
-        ${contact ? `<p class="muted"><strong>Contact :</strong> ${contact}</p>` : ""}
-        ${link ? `<a class="btn btn--ghost item__link" href="${link}" target="_blank" rel="noopener">Plus d’infos</a>` : ""}
-        ${img ? `<img class="item__img" src="${img}" alt="" loading="lazy">` : ""}
-      </div>
-    </details>
-  `;
-}
-
-
 function badge(type, text) {
   const cls =
-    type === "urgent" ? "badge badge--urgent" :
-    type === "need"   ? "badge badge--need" :
-    type === "ok"     ? "badge badge--ok" :
-                        "badge";
+    type === "urgent"
+      ? "badge badge--urgent"
+      : type === "need"
+      ? "badge badge--need"
+      : type === "ok"
+      ? "badge badge--ok"
+      : "badge";
   return `<span class="${cls}">${escapeHtml(text)}</span>`;
 }
 
@@ -169,7 +83,7 @@ function iconForAnnonce(cat) {
 function iconForEvent(type) {
   if (type === "messe") return { src: "./assets/img/messe.png", alt: "Messe" };
   if (type === "repas") return { src: "./assets/img/repas.png", alt: "Repas" };
-  if (type === "soiree") return { src: "./assets/img/soiree.png", alt: "Soirée / discussion" };
+  if (type === "soiree") return { src: "./assets/img/soireediscussion.png", alt: "Soirée / discussion" };
   if (type === "sortie") return { src: "./assets/img/sortie.png", alt: "Sortie" };
   return { src: "./assets/img/prochainesactivites.png", alt: "Activité" };
 }
@@ -231,32 +145,37 @@ async function initHome() {
 
   try {
     const annonces = (await loadJSON("./data/annonces.json")).slice(0, 3);
+
     if (aC) {
       aC.innerHTML = "";
       annonces.forEach((a) => {
         const ic = iconForAnnonce(a.categorie || "info");
-        renderItem(aC, `
-	  <details class="item">
-	    <summary class="item__summary">
-	      <div class="item__top">
-	        <div class="item__left">
-	          <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
-	          ${badge(a.categorie || "info", a.categorie || "info")}
-	        </div>
-	        <span class="muted">${escapeHtml(a.date)}</span>
-	      </div>
+        renderItem(
+          aC,
+          `
+          <details class="item">
+            <summary class="item__summary">
+              <div class="item__top">
+                <div class="item__left">
+                  <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
+                  ${badge(a.categorie || "info", a.categorie || "info")}
+                </div>
+                <span class="muted">${escapeHtml(a.date ?? "")}</span>
+              </div>
 
-	      <h3>${escapeHtml(a.titre)}</h3>
-	      <p>${escapeHtml(a.texte)}</p>
-	    </summary>
+              <h3>${escapeHtml(a.titre)}</h3>
+              <p>${escapeHtml(a.resume || a.texte || "")}</p>
+            </summary>
 
-	    <div class="item__details">
-	      ${a.details ? `<p>${escapeHtml(a.details)}</p>` : `<p class="muted">Aucun détail supplémentaire.</p>`}
-	      ${a.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(a.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
-	    </div>
-	  </details>
-	`);
-
+            <div class="item__details">
+              ${a.texte ? `<p>${escapeHtml(a.texte)}</p>` : `<p class="muted">Aucun détail.</p>`}
+              ${a.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(a.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
+              ${a.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(a.contact)}</p>` : ""}
+            </div>
+          </details>
+        `
+        );
+      });
     }
 
     const events = (await loadJSON("./data/calendrier.json")).sort(byDateAsc);
@@ -267,29 +186,32 @@ async function initHome() {
       eC.innerHTML = "";
       if (next) {
         const ic = iconForEvent(next.type || "");
-        renderItem(eC, `
-	  <details class="item">
-	    <summary class="item__summary">
-	      <div class="item__top">
-	        <div class="item__left">
-	          <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
-	          ${badge(next.type || "info", next.type || "activité")}
-	        </div>
-	        <span class="muted">${escapeHtml(next.date)} ${escapeHtml(next.heure || "")}</span>
-	      </div>
+        renderItem(
+          eC,
+          `
+          <details class="item">
+            <summary class="item__summary">
+              <div class="item__top">
+                <div class="item__left">
+                  <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
+                  ${badge(next.type || "info", next.type || "activité")}
+                </div>
+                <span class="muted">${escapeHtml(next.date)} ${escapeHtml(next.heure || "")}</span>
+              </div>
 
-	      <h3>${escapeHtml(next.titre)}</h3>
-	      <p>${escapeHtml(next.lieu || "")}</p>
-	    </summary>
+              <h3>${escapeHtml(next.titre)}</h3>
+              <p>${escapeHtml(next.lieu || "")}</p>
+              ${next.resume ? `<p class="muted" style="margin-top:6px">${escapeHtml(next.resume)}</p>` : ""}
+            </summary>
 
-	    <div class="item__details">
-	      ${next.details ? `<p>${escapeHtml(next.details)}</p>` : `<p class="muted">Aucun détail.</p>`}
-	      ${next.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(next.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
-	      ${next.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(next.contact)}</p>` : ""}
-	    </div>
-	  </details>
-	`);
-
+            <div class="item__details">
+              ${next.details ? `<p>${escapeHtml(next.details)}</p>` : `<p class="muted">Aucun détail.</p>`}
+              ${next.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(next.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
+              ${next.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(next.contact)}</p>` : ""}
+            </div>
+          </details>
+        `
+        );
       } else {
         eC.innerHTML = `<div class="item"><p class="muted">Aucune activité.</p></div>`;
       }
@@ -328,33 +250,38 @@ async function initAnnonces() {
         if (!q) return true;
         return (
           (a.titre || "").toLowerCase().includes(q) ||
-          (a.texte || "").toLowerCase().includes(q)
+          (a.texte || "").toLowerCase().includes(q) ||
+          (a.resume || "").toLowerCase().includes(q)
         );
       })
       .forEach((a) => {
         const ic = iconForAnnonce(a.categorie || "info");
-        renderItem(list, `
-	  <details class="item">
-	    <summary class="item__summary">
-	      <div class="item__top">
-	        <div class="item__left">
-	          <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
-	          ${badge(a.categorie || "info", a.categorie || "info")}
-	        </div>
-	        <span class="muted">${escapeHtml(a.date)}</span>
-	      </div>
+        renderItem(
+          list,
+          `
+          <details class="item">
+            <summary class="item__summary">
+              <div class="item__top">
+                <div class="item__left">
+                  <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
+                  ${badge(a.categorie || "info", a.categorie || "info")}
+                </div>
+                <span class="muted">${escapeHtml(a.date ?? "")}</span>
+              </div>
 
-	      <h3>${escapeHtml(a.titre)}</h3>
-	      <p>${escapeHtml(a.texte)}</p>
-	    </summary>
+              <h3>${escapeHtml(a.titre)}</h3>
+              <p>${escapeHtml(a.resume || a.texte || "")}</p>
+            </summary>
 
-	    <div class="item__details">
-	      ${a.details ? `<p>${escapeHtml(a.details)}</p>` : `<p class="muted">Aucun détail supplémentaire.</p>`}
-	      ${a.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(a.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
-	    </div>
-	  </details>
-	`);
-
+            <div class="item__details">
+              ${a.texte ? `<p>${escapeHtml(a.texte)}</p>` : `<p class="muted">Aucun détail.</p>`}
+              ${a.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(a.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
+              ${a.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(a.contact)}</p>` : ""}
+            </div>
+          </details>
+        `
+        );
+      });
 
     if (!list.children.length) {
       list.innerHTML = `<div class="item"><p class="muted">Aucun résultat.</p></div>`;
@@ -390,30 +317,32 @@ async function initCalendrier() {
       .filter((e) => (f === "all" ? true : e.type === f))
       .forEach((e) => {
         const ic = iconForEvent(e.type || "");
-	renderItem(list, `
-	  <details class="item">
-	    <summary class="item__summary">
-	      <div class="item__top">
-	        <div class="item__left">
-	          <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
-	          ${badge(e.type || "info", e.type || "activité")}
-	        </div>
-	        <span class="muted">${escapeHtml(e.date)} ${escapeHtml(e.heure || "")}</span>
-	      </div>
+        renderItem(
+          list,
+          `
+          <details class="item">
+            <summary class="item__summary">
+              <div class="item__top">
+                <div class="item__left">
+                  <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
+                  ${badge(e.type || "info", e.type || "activité")}
+                </div>
+                <span class="muted">${escapeHtml(e.date)} ${escapeHtml(e.heure || "")}</span>
+              </div>
 
-	      <h3>${escapeHtml(e.titre)}</h3>
-	      <p>${escapeHtml(e.lieu || "")}</p>
-	    </summary>
+              <h3>${escapeHtml(e.titre)}</h3>
+              <p>${escapeHtml(e.lieu || "")}</p>
+              ${e.resume ? `<p class="muted" style="margin-top:6px">${escapeHtml(e.resume)}</p>` : ""}
+            </summary>
 
-	    <div class="item__details">
-		${e.details ? `<p>${escapeHtml(e.details)}</p>` : `<p class="muted">Aucun détail.</p>`}
-		${e.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(e.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
-		${e.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(e.contact)}</p>` : ""}
-	    </div>
-	  </details>
-	`);
-
-
+            <div class="item__details">
+              ${e.details ? `<p>${escapeHtml(e.details)}</p>` : `<p class="muted">Aucun détail.</p>`}
+              ${e.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(e.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
+              ${e.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(e.contact)}</p>` : ""}
+            </div>
+          </details>
+        `
+        );
       });
 
     if (!list.children.length) {
@@ -440,15 +369,16 @@ async function initRepas() {
     return;
   }
 
-  // 1) Trier par date
   data.sort(byDateAsc);
 
-  // 2) Garder uniquement les repas à venir
-  const todayISO = new Date().toISOString().slice(0, 10);
-  const upcoming = data.filter(r => String(r.date) >= todayISO);
+  let toShow = data;
 
-  // 3) Limiter à 5 repas
-  const toShow = upcoming.slice(0, 5);
+  if (REPAS_ONLY_UPCOMING) {
+    const todayISO = new Date().toISOString().slice(0, 10);
+    toShow = toShow.filter((r) => String(r.date) >= todayISO);
+  }
+
+  toShow = toShow.slice(0, REPAS_MAX_AFFICHAGE);
 
   list.innerHTML = "";
 
@@ -457,7 +387,6 @@ async function initRepas() {
     return;
   }
 
-  // 4) Affichage “humain”
   toShow.forEach((r) => {
     const besoin = Number(r.besoin_cuisiniers ?? 0);
     const cuisiniers = Number(r.cuisiniers ?? 0);
@@ -468,14 +397,16 @@ async function initRepas() {
         ? badge("need", `Il manque ${manque} volontaire${manque > 1 ? "s" : ""}`)
         : badge("ok", "Équipe complète");
 
-    const label = formatDateFR(r.date);            // ex: "mercredi 24 décembre"
-    const titre = `Repas du ${label}`;             // joli titre
+    const label = formatDateFR(r.date);
+    const titre = `Repas du ${label}`;
 
     const platHtml = r.plat
       ? `<p class="muted" style="margin-top:6px">Plat : ${escapeHtml(r.plat)}</p>`
       : "";
 
-    renderItem(list, `
+    renderItem(
+      list,
+      `
       <div class="item">
         <div class="item__top">
           <div class="item__left">
@@ -488,10 +419,10 @@ async function initRepas() {
         <h3>${escapeHtml(titre)}</h3>
         ${platHtml}
       </div>
-    `);
+    `
+    );
   });
 }
-
 
 /* ==================== BOOT ==================== */
 
