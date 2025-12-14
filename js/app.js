@@ -45,8 +45,23 @@ function parseISODateToUTC(dateStr) {
 }
 
 function byDateAsc(a, b) {
-  return parseISODateToUTC(a.date) - parseISODateToUTC(b.date);
+  const da = parseISODateToUTC(a.date);
+  const db = parseISODateToUTC(b.date);
+  if (Number.isNaN(da) && Number.isNaN(db)) return 0;
+  if (Number.isNaN(da)) return 1;   // dates invalides à la fin
+  if (Number.isNaN(db)) return -1;
+  return da - db;
 }
+
+function byDateDesc(a, b) {
+  const da = parseISODateToUTC(a.date);
+  const db = parseISODateToUTC(b.date);
+  if (Number.isNaN(da) && Number.isNaN(db)) return 0;
+  if (Number.isNaN(da)) return 1;   // dates invalides à la fin
+  if (Number.isNaN(db)) return -1;
+  return db - da;
+}
+
 
 async function loadJSON(pathOrUrl) {
   const r = await fetch(pathOrUrl, { cache: "no-store" });
@@ -180,7 +195,12 @@ async function initHome() {
 
     const events = (await loadJSON("./data/calendrier.json")).sort(byDateAsc);
     const nowUtc = Date.now();
-    const next = events.find((e) => parseISODateToUTC(e.date) >= nowUtc) || events[0];
+    const next =
+      events.find((e) => {
+        const t = parseISODateToUTC(e.date);
+        return !Number.isNaN(t) && t >= nowUtc;
+      }) || events.find((e) => !Number.isNaN(parseISODateToUTC(e.date))) || null;
+
 
     if (eC) {
       eC.innerHTML = "";

@@ -23,7 +23,7 @@ body{
 
   /* Image + voile clair pour la lisibilité */
   background:
-    linear-gradient(180deg, rgba(246,247,251,.85), rgba(246,247,251,.85)),
+    linear-gradient(180deg, rgba(246,247,251,.80), rgba(246,247,251,.80)),
     url("../assets/img/besancon.jpg");
   background-size: cover;
   background-position: center;
