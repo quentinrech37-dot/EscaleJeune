@@ -1,7 +1,58 @@
 [
-  { "date": "2025-12-17", "heure": "19:00", "type": "messe", "titre": "Messe de semaine", "lieu": "Chapelle de l'Escale", "details": "Messe suivie du repas communautaire." },
-  { "date": "2025-12-17", "heure": "19:45", "type": "repas", "titre": "Repas du mercredi", "lieu": "Escale Jeunes", "details": "Inscription et volontaires sur la page Repas." },
-  { "date": "2025-12-24", "heure": "19:45", "type": "repas", "titre": "Repas de Noël", "lieu": "Escale Jeunes", "details": "Le repas de Noël de l'Escale ! Venez nombreux, et pensez à rapporter un petit dessert (gâteau, fruits, biscuits, etc) ! Inscription et volontaires sur la page Repas." },
-  { "date": "2025-12-20", "heure": "20:30", "type": "soiree", "titre": "Soirée Rock", "lieu": "Escale Jeunes - Rue Chifflet", "details": "Venez nombreux pour cette soirée Rock de Noël !" },
-  { "date": "2025-12-17", "heure": "20:30", "type": "soiree", "titre": "Soirée d'adoration eucharistique", "lieu": "Chapelle de l'Escale", "details": "Soirée d'adoration eucharistique dans la chappelle de l'Escale ! Avec la possibilité de se confesser." }
+  {
+    "date": "2025-12-14",
+    "heure": "14:30",
+    "type": "sortie",
+    "titre": "Visite du Fort de Joux",
+    "lieu": "La Cluse-et-Mijoux",
+    "resume": "Visite guidée et temps convivial.",
+    "details": "Rendez-vous à 14h15 à l’entrée. Prévoir des chaussures confortables et une veste (site parfois frais).",
+    "contact": "Paul — SMS",
+    "lien": "https://www.chateau-joux.com/",
+    "image": "https://www.doubs.travel/uploads/2020/09/5_station-toussaint-louverture__dornier_la-cluse-joux-26-066-1120x640.jpg"
+  },
+  {
+    "date": "2025-12-17",
+    "heure": "19:00",
+    "type": "messe",
+    "titre": "Messe de semaine",
+    "lieu": "Escale Jeunes — Besançon",
+    "resume": "Messe suivie du repas communautaire.",
+    "details": "Accueil à partir de 18h45. Chacun peut venir même sans s’inscrire.",
+    "contact": "Équipe Escale"
+  },
+  {
+    "date": "2025-12-19",
+    "heure": "20:30",
+    "type": "soiree",
+    "titre": "Soirée rock (initiation)",
+    "lieu": "Salle commune",
+    "resume": "Initiation + pratique, ambiance simple et joyeuse.",
+    "details": "Ouvert à tous niveaux. Si vous pouvez, apportez une boisson ou quelque chose à partager.",
+    "contact": "Élise",
+    "lien": "https://www.aegc92.org/",
+    "image": "https://www.aegc92.org/images/logos/danse-rock.png"
+  },
+  {
+    "date": "2025-12-21",
+    "heure": "19:30",
+    "type": "repas",
+    "titre": "Repas de Noël",
+    "lieu": "Escale Jeunes — grande salle",
+    "resume": "Repas festif + temps fraternel.",
+    "details": "Tenue correcte (sans chichi). Possibilité d’apporter un dessert à partager. Merci de prévenir si régime/allergies.",
+    "contact": "Cuisine — responsables",
+    "image": "https://cdn.iris-etourism.io/uploads/crt_centre_val_de_loire/1ee/noel-chateau-royal-amboise-credit-adt-touraine-jc-coutand-2034-39-2.webp"
+  },
+  {
+    "date": "2025-12-22",
+    "heure": "20:00",
+    "type": "messe",
+    "titre": "Adoration eucharistique",
+    "lieu": "Chapelle (adresse communiquée sur place)",
+    "resume": "Temps de prière silencieuse et chants simples.",
+    "details": "Vous pouvez venir pour 10 minutes comme pour toute l’heure. Fin vers 21h.",
+    "contact": "Responsables prière"
+  }
 ]
+

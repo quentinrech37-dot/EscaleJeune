@@ -289,4 +289,79 @@ body{
   opacity: .95;
 }
 
+/* --- Cartes dépliables --- */
+.item--expand {
+  padding: 0;
+  overflow: hidden;
+}
+
+.item--expand > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 18px;
+  outline: none;
+}
+
+.item--expand > summary::-webkit-details-marker {
+  display: none;
+}
+
+.item--expand[open] > summary {
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.item__body {
+  padding: 14px 18px 18px 18px;
+}
+
+.item__meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.item__icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+.item__img {
+  width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-top: 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.item__link {
+  display: inline-block;
+  margin-top: 10px;
+}
+.item {
+  cursor: pointer;
+}
+
+.item__summary {
+  list-style: none;
+}
+
+.item__summary::-webkit-details-marker {
+  display: none;
+}
+
+.item[open] {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.item__details {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+
 

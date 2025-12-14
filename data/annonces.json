@@ -1,5 +1,24 @@
 [
-  { "date": "2025-12-11", "categorie": "info", "titre": "Bienvenue sur le site interne", "texte": "Ce site est une version d'essai, développé par Q. Rech." },
-  { "date": "2025-12-10", "categorie": "service", "titre": "Besoin de bras", "texte": "Qui peut aider à ranger après le repas ? (10 minutes suffisent.)" },
-  { "date": "2025-12-09", "categorie": "urgent", "titre": "Repas : volontaires recherchés", "texte": "Il manque des personnes pour préparer le prochain mercredi." }
+  {
+  "date": null,
+  "categorie": "info",
+  "titre": "Bienvenue sur le site interne de L'Escale",
+  "texte": "Ce site est un outil interne destiné à faciliter la vie de la communauté de l’Escale Jeunes à Besançon. Vous y trouverez les annonces, les prochaines activités, ainsi que l’organisation des repas du mercredi soir. Il permet aussi à chacun de proposer un sujet de réflexion ou une activité, afin de faire vivre la communauté de manière simple et participative.",
+  "resume": "Un espace simple pour suivre la vie de l’Escale, s’informer et participer à l’organisation des mercredis.",
+  "contact": "Père Pierre — 03 81 81 10 18",
+  "lien": "https://www.diocese-besancon.fr/agir-participer/tu-es-jeune-tourne-vers-l-avenir/escale-jeunes",
+  "image": "https://www.diocese-besancon.fr/agir-participer/tu-es-jeune-tourne-vers-l-avenir/escale-jeunes/@@minisite_properties/++widget++form.widgets.logo/@@download/escale%20jeunes_logo.jpg"
+}
+,
+  {
+  "date": "2025-12-17",
+  "categorie": "service",
+  "titre": "Besoin de bras",
+  "texte": "Nous aurion besoin de bras pour ranger le salon de jardin, à la fin de la messe du mercredi 17 Décembre. Merci !",
+  "resume": "Besoin de bras pour ranger le salon de jardin.",
+  "contact": null,
+  "lien": null,
+  "image": null
+}
+
 ]
