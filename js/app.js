@@ -159,16 +159,38 @@ async function initHome() {
   if (!aC && !eC) return;
 
   try {
-    const annonces = (await loadJSON("./data/annonces.json")).slice(0, 3);
-
+    // ===== Annonces (3 dernières) =====
     if (aC) {
+      const annonces = (await loadJSON("./data/annonces.json"))
+        .slice()
+        .sort(byDateDesc)
+        .slice(0, 3);
+
       aC.innerHTML = "";
+
       annonces.forEach((a) => {
         const ic = iconForAnnonce(a.categorie || "info");
+
+        const thumb = a.image
+          ? `
+            <div class="item__thumb" aria-hidden="true">
+              <img src="${escapeHtml(a.image)}" alt="">
+            </div>
+          `
+          : "";
+
+        const media = a.image
+          ? `
+            <div class="item__media">
+              <img src="${escapeHtml(a.image)}" alt="${escapeHtml(a.titre || "Illustration")}">
+            </div>
+          `
+          : "";
+
         renderItem(
           aC,
           `
-          <details class="item">
+          <details class="item ${a.image ? "item--with-thumb" : ""}">
             <summary class="item__summary">
               <div class="item__top">
                 <div class="item__left">
@@ -178,69 +200,109 @@ async function initHome() {
                 <span class="muted">${escapeHtml(a.date ?? "")}</span>
               </div>
 
-              <h3>${escapeHtml(a.titre)}</h3>
-              <p>${escapeHtml(a.resume || a.texte || "")}</p>
+              <div class="item__body">
+                <div class="item__main">
+                  <h3>${escapeHtml(a.titre || "")}</h3>
+                  <p>${escapeHtml(a.resume || a.texte || "")}</p>
+                </div>
+                ${thumb}
+              </div>
             </summary>
 
             <div class="item__details">
+              ${media}
               ${a.texte ? `<p>${escapeHtml(a.texte)}</p>` : `<p class="muted">Aucun détail.</p>`}
               ${a.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(a.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
               ${a.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(a.contact)}</p>` : ""}
             </div>
           </details>
-        `
+          `
         );
       });
-    }
 
-    const events = (await loadJSON("./data/calendrier.json")).sort(byDateAsc);
-    const nowUtc = Date.now();
-    const next =
-      events.find((e) => {
-        const t = parseISODateToUTC(e.date);
-        return !Number.isNaN(t) && t >= nowUtc;
-      }) || events.find((e) => !Number.isNaN(parseISODateToUTC(e.date))) || null;
-
-
-    if (eC) {
-      eC.innerHTML = "";
-      if (next) {
-        const ic = iconForEvent(next.type || "");
-        renderItem(
-          eC,
-          `
-          <details class="item">
-            <summary class="item__summary">
-              <div class="item__top">
-                <div class="item__left">
-                  <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
-                  ${badge(next.type || "info", next.type || "activité")}
-                </div>
-                <span class="muted">${escapeHtml(next.date)} ${escapeHtml(next.heure || "")}</span>
-              </div>
-
-              <h3>${escapeHtml(next.titre)}</h3>
-              <p>${escapeHtml(next.lieu || "")}</p>
-              ${next.resume ? `<p class="muted" style="margin-top:6px">${escapeHtml(next.resume)}</p>` : ""}
-            </summary>
-
-            <div class="item__details">
-              ${next.details ? `<p>${escapeHtml(next.details)}</p>` : `<p class="muted">Aucun détail.</p>`}
-              ${next.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(next.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
-              ${next.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(next.contact)}</p>` : ""}
-            </div>
-          </details>
-        `
-        );
-      } else {
-        eC.innerHTML = `<div class="item"><p class="muted">Aucune activité.</p></div>`;
+      if (!aC.children.length) {
+        aC.innerHTML = `<div class="item"><p class="muted">Aucune annonce.</p></div>`;
       }
     }
-  } catch {
+
+    // ===== Prochaine activité =====
+    if (eC) {
+      const events = (await loadJSON("./data/calendrier.json")).slice().sort(byDateAsc);
+      const nowUtc = Date.now();
+
+      // On cherche la prochaine activité datée ; sinon la première de la liste
+      const next =
+        events.find((e) => {
+          const t = parseISODateToUTC(e.date);
+          return Number.isFinite(t) && t >= nowUtc;
+        }) ||
+        events.find((e) => Number.isFinite(parseISODateToUTC(e.date))) ||
+        events[0];
+
+      eC.innerHTML = "";
+
+      if (!next) {
+        eC.innerHTML = `<div class="item"><p class="muted">Aucune activité.</p></div>`;
+        return;
+      }
+
+      const ic = iconForEvent(next.type || "");
+
+      const thumb = next.image
+        ? `
+          <div class="item__thumb" aria-hidden="true">
+            <img src="${escapeHtml(next.image)}" alt="">
+          </div>
+        `
+        : "";
+
+      const media = next.image
+        ? `
+          <div class="item__media">
+            <img src="${escapeHtml(next.image)}" alt="${escapeHtml(next.titre || "Illustration")}">
+          </div>
+        `
+        : "";
+
+      renderItem(
+        eC,
+        `
+        <details class="item ${next.image ? "item--with-thumb" : ""}">
+          <summary class="item__summary">
+            <div class="item__top">
+              <div class="item__left">
+                <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
+                ${badge(next.type || "info", next.type || "activité")}
+              </div>
+              <span class="muted">${escapeHtml(next.date ?? "")} ${escapeHtml(next.heure || "")}</span>
+            </div>
+
+            <div class="item__body">
+              <div class="item__main">
+                <h3>${escapeHtml(next.titre || "")}</h3>
+                <p>${escapeHtml(next.lieu || "")}</p>
+                ${next.resume ? `<p class="muted" style="margin-top:8px">${escapeHtml(next.resume)}</p>` : ""}
+              </div>
+              ${thumb}
+            </div>
+          </summary>
+
+          <div class="item__details">
+            ${media}
+            ${next.details ? `<p>${escapeHtml(next.details)}</p>` : `<p class="muted">Aucun détail.</p>`}
+            ${next.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(next.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
+            ${next.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(next.contact)}</p>` : ""}
+          </div>
+        </details>
+        `
+      );
+    }
+  } catch (err) {
     if (aC) aC.innerHTML = `<div class="item"><p class="muted">Données indisponibles.</p></div>`;
     if (eC) eC.innerHTML = `<div class="item"><p class="muted">Données indisponibles.</p></div>`;
   }
 }
+
 
 /* ==================== ANNONCES ==================== */
 
@@ -253,6 +315,7 @@ async function initAnnonces() {
   let data = [];
   try {
     data = await loadJSON("./data/annonces.json");
+    if (!Array.isArray(data)) throw new Error("annonces.json: format inattendu");
   } catch {
     list.innerHTML = `<div class="item"><p class="muted">Données indisponibles.</p></div>`;
     return;
@@ -264,7 +327,8 @@ async function initAnnonces() {
 
     const items = data
       .filter((a) => {
-        const okCat = cat === "Toutes" ? true : (a.categorie || "info") === cat;
+        const aCat = a.categorie || "info";
+        const okCat = cat === "Toutes" ? true : aCat === cat;
         const text = `${a.titre || ""} ${a.resume || ""} ${a.texte || ""} ${a.details || ""}`.toLowerCase();
         const okQ = q ? text.includes(q) : true;
         return okCat && okQ;
@@ -275,6 +339,7 @@ async function initAnnonces() {
 
     items.forEach((a) => {
       const ic = iconForAnnonce(a.categorie || "info");
+
       const thumb = a.image
         ? `
           <div class="item__thumb" aria-hidden="true">
@@ -306,7 +371,7 @@ async function initAnnonces() {
 
             <div class="item__body">
               <div class="item__main">
-                <h3>${escapeHtml(a.titre)}</h3>
+                <h3>${escapeHtml(a.titre || "")}</h3>
                 <p>${escapeHtml(a.resume || a.texte || "")}</p>
               </div>
               ${thumb}
@@ -334,7 +399,6 @@ async function initAnnonces() {
   draw();
 }
 
-
 /* ==================== CALENDRIER ==================== */
 
 async function initCalendrier() {
@@ -345,6 +409,7 @@ async function initCalendrier() {
   let data = [];
   try {
     data = await loadJSON("./data/calendrier.json");
+    if (!Array.isArray(data)) throw new Error("calendrier.json: format inattendu");
   } catch {
     list.innerHTML = `<div class="item"><p class="muted">Données indisponibles.</p></div>`;
     return;
@@ -352,14 +417,17 @@ async function initCalendrier() {
 
   function draw() {
     const type = filter?.value || "Tout";
-    const items = [...data]
+
+    const items = data
       .filter((e) => (type === "Tout" ? true : (e.type || "info") === type))
+      .slice()
       .sort(byDateAsc);
 
     list.innerHTML = "";
 
     items.forEach((e) => {
       const ic = iconForEvent(e.type || "");
+
       const thumb = e.image
         ? `
           <div class="item__thumb" aria-hidden="true">
@@ -386,12 +454,12 @@ async function initCalendrier() {
                 <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
                 ${badge(e.type || "info", e.type || "activité")}
               </div>
-              <span class="muted">${escapeHtml(e.date)} ${escapeHtml(e.heure || "")}</span>
+              <span class="muted">${escapeHtml(e.date ?? "")} ${escapeHtml(e.heure || "")}</span>
             </div>
 
             <div class="item__body">
               <div class="item__main">
-                <h3>${escapeHtml(e.titre)}</h3>
+                <h3>${escapeHtml(e.titre || "")}</h3>
                 <p>${escapeHtml(e.lieu || "")}</p>
                 ${e.resume ? `<p class="muted" style="margin-top:8px">${escapeHtml(e.resume)}</p>` : ""}
               </div>
@@ -418,6 +486,7 @@ async function initCalendrier() {
   filter?.addEventListener("change", draw);
   draw();
 }
+
 
 
 /* ==================== REPAS ==================== */
