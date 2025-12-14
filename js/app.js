@@ -83,7 +83,7 @@ function iconForAnnonce(cat) {
 function iconForEvent(type) {
   if (type === "messe") return { src: "./assets/img/messe.png", alt: "Messe" };
   if (type === "repas") return { src: "./assets/img/repas.png", alt: "Repas" };
-  if (type === "soiree") return { src: "./assets/img/soireediscussion.png", alt: "Soirée / discussion" };
+  if (type === "soiree") return { src: "./assets/img/soiree.png", alt: "Soirée / discussion" };
   if (type === "sortie") return { src: "./assets/img/sortie.png", alt: "Sortie" };
   return { src: "./assets/img/prochainesactivites.png", alt: "Activité" };
 }
@@ -318,31 +318,40 @@ async function initCalendrier() {
       .forEach((e) => {
         const ic = iconForEvent(e.type || "");
         renderItem(
-          list,
-          `
-          <details class="item">
-            <summary class="item__summary">
-              <div class="item__top">
-                <div class="item__left">
-                  <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
-                  ${badge(e.type || "info", e.type || "activité")}
-                </div>
-                <span class="muted">${escapeHtml(e.date)} ${escapeHtml(e.heure || "")}</span>
-              </div>
+	  list,
+  `
+	  <details class="item item--with-image">
+    
+	    ${e.image ? `
+	      <div class="item__image">
+	        <img src="${escapeHtml(e.image)}" alt="${escapeHtml(e.titre)}">
+	      </div>
+	    ` : ""}
 
-              <h3>${escapeHtml(e.titre)}</h3>
-              <p>${escapeHtml(e.lieu || "")}</p>
-              ${e.resume ? `<p class="muted" style="margin-top:6px">${escapeHtml(e.resume)}</p>` : ""}
-            </summary>
+	    <summary class="item__summary">
+	      <div class="item__top">
+	        <div class="item__left">
+	          <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
+	          ${badge(e.type || "info", e.type || "activité")}
+	        </div>
+	        <span class="muted">${escapeHtml(e.date)} ${escapeHtml(e.heure || "")}</span>
+	      </div>
 
-            <div class="item__details">
-              ${e.details ? `<p>${escapeHtml(e.details)}</p>` : `<p class="muted">Aucun détail.</p>`}
-              ${e.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(e.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
-              ${e.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(e.contact)}</p>` : ""}
-            </div>
-          </details>
-        `
-        );
+	      <h3>${escapeHtml(e.titre)}</h3>
+	      <p>${escapeHtml(e.lieu || "")}</p>
+	      ${e.resume ? `<p class="muted" style="margin-top:6px">${escapeHtml(e.resume)}</p>` : ""}
+	    </summary>
+
+	    <div class="item__details">
+	      ${e.details ? `<p>${escapeHtml(e.details)}</p>` : `<p class="muted">Aucun détail.</p>`}
+	      ${e.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(e.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
+	      ${e.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(e.contact)}</p>` : ""}
+	    </div>
+
+	  </details>
+`
+	);
+
       });
 
     if (!list.children.length) {

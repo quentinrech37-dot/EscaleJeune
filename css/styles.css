@@ -171,7 +171,7 @@ body{
   padding: 10px 12px;
   border-radius: 12px;
   border:1px solid var(--line);
-  background: rgba(255,255,255,.95);
+  background: rgba(255,255,255,.85);
   color: var(--text);
   outline: none;
 }
@@ -362,6 +362,40 @@ body{
   padding-top: 12px;
   border-top: 1px solid #e5e7eb;
 }
+
+/* === Événements avec image === */
+
+.item--with-image {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.item__image {
+  flex: 0 0 160px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Mobile : image au-dessus */
+@media (max-width: 700px) {
+  .item--with-image {
+    flex-direction: column;
+  }
+
+  .item__image {
+    width: 100%;
+    height: 180px;
+  }
+}
+
 
 
 
