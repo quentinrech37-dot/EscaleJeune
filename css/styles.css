@@ -459,53 +459,35 @@ body{
   }
 }
 
-/* Summary avec vignette visible même fermé */
-.item__summary{
-  display:flex;
-  gap:14px;
-  align-items:flex-start;
-  cursor:pointer;
-  list-style:none;
-}
-.item__summary::-webkit-details-marker{ display:none; }
-.item__summaryMain{ flex:1; min-width:0; }
+/* ========== FIX MOBILE : annonces/activités avec item__grid ========== */
+@media (max-width: 600px) {
 
-.item__thumb{
-  width: 220px;
-  height: 130px;
-  object-fit: cover;
-  border-radius: 14px;
-  border: 1px solid var(--line);
-  flex: 0 0 auto;
-}
+  /* Sur mobile : une seule colonne (texte puis image) */
+  .item__grid{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    align-items: start !important;
+  }
 
-/* Mobile : vignette en dessous */
-@media (max-width: 760px){
-  .item__summary{ flex-direction:column; }
-  .item__thumb{ width:100%; height: 180px; }
-}
-.item--expandable { padding: 0; }
-.item__summary { list-style: none; cursor: pointer; padding: 16px; }
-.item__summary::-webkit-details-marker { display: none; }
+  /* L'image ne doit jamais déborder ni chevaucher */
+  .item__media{
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 
-.item__grid {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 14px;
-  align-items: start;
-}
+  /* Votre image a la classe item__thumb (sur <img>) */
+  .item__thumb{
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    border-radius: 16px;          /* optionnel : harmonise avec vos cartes */
+    object-fit: cover;
+  }
 
-.item__media { display: flex; align-items: flex-start; }
-.item__thumb {
-  width: 180px;
-  height: 110px;
-  object-fit: cover;
-  border-radius: 14px;
-  border: 1px solid rgba(0,0,0,0.08);
+  /* Si vous forcez une hauteur ailleurs, on garde un rendu propre */
+  .item__media .item__thumb{
+    aspect-ratio: 16 / 9;         /* optionnel, joli pour les miniatures */
+  }
 }
-
-.item__details {
-  padding: 0 16px 16px 16px;
-  border-top: 1px solid rgba(0,0,0,0.06);
-}
-
