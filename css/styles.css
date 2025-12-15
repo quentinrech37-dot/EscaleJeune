@@ -552,3 +552,51 @@ body{
     height: 36px;
   }
 }
+/* Logo texte -> image (escale.png) */
+.brand__mark{
+  display:block;
+  height: 52px;        /* ajustez si vous voulez plus petit/grand */
+  width: auto;
+  max-width: 260px;
+  object-fit: contain;
+}
+@media (max-width: 700px){
+  .brand__mark{ height: 44px; max-width: 220px; }
+}
+
+/* === Layout standard des cartes avec vignette (DESKTOP) === */
+.item__grid{
+  display: grid;
+  grid-template-columns: 1fr 220px; /* texte | vignette */
+  gap: 16px;
+  align-items: start;
+}
+
+.item__media{
+  width: 220px;
+  justify-self: end;
+}
+
+img.item__thumb{
+  display:block;
+  width: 220px;
+  height: 130px;      /* taille “vignette” */
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* === MOBILE : texte puis image en dessous, pleine largeur === */
+@media (max-width: 700px){
+  .item__grid{
+    grid-template-columns: 1fr;
+  }
+  .item__media{
+    width: 100%;
+    justify-self: stretch;
+  }
+  img.item__thumb{
+    width: 100%;
+    height: 180px;
+  }
+}
