@@ -476,15 +476,26 @@ body{
     max-width: 100% !important;
   }
 
-  /* Votre image a la classe item__thumb (sur <img>) */
+/* Miniature visible sans ouvrir (la classe est sur <img>) */
+.item__thumb{
+  flex: 0 0 200px;
+  width: 200px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.08);
+  display: block;
+}
+
+/* Sur petits écrans : miniature en dessous du texte */
+@media (max-width: 900px){
   .item__thumb{
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    display: block !important;
-    border-radius: 16px;          /* optionnel : harmonise avec vos cartes */
-    object-fit: cover;
+    width: 100%;
+    flex: 0 0 auto;
+    height: 180px;
   }
+}
+
 
   /* Si vous forcez une hauteur ailleurs, on garde un rendu propre */
   .item__media .item__thumb{
@@ -492,94 +503,52 @@ body{
   }
 }
 
-/* --- Topbar panoramas --- */
+/* ===== Topbar panoramas : centré + responsive propre ===== */
+
 .topbar--panorama .topbar__inner--panorama{
-  position: relative;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(140px, 240px) auto minmax(140px, 240px);
   align-items: center;
   gap: 14px;
 }
 
-.topbar--panorama .brand--center{
-  text-align: center;
-}
-
+/* Images gauche/droite : taille maîtrisée */
 .topbar--panorama .topbar__panorama{
   width: 100%;
+  max-width: 240px;
   height: 56px;
   object-fit: contain;
   display: block;
 }
+.topbar--panorama .topbar__panorama--left{ justify-self: end; }
+.topbar--panorama .topbar__panorama--right{ justify-self: start; }
 
-.topbar--panorama .topbar__home{
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.topbar--panorama .brand--center{
+  text-align: center;
+}
+.topbar--panorama .brand--center .brand__title{
+  font-weight: 800;
 }
 
-/* Mobile : on empile pour éviter de casser */
+/* Mobile : on met le titre au-dessus, et les 2 panoramas en dessous sur une ligne */
 @media (max-width: 700px){
   .topbar--panorama .topbar__inner--panorama{
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "brand brand"
+      "left  right";
     justify-items: center;
-    padding-right: 0;
-    gap: 8px;
+    gap: 8px 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
   }
+
+  .topbar--panorama .brand--center{ grid-area: brand; }
+  .topbar--panorama .topbar__panorama--left{ grid-area: left; justify-self: end; }
+  .topbar--panorama .topbar__panorama--right{ grid-area: right; justify-self: start; }
+
   .topbar--panorama .topbar__panorama{
-    height: 44px;
-  }
-  .topbar--panorama .topbar__home{
-    position: static;
-    transform: none;
-    margin-top: 6px;
-  }
-}
-
-/* ===== En-tête avec panoramas (desktop + mobile) ===== */
-
-/* On autorise l'en-tête à s'adapter et à revenir à la ligne */
-.header__inner{
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-/* Le "brand" (bloc titre) ne doit pas exploser la mise en page */
-.brand{
-  flex: 1 1 auto;
-  align-items: center;
-  min-width: 260px;
-}
-
-/* Si vos panoramas sont des <img> dans l'en-tête */
-.header img[src*="panorama1"],
-.header img[src*="panorama2"],
-.header img[src*="panorama1.png"],
-.header img[src*="panorama2.png"]{
-  height: 56px;         /* <-- taille desktop */
-  width: auto;
-  max-width: 220px;     /* <-- évite l'image géante */
-  object-fit: contain;
-  display: block;
-}
-
-/* Mobile : on réduit et on centre */
-@media (max-width: 640px){
-  .header__inner{
-    justify-content: center;
-  }
-  .brand{
-    justify-content: center;
-    text-align: center;
-    min-width: 0;
-  }
-
-  .header img[src*="panorama1"],
-  .header img[src*="panorama2"],
-  .header img[src*="panorama1.png"],
-  .header img[src*="panorama2.png"]{
-    height: 34px;       /* <-- taille mobile */
-    max-width: 140px;
+    max-width: 170px;
+    height: 36px;
   }
 }
