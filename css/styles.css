@@ -600,3 +600,36 @@ img.item__thumb{
     height: 180px;
   }
 }
+
+/* =========================================================
+   EN-TÊTE : VERSION MOBILE SIMPLIFIÉE
+   - on garde uniquement escale.png
+   - on supprime les panoramas
+   ========================================================= */
+
+@media (max-width: 700px){
+
+  /* On cache complètement les panoramas */
+  .topbar__panorama{
+    display: none !important;
+  }
+
+  /* On simplifie la grille : une seule colonne */
+  .topbar--panorama .topbar__inner--panorama{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  /* Le logo central reste seul et bien centré */
+  .topbar--panorama .brand--center{
+    text-align: center;
+  }
+
+  .brand__mark{
+    height: 42px;        /* taille adaptée au mobile */
+    max-width: 220px;
+  }
+}
