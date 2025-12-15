@@ -536,3 +536,50 @@ body{
     margin-top: 6px;
   }
 }
+
+/* ===== En-tête avec panoramas (desktop + mobile) ===== */
+
+/* On autorise l'en-tête à s'adapter et à revenir à la ligne */
+.header__inner{
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Le "brand" (bloc titre) ne doit pas exploser la mise en page */
+.brand{
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 260px;
+}
+
+/* Si vos panoramas sont des <img> dans l'en-tête */
+.header img[src*="panorama1"],
+.header img[src*="panorama2"],
+.header img[src*="panorama1.png"],
+.header img[src*="panorama2.png"]{
+  height: 56px;         /* <-- taille desktop */
+  width: auto;
+  max-width: 220px;     /* <-- évite l'image géante */
+  object-fit: contain;
+  display: block;
+}
+
+/* Mobile : on réduit et on centre */
+@media (max-width: 640px){
+  .header__inner{
+    justify-content: center;
+  }
+  .brand{
+    justify-content: center;
+    text-align: center;
+    min-width: 0;
+  }
+
+  .header img[src*="panorama1"],
+  .header img[src*="panorama2"],
+  .header img[src*="panorama1.png"],
+  .header img[src*="panorama2.png"]{
+    height: 34px;       /* <-- taille mobile */
+    max-width: 140px;
+  }
+}
