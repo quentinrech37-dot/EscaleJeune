@@ -11,11 +11,11 @@
 }
 ,
   {
-  "date": "2025-12-17",
-  "categorie": "service",
-  "titre": "Besoin de bras",
-  "texte": "Nous aurions besoin de bras pour ranger le salon de jardin, à la fin de la messe du mercredi 17 Décembre. Merci !",
-  "resume": "Besoin de bras pour ranger le salon de jardin.",
+  "date": null,
+  "categorie": "messe",
+  "titre": "Messe de semaine",
+  "texte": "Tous les jours en semaine : messe de 19h00 à 19h45, en la chapelle de l'Escale Jeunes. Le mercredi la messe est suivie d'un repas !",
+  "resume": "19h-19h45",
   "contact": null,
   "lien": null,
   "image": null

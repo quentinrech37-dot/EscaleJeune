@@ -5,10 +5,10 @@
     "type": "sortie",
     "titre": "Visite du Fort de Joux",
     "lieu": "La Cluse-et-Mijoux",
-    "resume": "Visite guidée et temps convivial.",
-    "details": "Rendez-vous à 14h15 à l’entrée. Prévoir des chaussures confortables et une veste (site parfois frais).",
-    "contact": "Paul — SMS",
-    "lien": "https://www.chateau-joux.com/",
+    "resume": "Visite guidée du fort.",
+    "details": "Rendez-vous à 14h15 à l’entrée de l'Escale, deux voitures sont prévues. Prévoir des chaussures confortables et une veste (site parfois frais).",
+    "contact": "Paul (SMS)",
+    "lien": null,
     "image": "https://www.doubs.travel/uploads/2020/09/5_station-toussaint-louverture__dornier_la-cluse-joux-26-066-1120x640.jpg"
   },
   {
@@ -17,42 +17,55 @@
     "type": "messe",
     "titre": "Messe de semaine",
     "lieu": "Escale Jeunes — Besançon",
-    "resume": "Messe suivie du repas communautaire.",
-    "details": "Accueil à partir de 18h45. Chacun peut venir même sans s’inscrire.",
+    "resume": "Messe suivie du repas.",
+    "details": "Accueil à partir de 18h45, la messe commence à 19h00, et finit à 19h45.",
     "contact": "Équipe Escale"
   },
   {
-    "date": "2025-12-19",
+    "date": "2025-01-23",
     "heure": "20:30",
     "type": "soiree",
-    "titre": "Soirée rock (initiation)",
-    "lieu": "Salle commune",
+    "titre": "Soirée rock",
+    "lieu": "Escale-Rue Chiffley",
     "resume": "Initiation + pratique, ambiance simple et joyeuse.",
     "details": "Ouvert à tous niveaux. Si vous pouvez, apportez une boisson ou quelque chose à partager.",
     "contact": "Élise",
-    "lien": "https://www.aegc92.org/",
+    "lien": null,
     "image": "https://www.aegc92.org/images/logos/danse-rock.png"
   },
   {
     "date": "2025-12-21",
     "heure": "19:30",
     "type": "repas",
-    "titre": "Repas de Noël",
-    "lieu": "Escale Jeunes — grande salle",
-    "resume": "Repas festif + temps fraternel.",
-    "details": "Tenue correcte (sans chichi). Possibilité d’apporter un dessert à partager. Merci de prévenir si régime/allergies.",
-    "contact": "Cuisine — responsables",
+    "titre": "Repas de Noël et décoration",
+    "lieu": "Escale Jeunes - grande salle",
+    "resume": "Repas festif",
+    "details": "Possibilité d’apporter un dessert à partager. Le repas sera suivi d'un temps pour décorer l'Escale !",
+    "contact": null,
     "image": "https://cdn.iris-etourism.io/uploads/crt_centre_val_de_loire/1ee/noel-chateau-royal-amboise-credit-adt-touraine-jc-coutand-2034-39-2.webp"
   },
   {
-    "date": "2025-12-22",
+    "date": "2025-12-17",
     "heure": "20:00",
     "type": "messe",
     "titre": "Adoration eucharistique",
-    "lieu": "Chapelle (adresse communiquée sur place)",
-    "resume": "Temps de prière silencieuse et chants simples.",
-    "details": "Vous pouvez venir pour 10 minutes comme pour toute l’heure. Fin vers 21h.",
-    "contact": "Responsables prière"
+    "lieu": "Chapelle de l'Escale",
+    "resume": "Temps de prière silencieuse",
+    "details": "Vous pouvez venir pour 10 minutes comme pour toute l’heure. Fin vers 21h. Possibilité de se confesser.",
+    "contact": "Père Pierre",
+    "image":"https://wp.fr.aleteia.org/wp-content/uploads/sites/6/2017/11/web3-shrine-of-our-lady-of-la-salette-blessed-sacrament-eucharistic-adoration-godong-fr465275a.jpg"
+  },
+
+  {
+    "date": "2025-01-26",
+    "heure": "19:45",
+    "type": "messe",
+    "titre": "Procession aux flambeaux",
+    "lieu": "Eglise Sainte Madeleine",
+    "resume": "Procession aux flambeaux dans le quartier Battant.",
+    "details": "Rendez-vous à l'entrée de l'église Ste Madeleine rue de l'Ecole pour récupérer un cierge et participer à la procession ! Durée : ~30min.",
+    "contact": "Père Moreau",
+    "image":"https://laportelatine.org/wp-content/uploads/2020/04/4-3.jpg"
   }
 ]
 
