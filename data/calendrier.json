@@ -66,6 +66,17 @@
     "details": "Rendez-vous à l'entrée de l'église Ste Madeleine rue de l'Ecole pour récupérer un cierge et participer à la procession ! Durée : ~30min.",
     "contact": "Père Moreau",
     "image":"https://laportelatine.org/wp-content/uploads/2020/04/4-3.jpg"
+  },
+  {
+    "date": "2025-01-07",
+    "heure": "19:00",
+    "type": "repas",
+    "titre": "Soirée Voeux de l'Escale",
+    "lieu": "Chapelle des soeurs de la Sainte Famille (6 rue du Palais) pour la messe, Escale Jeunes pour le dîner.",
+    "resume": null,
+    "details": "Invitation aux voeux de l'Escale Jeunes. 19h : messe, 20h : vin chaud, repas (morbiflette/galettes des rois) et animation à l'Escale. Tarif libre à partir de 5€. ",
+    "contact": "Père Pierre - escalejeunes@diocese-besancon.fr",
+    "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Galette_Frangipane_2021.jpg/1200px-Galette_Frangipane_2021.jpg"
   }
 ]
 

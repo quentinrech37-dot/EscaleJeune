@@ -103,16 +103,36 @@ body{
   overflow:hidden;
 }
 .hero::before{
-  /* croix très discrète en “filigrane” */
-  content:"✠";
+  /* filigrane image à la place de la croix */
+  content:"";
   position:absolute;
   right: 18px;
   top: 10px;
-  font-size: 64px;
-  color: rgba(17,24,39,.06);
-  transform: rotate(8deg);
+
+  width: 240px;          /* “dimension” conseillée côté ordi */
+  height: 240px;
+
+  background-image: url("./assets/img/escalejeunes_gravurecolor.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  opacity: 0.22;         /* ajustez 0.15 → 0.35 selon votre goût */
   pointer-events:none;
 }
+
+/* Sur mobile : on réduit fortement (ou on masque) pour éviter tout chevauchement */
+@media (max-width: 760px){
+  .hero::before{
+    width: 140px;
+    height: 140px;
+    right: 12px;
+    top: 8px;
+    opacity: 0.18;
+  }
+}
+
+
 .hero h1{margin: 6px 0 8px; font-size: 2rem;}
 .hero p{margin:0 0 14px; color:var(--muted); max-width: 75ch;}
 
