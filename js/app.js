@@ -83,9 +83,6 @@ function badge(type, text) {
       : type === "ok"
       ? "badge badge--ok"
       : "badge";
-      : type === "off"
-      ? "badge badge--off"
-
   return `<span class="${cls}">${escapeHtml(text)}</span>`;
 }
 
@@ -438,23 +435,8 @@ async function initRepas() {
     list.innerHTML = `<div class="item"><p class="muted">Aucun repas à venir.</p></div>`;
     return;
   }
-  function isNoMealRow(r) {
-    // On accepte plusieurs noms possibles pour éviter de re-casser le code
-    const v =
-      r.pas_de_repas ??
-      r.pasDeRepas ??
-      r.no_repas ??
-      r.noRepas ??
-      r.annule ??
-      r.annulé ??
-      r.croix ??
-      r.x;
-  
-    return String(v ?? "").trim().toUpperCase() === "X" || v === true;
-  }
 
   toShow.forEach((r) => {
-    const noMeal = isNoMealRow(r);
     const besoin = Number(r.besoin_cuisiniers ?? 0);
     const cuisiniers = Number(r.cuisiniers ?? 0);
     const manque = Math.max(0, besoin - cuisiniers);
@@ -470,27 +452,6 @@ async function initRepas() {
     const platHtml = r.plat
       ? `<p class="muted" style="margin-top:6px">Plat : ${escapeHtml(r.plat)}</p>`
       : "";
-    if (noMeal) {
-      const dateFR = formatDateFR(r.date);
-      const ic = { src: "./assets/img/repas.png", alt: "Repas" };
-
-      renderItem(list, `
-        <div class="item">
-          <div class="item__top">
-            <div class="item__left">
-              <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
-              ${badge("off", "Pas de repas")}
-            </div>
-            <span class="muted">${escapeHtml(dateFR)}</span>
-          </div>
-
-          <h3>Pas de repas ce mercredi</h3>
-          <p class="muted">Aucune inscription nécessaire pour cette date.</p>
-        </div>
-      `);
-
-      return; // important : on n'affiche pas la carte "volontaires" habituelle
-    }
 
     renderItem(
       list,
