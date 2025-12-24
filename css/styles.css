@@ -112,7 +112,7 @@ body{
   width: 240px;          /* “dimension” conseillée côté ordi */
   height: 240px;
 
-  background-image: url("./assets/img/escalejeunes_gravurecolor.png");
+  background-image: url("../assets/img/escalejeunes_gravurecolor.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
