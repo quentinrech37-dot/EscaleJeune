@@ -102,35 +102,54 @@ body{
   position: relative;
   overflow:hidden;
 }
+.hero{
+  position: relative;
+  overflow: hidden;
+
+  /* On réserve de la place à droite pour que l'image n'empiète jamais sur les cartes */
+  padding-right: 300px;
+}
+
+.hero > *{
+  position: relative;
+  z-index: 1; /* tout le contenu au-dessus */
+}
+
 .hero::before{
-  /* filigrane image à la place de la croix */
   content:"";
   position:absolute;
   right: 18px;
-  top: 10px;
+  top: 18px;
 
-  width: 240px;          /* “dimension” conseillée côté ordi */
-  height: 240px;
+  width: 260px;
+  height: 180px;
 
-  background-image: url("../assets/img/escalejeunes_gravurecolor.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  background: url("../assets/img/escalejeunes_gravurecolor.png") center / contain no-repeat;
 
-  opacity: 0.22;         /* ajustez 0.15 → 0.35 selon votre goût */
+  opacity: 1;          /* 100% opaque */
+  z-index: 0;          /* derrière le texte/cartes */
   pointer-events:none;
 }
 
+
 /* Sur mobile : on réduit fortement (ou on masque) pour éviter tout chevauchement */
 @media (max-width: 760px){
+  .hero{
+    padding-right: 18px;   /* on ne réserve plus une grande marge à droite */
+    padding-top: 190px;    /* on réserve une place en haut pour l'image */
+  }
+
   .hero::before{
-    width: 140px;
-    height: 140px;
-    right: 12px;
-    top: 8px;
-    opacity: 0.18;
+    left: 50%;
+    right: auto;
+    top: 14px;
+    transform: translateX(-50%);
+
+    width: 260px;
+    height: 160px;
   }
 }
+
 
 
 .hero h1{margin: 6px 0 8px; font-size: 2rem;}
