@@ -672,3 +672,10 @@ img.item__thumb{
     max-width: 220px;
   }
 }
+
+.badge--off{
+  background: rgba(120,120,120,.12);
+  border-color: rgba(120,120,120,.25);
+  color: rgba(40,40,40,.9);
+}
+
