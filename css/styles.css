@@ -699,14 +699,21 @@ img.item__thumb{
   .topbar__diapo {
     display: none;
   }
+
   .brand--mobile {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
+    padding: 6px 0;   /* espace respirant mais contenu */
   }
+
   .brand--mobile .brand__mark {
-    max-width: 320px;  /* ajustez si vous voulez plus petit/plus grand */
-    height: auto;
+    height: 42px;     /* ← clé du problème */
+    max-width: 220px;
+    width: auto;
+    object-fit: contain;
   }
 }
+
 
