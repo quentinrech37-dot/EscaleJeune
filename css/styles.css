@@ -672,3 +672,41 @@ img.item__thumb{
     max-width: 220px;
   }
 }
+
+/* =========================
+   HEADER : diapo (ordi) / logo (mobile)
+   ========================= */
+
+.topbar__inner--diapo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topbar__diapo {
+  display: block;
+  width: min(1700px, 100%);
+  height: auto;
+}
+
+/* Par défaut : on cache la version mobile */
+.brand--mobile {
+  display: none;
+}
+
+/* Mobile : on garde seulement escale.png */
+@media (max-width: 720px) {
+  .topbar__diapo {
+    display: none;
+  }
+  .brand--mobile {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .brand--mobile .brand__mark {
+    max-width: 320px;  /* ajustez si vous voulez plus petit/plus grand */
+    height: auto;
+  }
+}
+

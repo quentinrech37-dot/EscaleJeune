@@ -11,27 +11,26 @@
   <script type="module" src="./js/app.js"></script>
 </head>
 <body>
-  <header class="topbar topbar--panorama">
-    <div class="wrap topbar__inner topbar__inner--panorama">
-      <img class="topbar__panorama topbar__panorama--left"
-           src="./assets/img/panorama1.png"
-           alt="Panorama (gauche)"
+  <header class="topbar topbar--diapo">
+    <div class="wrap topbar__inner topbar__inner--diapo">
+
+      <!-- Version ORDI : une seule image -->
+      <img class="topbar__diapo"
+           src="./assets/img/diapofinale.png"
+           alt="Banderole L’Escale"
            loading="eager">
-      <div class="brand brand--center">
+
+      <!-- Version MOBILE : uniquement le logo/nom -->
+      <div class="brand brand--mobile">
         <img class="brand__mark"
-            src="./assets/img/escale.png"
+             src="./assets/img/escale.png"
              alt="L’Escale — Besançon"
              loading="eager">
       </div>
 
-      <img class="topbar__panorama topbar__panorama--right"
-           src="./assets/img/panorama2.png"
-           alt="Panorama (droite)"
-           loading="eager">
-
-      
     </div>
   </header>
+
 
   <nav class="nav">
     <div class="wrap nav__inner">
