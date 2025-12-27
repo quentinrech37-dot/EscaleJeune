@@ -716,4 +716,41 @@ img.item__thumb{
   }
 }
 
+/* =========================
+   HEADER : desktop / mobile
+   ========================= */
+
+/* Desktop */
+.topbar__diapo {
+  display: block;
+  width: min(1700px, 100%);
+  height: auto;
+}
+
+/* Mobile : caché par défaut */
+.topbar__diapo--mobile {
+  display: none;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 720px) {
+
+  /* On cache la grande banderole */
+  .topbar__diapo {
+    display: none;
+  }
+
+  /* On affiche la frise mobile */
+  .topbar__diapo--mobile {
+    display: block;
+    width: 100%;
+    max-height: 110px;   /* ← CLEF : évite l’effet “énorme” */
+    object-fit: contain;
+  }
+
+  .topbar__inner--diapo {
+    padding: 6px 0;
+  }
+}
+
 
