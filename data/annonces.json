@@ -12,9 +12,9 @@
 {
   "date": null,
   "categorie": "info",
-  "titre": "Installer la version mobile de L’Escale",
-  "texte": "Il est possible d’installer le site de L’Escale directement sur votre téléphone, comme une application.\n\nSur iPhone (Safari) :\n1. Ouvrez le site dans Safari.\n2. Appuyez sur l’icône « Partager » (le carré avec la flèche).\n3. Choisissez « Sur l’écran d’accueil ».\n4. Validez : l’icône apparaît sur votre téléphone.\n\nSur Android (Chrome) :\n1. Ouvrez le site dans Chrome.\n2. Appuyez sur les trois points en haut à droite.\n3. Sélectionnez « Ajouter à l’écran d’accueil ».\n4. Confirmez l’installation.\n\nVous aurez ensuite un accès rapide, sans passer par le navigateur.",
-  "resume": "Ajoutez L’Escale à l’écran d’accueil de votre téléphone (iOS & Android).",
+  "titre": "Installer la version mobile de L’Escale !",
+  "texte": "Il est possible d’installer le site de L’Escale directement sur votre téléphone, comme une application.\n\nSur iPhone (Safari) :\n1. Ouvrez le site dans Safari.\n2. Appuyez sur l’icône « Partager » (le carré avec la flèche).\n3. Choisissez « Sur l’écran d’accueil ».\n4. Validez : l’icône apparaît sur votre téléphone.\n\nSur Android (Chrome) :\n1. Ouvrez le site dans Chrome.\n2. Appuyez sur les trois points en haut à droite.\n3. Sélectionnez « Ajouter à l’écran d’accueil ».\n4. Confirmez l’installation.\n\nVous aurez ensuite un accès rapide, sans passer par le navigateur, avec une interface identique à une application !",
+  "resume": "Ajoutez L’Escale à l’écran d’accueil de votre téléphone pour ne rien rater !",
   "contact": "Quentin RECH — quentin.rech37@gmail.com",
   "lien": "https://www.diocese-besancon.fr/agir-participer/tu-es-jeune-tourne-vers-l-avenir/escale-jeunes",
   "image": "./assets/img/annonces/screenversionmobile.jpg"
