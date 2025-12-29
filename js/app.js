@@ -263,7 +263,7 @@ async function initHome() {
 async function initAnnonces() {
   const list = document.getElementById("annoncesList");
   const search = document.getElementById("annoncesSearch");
-  const filter = document.getElementById("annoncesType");
+  const filter = document.getElementById("annoncesFilter");
   if (!list) return;
 
   let annonces = [];
@@ -273,6 +273,10 @@ async function initAnnonces() {
     console.error(err);
     list.innerHTML = `<div class="item"><p class="muted">Données indisponibles.</p></div>`;
     return;
+  }
+
+  function nl2br(s) {
+    return escapeHtml(s || "").replace(/\n/g, "<br>");
   }
 
   function draw() {
@@ -313,14 +317,18 @@ async function initAnnonces() {
             <div class="item__grid">
               <div class="item__main">
                 <h3>${escapeHtml(a.titre || "")}</h3>
-                <p>${escapeHtml(a.texte || "")}</p>
+		<p>${escapeHtml(a.resume || "")}</p>
               </div>
               ${thumb ? `<div class="item__media">${thumb}</div>` : ""}
             </div>
           </summary>
 
           <div class="item__details">
-            ${a.details ? `<p>${escapeHtml(a.details)}</p>` : `<p class="muted">Aucun détail supplémentaire.</p>`}
+            ${a.texte
+	      ? `<p>${nl2br(a.texte)}</p>`
+	      : `<p class="muted">Aucun détail supplémentaire.</p>`
+	    }
+	    ${a.details ? `<p style="margin-top:10px">${nl2br(a.details)}</p>` : ""}
             ${a.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(a.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
           </div>
         </details>
