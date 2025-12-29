@@ -1,40 +1,18 @@
 [
   {
-    "date": "2025-12-14",
-    "heure": "14:30",
-    "type": "sortie",
-    "titre": "Visite du Fort de Joux",
-    "lieu": "La Cluse-et-Mijoux",
-    "resume": "Visite guidée du fort.",
-    "details": "Rendez-vous à 14h15 à l’entrée de l'Escale, deux voitures sont prévues. Prévoir des chaussures confortables et une veste (site parfois frais).",
-    "contact": "Paul (SMS)",
-    "lien": null,
-    "image": "https://www.doubs.travel/uploads/2020/09/5_station-toussaint-louverture__dornier_la-cluse-joux-26-066-1120x640.jpg"
-  },
-  {
-    "date": "2025-12-17",
-    "heure": "19:00",
-    "type": "messe",
-    "titre": "Messe de semaine",
-    "lieu": "Escale Jeunes — Besançon",
-    "resume": "Messe suivie du repas.",
-    "details": "Accueil à partir de 18h45, la messe commence à 19h00, et finit à 19h45.",
-    "contact": "Équipe Escale"
-  },
-  {
-    "date": "2025-01-23",
-    "heure": "20:30",
+    "date": "2025-11-23",
+    "heure": "19:30",
     "type": "soiree",
     "titre": "Soirée rock",
     "lieu": "Escale-Rue Chiffley",
     "resume": "Initiation + pratique, ambiance simple et joyeuse.",
     "details": "Ouvert à tous niveaux. Si vous pouvez, apportez une boisson ou quelque chose à partager.",
-    "contact": "Élise",
+    "contact": "Clément",
     "lien": null,
     "image": "https://www.aegc92.org/images/logos/danse-rock.png"
   },
   {
-    "date": "2025-12-21",
+    "date": "2025-12-11",
     "heure": "19:30",
     "type": "repas",
     "titre": "Repas de Noël et décoration",
@@ -45,7 +23,7 @@
     "image": "https://cdn.iris-etourism.io/uploads/crt_centre_val_de_loire/1ee/noel-chateau-royal-amboise-credit-adt-touraine-jc-coutand-2034-39-2.webp"
   },
   {
-    "date": "2025-12-17",
+    "date": "2026-01-21",
     "heure": "20:00",
     "type": "messe",
     "titre": "Adoration eucharistique",
@@ -54,18 +32,6 @@
     "details": "Vous pouvez venir pour 10 minutes comme pour toute l’heure. Fin vers 21h. Possibilité de se confesser.",
     "contact": "Père Pierre",
     "image":"https://wp.fr.aleteia.org/wp-content/uploads/sites/6/2017/11/web3-shrine-of-our-lady-of-la-salette-blessed-sacrament-eucharistic-adoration-godong-fr465275a.jpg"
-  },
-
-  {
-    "date": "2025-01-26",
-    "heure": "19:45",
-    "type": "messe",
-    "titre": "Procession aux flambeaux",
-    "lieu": "Eglise Sainte Madeleine",
-    "resume": "Procession aux flambeaux dans le quartier Battant.",
-    "details": "Rendez-vous à l'entrée de l'église Ste Madeleine rue de l'Ecole pour récupérer un cierge et participer à la procession ! Durée : ~30min.",
-    "contact": "Père Moreau",
-    "image":"https://laportelatine.org/wp-content/uploads/2020/04/4-3.jpg"
   },
   {
     "date": "2025-01-07",
@@ -77,6 +43,19 @@
     "details": "Invitation aux voeux de l'Escale Jeunes. 19h : messe, 20h : vin chaud, repas (morbiflette/galettes des rois) et animation à l'Escale. Tarif libre à partir de 5€. ",
     "contact": "Père Pierre - escalejeunes@diocese-besancon.fr",
     "image":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Galette_Frangipane_2021.jpg/1200px-Galette_Frangipane_2021.jpg"
+  },
+  {
+    "date": "2026-01-17",
+    "heure":null,
+    "type": "sortie",
+    "titre": "Week-end de récollection",
+    "lieu":"Foyer Sainte Anne (Montferrand-le-Château)",
+    "resume": "Un week-end spirituel les 17–18 janvier 2026 autour de l’Esprit Saint, prêché par le père Pierre Imbert.",
+    "details": "Le week-end des 17 et 18 janvier 2026, l’Escale Jeunes organise un week-end de récollection, une « mini-retraite » sur le thème de l’Esprit Saint.\n\nCe temps spirituel sera prêché par le père Pierre Imbert et se déroulera au foyer Sainte-Anne, à Montferrand-le-Château.\n\nCe week-end est ouvert à tous : n’hésitez pas à inviter des amis pour vivre un moment vraiment ressourçant, fait de prière, d’enseignements et de fraternité.\n\nPour toute question ou besoin de transport, des solutions de covoiturage pourront être organisées. Il est également possible de venir par ses propres moyens. Le lien pour l'inscription est disponible ci-dessous.",
+    "contact": "Père Pierre - escalejeunes@diocese-besancon.fr",
+    "lien": "https://besanconpublic.enoria.app/pubinsc/auth?type=event&t=bb6259dee2ee7ee",
+    "image": "./assets/img/calendrier/weekend_recollection.jpg"
   }
+
 ]
 
