@@ -351,7 +351,20 @@ async function initCalendrier() {
 
   let events = [];
   try {
-    events = (await loadJSON("./data/calendrier.json")).sort(byDateAsc);
+    events = await loadJSON("./data/calendrier.json");
+
+    const todayISO = new Date().toISOString().slice(0, 10);
+
+    const upcoming = events
+      .filter(e => String(e.date || "") >= todayISO)
+      .sort(byDateAsc);   // bientôt -> plus tard
+
+    const past = events
+      .filter(e => String(e.date || "") < todayISO)
+      .sort(byDateDesc);  // récent -> ancien (donc les plus vieux tout en bas)
+
+    events = [...upcoming, ...past];
+
   } catch (err) {
     console.error(err);
     list.innerHTML = `<div class="item"><p class="muted">Données indisponibles.</p></div>`;
@@ -372,8 +385,11 @@ async function initCalendrier() {
     shown.forEach((e) => {
       const ic = iconForEvent(e.type);
       const thumb = e.image
-        ? `<img class="item__thumb" src="${escapeHtml(e.image)}" alt="" loading="lazy">`
+        ? `<a class="thumblink" href="${escapeHtml(e.image)}" target="_blank" rel="noopener">
+             <img class="item__thumb" src="${escapeHtml(e.image)}" alt="Image de l’activité" loading="lazy">
+           </a>`
         : "";
+
 
       renderItem(list, `
         <details class="item item--expandable">
