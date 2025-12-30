@@ -45,22 +45,23 @@ function parseISODateToUTC(dateStr) {
 }
 
 function byDateAsc(a, b) {
-  const da = parseISODateToUTC(a.date);
-  const db = parseISODateToUTC(b.date);
+  const da = parseISODateTimeToUTC(a.date, a.heure);
+  const db = parseISODateTimeToUTC(b.date, b.heure);
   if (Number.isNaN(da) && Number.isNaN(db)) return 0;
-  if (Number.isNaN(da)) return 1;   // dates invalides à la fin
+  if (Number.isNaN(da)) return 1;
   if (Number.isNaN(db)) return -1;
-  return da - db;
+  return da - db; // ancien -> récent
 }
 
 function byDateDesc(a, b) {
-  const da = parseISODateToUTC(a.date);
-  const db = parseISODateToUTC(b.date);
+  const da = parseISODateTimeToUTC(a.date, a.heure);
+  const db = parseISODateTimeToUTC(b.date, b.heure);
   if (Number.isNaN(da) && Number.isNaN(db)) return 0;
-  if (Number.isNaN(da)) return 1;   // dates invalides à la fin
+  if (Number.isNaN(da)) return 1;
   if (Number.isNaN(db)) return -1;
-  return db - da;
+  return db - da; // récent -> ancien
 }
+
 
 
 async function loadJSON(pathOrUrl) {
@@ -357,11 +358,13 @@ async function initCalendrier() {
 
     const upcoming = events
       .filter(e => String(e.date || "") >= todayISO)
-      .sort(byDateAsc);   // bientôt -> plus tard
+      .sort(byDateDesc);
+   // bientôt -> plus tard
 
     const past = events
       .filter(e => String(e.date || "") < todayISO)
-      .sort(byDateDesc);  // récent -> ancien (donc les plus vieux tout en bas)
+      .sort(byDateDesc);
+  // récent -> ancien (donc les plus vieux tout en bas)
 
     events = [...upcoming, ...past];
 
