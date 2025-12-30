@@ -3,20 +3,20 @@
   "date": null,
   "categorie": "info",
   "titre": "Bienvenue sur le site interne de L'Escale",
-  "texte": "Ce site est un outil interne destiné à faciliter la vie de la communauté de l’Escale Jeunes à Besançon. Vous y trouverez les annonces, les prochaines activités, ainsi que l’organisation des repas du mercredi soir. Il permet aussi à chacun de proposer un sujet de réflexion ou une activité, afin de faire vivre la communauté de manière simple et participative.",
+  "texte": "Ce site est un outil interne destiné à faciliter la vie de la communauté de l’Escale Jeunes à Besançon. Vous y trouverez les annonces, les prochaines activités, ainsi que l’organisation des repas du mercredi soir. Il permet aussi à chacun de proposer un sujet de réflexion ou une activité, afin de faire vivre la communauté de manière simple et participative. Voir lien ci-dessous pour plus d'informations à propos de l'Escale Jeunes.",
   "resume": "Un espace simple pour suivre la vie de l’Escale, s’informer et participer à l’organisation des mercredis.",
-  "contact": "Père Pierre — 03 81 81 10 18",
+  "contact": "Père Pierre - 03 81 81 10 18 - escalejeunes@diocese-besancon.fr",
   "lien": "https://www.diocese-besancon.fr/agir-participer/tu-es-jeune-tourne-vers-l-avenir/escale-jeunes",
   "image": "https://www.diocese-besancon.fr/agir-participer/tu-es-jeune-tourne-vers-l-avenir/escale-jeunes/@@minisite_properties/++widget++form.widgets.logo/@@download/escale%20jeunes_logo.jpg"
 },
-{
+  {
   "date": null,
   "categorie": "info",
   "titre": "Installer la version mobile de L’Escale !",
   "texte": "Il est possible d’installer le site de L’Escale directement sur votre téléphone, comme une application.\n\nSur iPhone (Safari) :\n1. Ouvrez le site dans Safari.\n2. Appuyez sur l’icône « Partager » (le carré avec la flèche).\n3. Choisissez « Sur l’écran d’accueil ».\n4. Validez : l’icône apparaît sur votre téléphone.\n\nSur Android (Chrome) :\n1. Ouvrez le site dans Chrome.\n2. Appuyez sur les trois points en haut à droite.\n3. Sélectionnez « Ajouter à l’écran d’accueil ».\n4. Confirmez l’installation.\n\nVous aurez ensuite un accès rapide, sans passer par le navigateur, avec une interface identique à une application !",
   "resume": "Ajoutez L’Escale à l’écran d’accueil de votre téléphone pour ne rien rater !",
   "contact": "Quentin RECH — quentin.rech37@gmail.com",
-  "lien": "https://www.diocese-besancon.fr/agir-participer/tu-es-jeune-tourne-vers-l-avenir/escale-jeunes",
+  "lien": null,
   "image": "./assets/img/annonces/screenversionmobile.jpeg"
 },
   {
