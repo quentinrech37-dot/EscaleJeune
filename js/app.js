@@ -358,13 +358,11 @@ async function initCalendrier() {
 
     const upcoming = events
       .filter(e => String(e.date || "") >= todayISO)
-      .sort(byDateDesc);
-   // bientôt -> plus tard
+      .sort(byDateAsc);   // bientôt -> plus tard
 
     const past = events
       .filter(e => String(e.date || "") < todayISO)
-      .sort(byDateDesc);
-  // récent -> ancien (donc les plus vieux tout en bas)
+      .sort(byDateDesc);  // récent -> ancien (donc les plus vieux tout en bas)
 
     events = [...upcoming, ...past];
 
