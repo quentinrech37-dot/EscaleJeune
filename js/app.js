@@ -45,23 +45,22 @@ function parseISODateToUTC(dateStr) {
 }
 
 function byDateAsc(a, b) {
-  const da = parseISODateTimeToUTC(a.date, a.heure);
-  const db = parseISODateTimeToUTC(b.date, b.heure);
+  const da = parseISODateToUTC(a.date);
+  const db = parseISODateToUTC(b.date);
   if (Number.isNaN(da) && Number.isNaN(db)) return 0;
-  if (Number.isNaN(da)) return 1;
+  if (Number.isNaN(da)) return 1;   // dates invalides à la fin
   if (Number.isNaN(db)) return -1;
-  return da - db; // ancien -> récent
+  return da - db;
 }
 
 function byDateDesc(a, b) {
-  const da = parseISODateTimeToUTC(a.date, a.heure);
-  const db = parseISODateTimeToUTC(b.date, b.heure);
+  const da = parseISODateToUTC(a.date);
+  const db = parseISODateToUTC(b.date);
   if (Number.isNaN(da) && Number.isNaN(db)) return 0;
-  if (Number.isNaN(da)) return 1;
+  if (Number.isNaN(da)) return 1;   // dates invalides à la fin
   if (Number.isNaN(db)) return -1;
-  return db - da; // récent -> ancien
+  return db - da;
 }
-
 
 
 async function loadJSON(pathOrUrl) {
