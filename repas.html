@@ -1,24 +1,36 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Repas — L’Escale</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="theme-color" content="#ffffff" />
-  <link rel="icon" href="./assets/img/favicon.png">
+  <title>Repas</title>
+  <meta name="description" content="Site interne de l’Escale (Besançon).">
+  <meta name="theme-color" content="#ffffff">
 
-  <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="stylesheet" href="./css/styles.css">
-  <!-- iOS / iPadOS home screen -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icon-192.png">
+  <!-- Icônes -->
+  <link rel="icon" href="/assets/img/favicon.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/img/icon-192.png">
 
-  <!-- Optionnel mais utile -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest">
 
-  <script type="module" src="./js/app.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Aperçu lors du partage -->
+  <meta property="og:title" content="Repas">
+  <meta property="og:description" content="Annonces, activités, repas, propositions… (site interne)">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://escale-besancon.fr/repas.html">
+  <meta property="og:image" content="https://escale-besancon.fr/assets/img/icon-1200.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Repas">
+  <meta name="twitter:description" content="Annonces, activités, repas, propositions… (site interne)">
+  <meta name="twitter:image" content="https://escale-besancon.fr/assets/img/icon-1200.png">
 </head>
+
 
 <body>
   <header class="topbar topbar--diapo">
@@ -88,5 +100,7 @@
       </div>
     </footer>
   </main>
+  <script type="module" src="/js/app.js"></script>
+
 </body>
 </html>
