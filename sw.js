@@ -1,5 +1,5 @@
 // sw.js (à la racine)
-const CACHE = "escale-v70";
+const CACHE = "escale-v71";
 
 const ASSETS = [
   "./",

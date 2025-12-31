@@ -44,23 +44,43 @@ function parseISODateToUTC(dateStr) {
   return Date.UTC(y, m - 1, d);
 }
 
+function parseISODateTimeToUTC(dateStr, timeStr) {
+  // dateStr attendu: "YYYY-MM-DD"
+  // timeStr attendu: "HH:MM" (optionnel)
+  if (!dateStr) return NaN;
+
+  const [y, m, d] = String(dateStr).split("-").map(Number);
+  if (!y || !m || !d) return NaN;
+
+  let hh = 0, mm = 0;
+  if (timeStr) {
+    const parts = String(timeStr).split(":").map(Number);
+    hh = Number.isFinite(parts[0]) ? parts[0] : 0;
+    mm = Number.isFinite(parts[1]) ? parts[1] : 0;
+  }
+
+  return Date.UTC(y, m - 1, d, hh, mm, 0);
+}
+
+
 function byDateAsc(a, b) {
-  const da = parseISODateToUTC(a.date);
-  const db = parseISODateToUTC(b.date);
+  const da = parseISODateTimeToUTC(a.date, a.heure);
+  const db = parseISODateTimeToUTC(b.date, b.heure);
   if (Number.isNaN(da) && Number.isNaN(db)) return 0;
-  if (Number.isNaN(da)) return 1;   // dates invalides à la fin
+  if (Number.isNaN(da)) return 1;
   if (Number.isNaN(db)) return -1;
-  return da - db;
+  return da - db; // ancien -> récent
 }
 
 function byDateDesc(a, b) {
-  const da = parseISODateToUTC(a.date);
-  const db = parseISODateToUTC(b.date);
+  const da = parseISODateTimeToUTC(a.date, a.heure);
+  const db = parseISODateTimeToUTC(b.date, b.heure);
   if (Number.isNaN(da) && Number.isNaN(db)) return 0;
-  if (Number.isNaN(da)) return 1;   // dates invalides à la fin
+  if (Number.isNaN(da)) return 1;
   if (Number.isNaN(db)) return -1;
-  return db - da;
+  return db - da; // récent -> ancien
 }
+
 
 
 async function loadJSON(pathOrUrl) {
@@ -353,17 +373,22 @@ async function initCalendrier() {
   try {
     events = await loadJSON("./data/calendrier.json");
 
-    const todayISO = new Date().toISOString().slice(0, 10);
+    const now = Date.now();
 
     const upcoming = events
-      .filter(e => String(e.date || "") >= todayISO)
-      .sort(byDateAsc);   // bientôt -> plus tard
+      .filter(e => !Number.isNaN(parseISODateTimeToUTC(e.date, e.heure)) && parseISODateTimeToUTC(e.date, e.heure) >= now)
+      .sort(byDateAsc);
 
     const past = events
-      .filter(e => String(e.date || "") < todayISO)
-      .sort(byDateDesc);  // récent -> ancien (donc les plus vieux tout en bas)
+      .filter(e => !Number.isNaN(parseISODateTimeToUTC(e.date, e.heure)) && parseISODateTimeToUTC(e.date, e.heure) < now)
+      .sort(byDateDesc);
 
-    events = [...upcoming, ...past];
+    // si jamais certaines activités n'ont pas de date valide, on les met en bas
+    const invalid = events
+      .filter(e => Number.isNaN(parseISODateTimeToUTC(e.date, e.heure)));
+
+    events = [...upcoming, ...past, ...invalid];
+
 
   } catch (err) {
     console.error(err);
