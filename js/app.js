@@ -190,21 +190,7 @@ function iconForEvent(type) {
 
 /* ==================== PWA ==================== */
 
-//function registerSW() {
-//  if (!("serviceWorker" in navigator)) {
-//    console.warn("Service Workers non supportés");
-//    return;
-//  }
 
-  navigator.serviceWorker
-    .register("/OneSignalSDKWorker.js", { scope: "/" })
-    .then((reg) => {
-      console.log("✅ Service Worker enregistré :", reg.scope);
-    })
-    .catch((err) => {
-      console.error("❌ Échec d’enregistrement du Service Worker", err);
-    });
-}
 
 
 function setupInstallButton() {
