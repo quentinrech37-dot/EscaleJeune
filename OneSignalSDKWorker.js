@@ -1,36 +1,36 @@
-// sw.js (à la racine)
-const CACHE = "escale-v86";
+// OneSignalSDKWorker.js (à la racine)
+
+// 1) OneSignal (OBLIGATOIRE)
+importScripts("https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js");
+
+// 2) Votre SW de cache (copiez-collez ici le contenu actuel de sw.js)
+const CACHE = "escale-v85";
 
 const ASSETS = [
-  "./",
-  "./index.html",
-  "./annonces.html",
-  "./calendrier.html",
-  "./repas.html",
-  "./proposer.html",
-  "./mentions.html",
-
-  "./css/styles.css",
-  "./js/app.js",
-
-  "./manifest.webmanifest",
-
-  "./assets/img/favicon.png",
-  "./assets/img/icon-192.png",
-  "./assets/img/icon-512.png",
-
-  "./assets/img/annonce.png",
-  "./assets/img/info.png",
-  "./assets/img/messe.png",
-  "./assets/img/prochainesactivites.png",
-  "./assets/img/proposer.png",
-  "./assets/img/repas.png",
-  "./assets/img/service.png",
-  "./assets/img/soiree.png",
-  "./assets/img/sortie.png",
-
-  "./data/annonces.json",
-  "./data/calendrier.json",
+  "/",
+  "/index.html",
+  "/annonces.html",
+  "/calendrier.html",
+  "/repas.html",
+  "/proposer.html",
+  "/mentions.html",
+  "/css/styles.css",
+  "/js/app.js",
+  "/manifest.webmanifest",
+  "/assets/img/favicon.png",
+  "/assets/img/icon-192.png",
+  "/assets/img/icon-512.png",
+  "/assets/img/annonce.png",
+  "/assets/img/info.png",
+  "/assets/img/messe.png",
+  "/assets/img/prochainesactivites.png",
+  "/assets/img/proposer.png",
+  "/assets/img/repas.png",
+  "/assets/img/service.png",
+  "/assets/img/soiree.png",
+  "/assets/img/sortie.png",
+  "/data/annonces.json",
+  "/data/calendrier.json",
 ];
 
 self.addEventListener("install", (event) => {
@@ -48,16 +48,15 @@ self.addEventListener("activate", (event) => {
   })());
 });
 
-// HTML : network-first (pour voir les mises à jour)
-// assets/json : cache-first
 self.addEventListener("fetch", (event) => {
   const req = event.request;
   const url = new URL(req.url);
 
-  // uniquement dans le scope GitHub Pages
   if (url.origin !== location.origin) return;
 
-  const isHTML = req.mode === "navigate" || (req.headers.get("accept") || "").includes("text/html");
+  const isHTML =
+    req.mode === "navigate" ||
+    (req.headers.get("accept") || "").includes("text/html");
 
   if (isHTML) {
     event.respondWith((async () => {
@@ -68,7 +67,7 @@ self.addEventListener("fetch", (event) => {
         return fresh;
       } catch {
         const cached = await caches.match(req);
-        return cached || caches.match("./index.html");
+        return cached || caches.match("/index.html");
       }
     })());
     return;

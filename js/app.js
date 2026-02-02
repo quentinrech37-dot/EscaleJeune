@@ -192,7 +192,7 @@ function iconForEvent(type) {
 
 function registerSW() {
   if (!("serviceWorker" in navigator)) return;
-  navigator.serviceWorker.register("./sw.js", { scope: "./" }).catch(() => {});
+  navigator.serviceWorker.register("/OneSignalSDKWorker.js", { scope: "/" }).catch(() => {});
 }
 
 function setupInstallButton() {
