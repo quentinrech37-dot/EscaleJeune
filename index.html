@@ -1,5 +1,18 @@
 <!doctype html>
 <html lang="fr">
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "9a67d191-0758-4de6-8663-2c990b530109",
+      safari_web_id: "web.onesignal.auto.4eb8ce3a-dc5a-4285-aae8-d5934d20e23e",
+      notifyButton: {
+        enable: true,
+      },
+    });
+  });
+</script>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -72,6 +85,15 @@
     <section class="hero">
       <h1>Bienvenue</h1>
       <p>Ici : annonces, prochaines activités, organisation des repas, propositions de sujets et services.</p>
+
+      <button id="btnNotif" class="btn">
+        🔔 Activer les notifications
+      </button>
+      <button id="btnNotifOff" class="btn" style="display:none">
+         🔕 Désactiver les notifications
+      </button>
+      <p id="notifEtat" class="muted"></p>
+
 
       <div class="hero__grid">
         <a class="card" href="./repas.html">

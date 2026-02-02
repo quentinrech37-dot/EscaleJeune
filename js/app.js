@@ -514,6 +514,46 @@ async function initCalendrier() {
     });
   }
 
+function initNotificationsUI() {
+  const onBtn = document.getElementById("btnNotif");
+  const offBtn = document.getElementById("btnNotifOff");
+  const etat = document.getElementById("notifEtat");
+  if (!onBtn || !offBtn || !etat) return;
+
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    // Affiche l'état actuel (abonné / non abonné)
+    const refresh = async () => {
+      const optedIn = OneSignal.User?.PushSubscription?.optedIn;
+      if (optedIn) {
+        onBtn.style.display = "none";
+        offBtn.style.display = "";
+        etat.textContent = "Notifications activées ✅";
+      } else {
+        onBtn.style.display = "";
+        offBtn.style.display = "none";
+        etat.textContent = "Notifications désactivées.";
+      }
+    };
+
+    onBtn.addEventListener("click", async () => {
+      // optIn() : si pas de token, OneSignal déclenche la demande de permission
+      await OneSignal.User.PushSubscription.optIn();
+      await refresh();
+    });
+
+    offBtn.addEventListener("click", async () => {
+      await OneSignal.User.PushSubscription.optOut();
+      await refresh();
+    });
+
+    await refresh();
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initNotificationsUI);
+
+
   filter?.addEventListener("change", draw);
   draw();
 }
