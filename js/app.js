@@ -191,10 +191,21 @@ function iconForEvent(type) {
 /* ==================== PWA ==================== */
 
 function registerSW() {
-  if (!("serviceWorker" in navigator)) return;
-  navigator.serviceWorker.register("/OneSignalSDKWorker.js", { scope: "/" }).then(() => console.log("SW OK")).catch((e) => console.error("SW FAIL", e));
-;
+  if (!("serviceWorker" in navigator)) {
+    console.warn("Service Workers non supportés");
+    return;
+  }
+
+  navigator.serviceWorker
+    .register("/OneSignalSDKWorker.js", { scope: "/" })
+    .then((reg) => {
+      console.log("✅ Service Worker enregistré :", reg.scope);
+    })
+    .catch((err) => {
+      console.error("❌ Échec d’enregistrement du Service Worker", err);
+    });
 }
+
 
 function setupInstallButton() {
   const btn = document.getElementById("installBtn");
@@ -614,15 +625,37 @@ function initNotificationsUI() {
     };
 
     onBtn.addEventListener("click", async () => {
-      // optIn() : si pas de token, OneSignal déclenche la demande de permission
-      await OneSignal.User.PushSubscription.optIn();
-      await refresh();
+      try {
+        etat.textContent = "Activation des notifications…";
+        console.log("Tentative optIn OneSignal");
+
+        await OneSignal.User.PushSubscription.optIn();
+
+        console.log("optIn OK");
+        await refresh();
+      } catch (e) {
+        console.error("❌ optIn OneSignal échoué", e);
+        etat.textContent =
+          "Impossible d’activer les notifications (permission refusée ou non supportée).";
+      }
     });
 
     offBtn.addEventListener("click", async () => {
-      await OneSignal.User.PushSubscription.optOut();
-      await refresh();
+      try {
+        etat.textContent = "Désactivation des notifications…";
+        console.log("Tentative optOut OneSignal");
+
+        await OneSignal.User.PushSubscription.optOut();
+
+        console.log("optOut OK");
+        await refresh();
+      } catch (e) {
+        console.error("❌ optOut OneSignal échoué", e);
+        etat.textContent =
+          "Impossible de désactiver les notifications (voir console).";
+      }
     });
+
 
     await refresh();
   });
