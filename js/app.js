@@ -604,7 +604,7 @@ function initNotificationsUI() {
       if (optedIn) {
         onBtn.style.display = "none";
         offBtn.style.display = "";
-        etat.textContent = "Notifications activées ✅";
+        etat.textContent = "Notifications activées";
       } else {
         onBtn.style.display = "";
         offBtn.style.display = "none";
@@ -627,7 +627,6 @@ function initNotificationsUI() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", initNotificationsUI);
 
 registerSW();
 setupInstallButton();

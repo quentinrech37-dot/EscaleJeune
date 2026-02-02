@@ -1,5 +1,7 @@
 // sw.js (à la racine)
-const CACHE = "escale-v84";
+importScripts("https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js");
+
+const CACHE = "escale-v85";
 
 const ASSETS = [
   "./",
