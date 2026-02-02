@@ -58,7 +58,20 @@
     "fichiers": [
     { "label": "Compte rendu - Les 7 dons de l'Esprit Saint", "url": "./assets/files/Retraite_FoyerSteAnne_2026.pdf" }
     ]
+  },
+  {
+  "date": "2026-02-11",
+  "heure": "19:00",
+  "type": "sortie",
+  "titre": "Maraude avec l'asso Saint-Vincent-de-Paul",
+  "lieu": "Escale Jeunes (Besançon)",
+  "resume": "Soirée maraude : cuisine + rencontre des personnes de la rue (invitation au repas de 20h).",
+  "details": "Rendez-vous à 19h. Deux équipes au choix : 1 équipe en cuisine, 1 équipe à la rencontre des personnes de la rue pour les inviter à manger à 20h. Merci de vous manifester avant le 10/02 si vous êtes intéressé(e), afin de transmettre les noms à l'association Saint-Vincent-de-Paul. Priorité pour aller dans la rue : étudiants de l'aumônerie n'ayant pas pu y aller la dernière fois ; sinon, si vous êtes motivé(e), faites signe et on voit. Il est toujours possible d'aider à faire à manger.",
+  "contact": "Marion",
+  "lien": null,
+  "image": "./assets/img/calendrier/maraude.jpg"
   }
+
 
 ]
 
