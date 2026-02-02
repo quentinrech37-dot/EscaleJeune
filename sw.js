@@ -1,5 +1,5 @@
 // sw.js (à la racine)
-const CACHE = "escale-v77";
+const CACHE = "escale-v78";
 
 const ASSETS = [
   "./",
@@ -88,4 +88,3 @@ self.addEventListener("fetch", (event) => {
     }
   })());
 });
-const CACHE = "escale-v73";
