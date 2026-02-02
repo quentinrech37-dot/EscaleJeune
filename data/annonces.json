@@ -7,7 +7,11 @@
   "resume": "Un espace simple pour suivre la vie de l’Escale, s’informer et participer à l’organisation des mercredis.",
   "contact": "Père Pierre - 03 81 81 10 18 - escalejeunes@diocese-besancon.fr",
   "lien": "https://www.diocese-besancon.fr/agir-participer/tu-es-jeune-tourne-vers-l-avenir/escale-jeunes",
-  "image": "https://www.diocese-besancon.fr/agir-participer/tu-es-jeune-tourne-vers-l-avenir/escale-jeunes/@@minisite_properties/++widget++form.widgets.logo/@@download/escale%20jeunes_logo.jpg"
+  "image": "https://www.diocese-besancon.fr/agir-participer/tu-es-jeune-tourne-vers-l-avenir/escale-jeunes/@@minisite_properties/++widget++form.widgets.logo/@@download/escale%20jeunes_logo.jpg",
+  "fichiers": [
+  { "label": "Affiche publicitaire", "url": "./assets/files/Affiche_4_V7.pdf" }
+  ]
+
 },
   {
   "date": null,

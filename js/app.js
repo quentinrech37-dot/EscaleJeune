@@ -106,6 +106,71 @@ function badge(type, text) {
   return `<span class="${cls}">${escapeHtml(text)}</span>`;
 }
 
+function normalizeFiles(item) {
+  // Accepte:
+  // - item.fichier: "path.pdf"
+  // - item.fichiers: ["path.pdf", ...]
+  // - item.fichiers: [{label,url}, ...]
+  // Retourne toujours: [{label, url}, ...]
+  const out = [];
+
+  if (!item) return out;
+
+  // ancien champ
+  if (typeof item.fichier === "string" && item.fichier.trim()) {
+    out.push({ label: "Document", url: item.fichier.trim() });
+  }
+
+  const f = item.fichiers;
+
+  if (Array.isArray(f)) {
+    for (const x of f) {
+      if (typeof x === "string" && x.trim()) {
+        out.push({ label: "Document", url: x.trim() });
+      } else if (x && typeof x === "object") {
+        const url = String(x.url ?? "").trim();
+        const label = String(x.label ?? x.titre ?? "Document").trim();
+        if (url) out.push({ label, url });
+      }
+    }
+  }
+
+  // Évite les doublons exacts
+  const seen = new Set();
+  return out.filter(({ label, url }) => {
+    const k = `${label}||${url}`;
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+}
+
+function renderFilesBlock(item) {
+  const files = normalizeFiles(item);
+  if (!files.length) return "";
+
+  const links = files
+    .map(f => {
+      const url = escapeHtml(f.url);
+      const label = escapeHtml(f.label);
+      return `<li class="files__item">
+        <a class="files__link" href="${url}" target="_blank" rel="noopener">
+          📄 ${label}
+        </a>
+      </li>`;
+    })
+    .join("");
+
+  return `
+    <div class="files" style="margin-top:12px">
+      <div class="muted" style="margin-bottom:6px">Documents :</div>
+      <ul class="files__list">
+        ${links}
+      </ul>
+    </div>
+  `;
+}
+
 /* ==================== ICONS ==================== */
 
 function iconForAnnonce(cat) {
@@ -350,6 +415,7 @@ async function initAnnonces() {
 	    }
 	    ${a.details ? `<p style="margin-top:10px">${nl2br(a.details)}</p>` : ""}
             ${a.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(a.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
+	    ${renderFilesBlock(a)}
           </div>
         </details>
       `);
@@ -441,6 +507,7 @@ async function initCalendrier() {
             ${e.details ? `<p>${escapeHtml(e.details)}</p>` : `<p class="muted">Aucun détail.</p>`}
             ${e.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(e.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
             ${e.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(e.contact)}</p>` : ""}
+	    ${renderFilesBlock(e)}
           </div>
         </details>
       `);
