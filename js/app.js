@@ -646,9 +646,6 @@ function initNotificationsUI() {
     await refresh();
   });
 }
-
-
-registerSW();
 setupInstallButton();
 setupRepasFormLink();
 initNotificationsUI();
