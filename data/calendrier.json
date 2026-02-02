@@ -54,7 +54,10 @@
     "details": "Le week-end des 17 et 18 janvier 2026, l’Escale Jeunes organise un week-end de récollection, une « mini-retraite » sur le thème de l’Esprit Saint.\n\nCe temps spirituel sera prêché par le père Pierre Imbert et se déroulera au foyer Sainte-Anne, à Montferrand-le-Château.\n\nCe week-end est ouvert à tous : n’hésitez pas à inviter des amis pour vivre un moment vraiment ressourçant, fait de prière, d’enseignements et de fraternité.\n\nPour toute question ou besoin de transport, des solutions de covoiturage pourront être organisées. Il est également possible de venir par ses propres moyens. Le lien pour l'inscription est disponible ci-dessous.",
     "contact": "Père Pierre - escalejeunes@diocese-besancon.fr",
     "lien": "https://besanconpublic.enoria.app/pubinsc/auth?type=event&t=bb6259dee2ee7ee",
-    "image": "./assets/img/calendrier/weekend_recollection.jpg"
+    "image": "./assets/img/calendrier/weekend_recollection.jpg",
+    "fichiers": [
+    { "label": "Compte rendu - Les 7 dons de l'Esprit Saint", "url": "./assets/files/Retraite_FoyerSteAnne_2026.pdf" }
+    ]
   }
 
 ]
