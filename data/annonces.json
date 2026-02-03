@@ -9,6 +9,7 @@
   "lien": "https://www.diocese-besancon.fr/agir-participer/tu-es-jeune-tourne-vers-l-avenir/escale-jeunes",
   "image": "https://www.diocese-besancon.fr/agir-participer/tu-es-jeune-tourne-vers-l-avenir/escale-jeunes/@@minisite_properties/++widget++form.widgets.logo/@@download/escale%20jeunes_logo.jpg",
   "fichiers": [
+  {"label":"Présentation et mode d'emploi du site", "url":"./assets/files/SiteEscale_ModeDEmploi.pdf"},
   { "label": "Affiche publicitaire", "url": "./assets/files/Affiche_4_V7.pdf" }
   ]
 
