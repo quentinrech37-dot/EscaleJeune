@@ -1,10 +1,17 @@
 [
   {
     "date": "2026-02-27",
+<<<<<<< HEAD
     "heure": "20:00",
     "type": "soiree",
     "titre": "Soirée rock",
     "lieu": "Escale Jeunes",
+=======
+    "heure": "19:30",
+    "type": "soiree",
+    "titre": "Soirée rock",
+    "lieu": "Escale Jeunes - grande salle",
+>>>>>>> efb9ac4 (Fix PWA icons and service worker cache)
     "resume": "Initiation + pratique, ambiance simple et joyeuse.",
     "details": "Ouvert à tous niveaux. Si vous pouvez, apportez une boisson ou quelque chose à partager.",
     "contact": "Benoit",
