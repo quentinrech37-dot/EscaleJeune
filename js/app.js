@@ -62,6 +62,36 @@ function parseISODateTimeToUTC(dateStr, timeStr) {
   return Date.UTC(y, m - 1, d, hh, mm, 0);
 }
 
+function formatDateHeureFR(isoDate, hhmm) {
+  // isoDate: "2026-02-11", hhmm: "19:00"
+  if (!isoDate) return "";
+
+  // On construit une date UTC à partir des champs (cohérent avec votre parseur)
+  const t = parseISODateTimeToUTC(isoDate, hhmm || "00:00");
+  if (!Number.isFinite(t)) return `${isoDate}${hhmm ? " " + hhmm : ""}`;
+
+  const d = new Date(t);
+
+  // Nom du jour + date + mois
+  const dateStr = d.toLocaleDateString("fr-FR", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long"
+  });
+
+  const dateStrCap = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
+
+  // Heure au format "19h00"
+  let timeStr = "";
+  if (hhmm) {
+    const [H, M] = hhmm.split(":");
+    if (H && M) timeStr = `${H}h${M}`;
+  }
+
+  // Ex: "mercredi 11 février à 19h00"
+  return timeStr ? `${dateStr} à ${timeStr}` : dateStr;
+}
+
 
 function byDateAsc(a, b) {
   const da = parseISODateTimeToUTC(a.date, a.heure);
@@ -509,7 +539,7 @@ async function initCalendrier() {
                 ${badge(e.type || "info", e.type || "activité")}
                 ${pastBadge}
               </div>
-              <span class="muted">${escapeHtml(e.date || "")} ${escapeHtml(e.heure || "")}</span>
+              <span class="muted">${escapeHtml(formatDateHeureFR(e.date, e.heure))}</span>
             </div>
 
             <div class="item__grid">
