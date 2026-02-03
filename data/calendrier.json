@@ -1,13 +1,13 @@
 [
   {
-    "date": "2025-11-23",
-    "heure": "19:30",
+    "date": "2026-02-27",
+    "heure": "20:00",
     "type": "soiree",
     "titre": "Soirée rock",
-    "lieu": "Escale-Rue Chiffley",
+    "lieu": "Escale Jeunes",
     "resume": "Initiation + pratique, ambiance simple et joyeuse.",
     "details": "Ouvert à tous niveaux. Si vous pouvez, apportez une boisson ou quelque chose à partager.",
-    "contact": "Clément",
+    "contact": "Benoit",
     "lien": null,
     "image": "https://www.aegc92.org/images/logos/danse-rock.png"
   },
