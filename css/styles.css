@@ -775,3 +775,32 @@ img.item__thumb{
 .files__link:hover {
   text-decoration: underline;
 }
+
+/* Séparateur "Activités passées" */
+.list__separator{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin: 18px 0 10px;
+  color:#6b7280;
+  font-weight:600;
+}
+.list__separator::before,
+.list__separator::after{
+  content:"";
+  height:1px;
+  flex:1;
+  background: rgba(107,114,128,.25);
+}
+
+/* Activités passées : style visuel */
+.item--past{
+  opacity: .85;
+  border: 1px solid rgba(220, 38, 38, .25); /* rouge doux */
+}
+
+.badge--past{
+  background: rgba(220, 38, 38, .12);
+  border: 1px solid rgba(220, 38, 38, .35);
+  color: rgb(185, 28, 28);
+}

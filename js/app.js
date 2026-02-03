@@ -471,22 +471,43 @@ async function initCalendrier() {
       return;
     }
 
+    const now = Date.now();
+    let pastHeaderInserted = false;
+
     shown.forEach((e) => {
+      const isPast = !Number.isNaN(parseISODateTimeToUTC(e.date, e.heure))
+        ? (parseISODateTimeToUTC(e.date, e.heure) < now)
+        : false;
+
+      // Intertitre automatique au moment où on bascule dans le passé
+      if (isPast && !pastHeaderInserted) {
+        renderItem(list, `
+          <div class="list__separator">
+            <span>Activités passées</span>
+          </div>
+        `);
+        pastHeaderInserted = true;
+      }
+
       const ic = iconForEvent(e.type);
+
       const thumb = e.image
         ? `<a class="thumblink" href="${escapeHtml(e.image)}" target="_blank" rel="noopener">
              <img class="item__thumb" src="${escapeHtml(e.image)}" alt="Image de l’activité" loading="lazy">
            </a>`
         : "";
 
+      // Badge "Terminée" si passé
+      const pastBadge = isPast ? `<span class="badge badge--past">Terminée</span>` : "";
 
       renderItem(list, `
-        <details class="item item--expandable">
+        <details class="item item--expandable ${isPast ? "item--past" : ""}">
           <summary class="item__summary">
             <div class="item__top">
               <div class="item__left">
                 <img class="item__icon" src="${ic.src}" alt="${escapeHtml(ic.alt)}">
                 ${badge(e.type || "info", e.type || "activité")}
+                ${pastBadge}
               </div>
               <span class="muted">${escapeHtml(e.date || "")} ${escapeHtml(e.heure || "")}</span>
             </div>
@@ -505,11 +526,12 @@ async function initCalendrier() {
             ${e.details ? `<p>${escapeHtml(e.details)}</p>` : `<p class="muted">Aucun détail.</p>`}
             ${e.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(e.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
             ${e.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(e.contact)}</p>` : ""}
-	    ${renderFilesBlock(e)}
+            ${renderFilesBlock(e)}
           </div>
         </details>
       `);
     });
+
   }
 
   filter?.addEventListener("change", draw);
