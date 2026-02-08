@@ -137,10 +137,13 @@ async function loadJSON(pathOrUrl) {
 }
 
 async function loadText(url) {
-  const r = await fetch(url, { cache: "no-store" });
+  const sep = url.includes("?") ? "&" : "?";
+  const busted = `${url}${sep}_ts=${Date.now()}`;
+  const r = await fetch(busted, { cache: "no-store" });
   if (!r.ok) throw new Error(`HTTP ${r.status} on ${url}`);
   return await r.text();
 }
+
 
 // Parse CSV simple (gère guillemets, virgules)
 function parseCSV(csvText) {
@@ -386,35 +389,60 @@ function pick(o, keys) {
 }
 
 function normalizeCovoitRow(raw) {
-  // Titres de colonnes Google Forms / Sheets
-  const prenom = pick(raw, ["Prénom", "Prenom", "prenom"]);
-  const init = pick(raw, ["Initiale", "Initiale du nom", "Nom (initiale)", "Initiale nom"]);
+  // 1) identité
+  const prenom =
+    pick(raw, ["Prénom", "Prenom", "prenom"]) ||
+    pickByKeywords(raw, ["prénom"]) ||
+    pickByKeywords(raw, ["prenom"]);
 
-  // IMPORTANT : on normalise la date en ISO
-  const dateRaw = pick(raw, ["Date", "date"]);
-  const date = normalizeDateToISO(dateRaw); // <-- la ligne clé
+  const init =
+    pick(raw, ["Initiale", "Initiale du nom", "Nom (initiale)", "Initiale nom"]) ||
+    pickByKeywords(raw, ["initiale"]);
 
-  // Heure (souvent OK même si "19:30")
-  const heure = pick(raw, ["Heure", "heure"]);
+  // 2) date / heure (fallback keyword + normalisation)
+  const dateRaw =
+    pick(raw, ["Date", "date"]) ||
+    pickByKeywords(raw, ["date"]); // match "date du covoiturage", etc.
 
-  const depart = pick(raw, ["Départ", "Depart", "Lieu de départ", "Lieu depart"]);
-  const dest = pick(raw, ["Destination", "destination", "Arrivée", "Arrivee"]);
+  const date = normalizeDateToISO(dateRaw);
 
-  const places = pick(raw, [
-    "Places disponibles", "Places", "Nb places",
-    "Places nécessaires", "Places necessaires"
-  ]);
+  const heureRaw =
+    pick(raw, ["Heure", "heure"]) ||
+    pickByKeywords(raw, ["heure"]); // match "heure de départ", etc.
 
-  const contact = pick(raw, ["Contact", "WhatsApp", "Pseudo WhatsApp", "Nom WhatsApp"]);
+  const heure = normalizeHourToHHMM(heureRaw);
+
+  // 3) trajet
+  const depart =
+    pick(raw, ["Départ", "Depart", "Lieu de départ", "Lieu depart"]) ||
+    pickByKeywords(raw, ["départ"]) ||
+    pickByKeywords(raw, ["depart"]);
+
+  const dest =
+    pick(raw, ["Destination", "destination", "Arrivée", "Arrivee"]) ||
+    pickByKeywords(raw, ["destination"]) ||
+    pickByKeywords(raw, ["arrivée"]) ||
+    pickByKeywords(raw, ["arrivee"]);
+
+  // 4) places / contact
+  const places =
+    pick(raw, ["Places disponibles", "Places", "Nb places", "Places nécessaires", "Places necessaires"]) ||
+    pickByKeywords(raw, ["places"]);
+
+  const contact =
+    pick(raw, ["Contact", "WhatsApp", "Pseudo WhatsApp", "Nom WhatsApp"]) ||
+    pickByKeywords(raw, ["contact"]) ||
+    pickByKeywords(raw, ["whatsapp"]);
 
   // Affichage
   const who = prenom ? `${prenom}${init ? " " + init.replace(".", "") + "." : ""}` : "—";
 
-  // Timestamp : doit impérativement se faire sur la date ISO
+  // Timestamp (nécessite date ISO)
   const tUtc = parseISODateTimeToUTC(date, heure || "00:00");
 
   return { who, date, heure, depart, dest, places, contact, tUtc };
 }
+
 
 
 
