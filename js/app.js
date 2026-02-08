@@ -533,7 +533,8 @@ async function initCovoiturage() {
   const demandesC = document.getElementById("covoitDemandesList");
   if (!offresC && !demandesC) return; // pas sur cette page
 
-  const now = Date.now();
+  const now = Date.now() - new Date().getTimezoneOffset() * 60_000;
+
 
   try {
     // OFFRES
