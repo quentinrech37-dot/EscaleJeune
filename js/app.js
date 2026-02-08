@@ -17,10 +17,10 @@ const REPAS_ONLY_UPCOMING = true;
 // ==================== COVOITURAGE (méthode 1 : Sheets publiées en CSV) ====================
 
 // URL CSV publiée de la feuille "covoit_offres"
-const COVOIT_OFFRES_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT5k6A0eD7z06GZfjgfXo6pyiy1xMhd7ovAWZnAEz1y3yV5tkx9vUgWSXAHD87Tn3Z2Ddu5a24lnTUU/pub?gid=0&single=true&output=csv";
+const COVOIT_OFFRES_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT5k6A0eD7z06GZfjgfXo6pyiy1xMhd7ovAWZnAEz1y3yV5tkx9vUgWSXAHD87Tn3Z2Ddu5a24lnTUU/pub?gid=1733946668&single=true&output=csv";
 
 // URL CSV publiée de la feuille "covoit_demandes"
-const COVOIT_DEMANDES_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT5k6A0eD7z06GZfjgfXo6pyiy1xMhd7ovAWZnAEz1y3yV5tkx9vUgWSXAHD87Tn3Z2Ddu5a24lnTUU/pub?gid=457608713&single=true&output=csv";
+const COVOIT_DEMANDES_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT5k6A0eD7z06GZfjgfXo6pyiy1xMhd7ovAWZnAEz1y3yV5tkx9vUgWSXAHD87Tn3Z2Ddu5a24lnTUU/pub?gid=653192246&single=true&output=csv";
 
 // Lien "Répondre au formulaire" (viewform)
 const FORM_COVOIT_OFFRE_URL = "https://docs.google.com/forms/d/e/1FAIpQLScUGXAPHHtW9O9OGKBbpX_3SxUDYdI8f1yHFROtA7ZJMOREnQ/viewform?usp=publish-editor";
