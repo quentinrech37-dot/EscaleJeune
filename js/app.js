@@ -424,9 +424,10 @@ function normalizeCovoitRow(raw) {
 
   // 3) trajet
   const depart =
-    pick(raw, ["Départ", "Depart", "Lieu de départ", "Lieu depart"]) ||
-    pickByKeywords(raw, ["départ"]) ||
-    pickByKeywords(raw, ["depart"]);
+    pick(raw, ["Lieu de départ", "Lieu depart", "Départ", "Depart"]) ||
+    pickByKeywordsButNot(raw, ["départ"], ["date", "jour", "heure"]) ||
+    pickByKeywordsButNot(raw, ["depart"], ["date", "jour", "heure"]);
+
 
   const dest =
     pick(raw, ["Destination", "destination", "Arrivée", "Arrivee"]) ||
@@ -504,6 +505,15 @@ function pickByKeywords(row, keywords) {
   return "";
 }
 
+function pickByKeywordsButNot(row, includeWords, excludeWords) {
+  const keys = Object.keys(row || {});
+  for (const k of keys) {
+    const lk = k.toLowerCase();
+    if (excludeWords.some(w => lk.includes(w))) continue;
+    if (includeWords.every(w => lk.includes(w))) return row[k];
+  }
+  return "";
+}
 
 
 function covoitCard(item, mode) {
