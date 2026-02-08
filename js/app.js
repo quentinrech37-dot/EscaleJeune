@@ -30,6 +30,9 @@ const FORM_COVOIT_DEMANDE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd10Rj
 const COVOIT_ONLY_UPCOMING = true; // masque automatiquement les entrées passées
 const COVOIT_MAX_AFFICHAGE = 20;   // limite par section
 
+console.log("✅ app.js exécuté — TEST:", "v-2026-02-08-18h");
+
+
 
 let deferredPrompt = null;
 
