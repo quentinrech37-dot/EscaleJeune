@@ -578,15 +578,6 @@ async function initCovoiturage() {
     if (demandesC) {
       const raws = await loadCSVObjects(COVOIT_DEMANDES_CSV_URL);
       let items = raws.map(normalizeCovoitRow).filter(x => Number.isFinite(x.tUtc));
-      console.table(
-        raws.map(normalizeCovoitRow).map(x => ({
-          who: x.who,
-          date: x.date,
-          heure: x.heure,
-          tUtc: x.tUtc,
-          now
-        }))
-      );
 
       if (COVOIT_ONLY_UPCOMING) {
         const MARGE = 6 * 60 * 60 * 1000; // 6 heures
