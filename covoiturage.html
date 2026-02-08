@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "9a67d191-0758-4de6-8663-2c990b530109",
+        safari_web_id: "web.onesignal.auto.4eb8ce3a-dc5a-4285-aae8-d5934d20e23e",
+        notifyButton: { enable: false },
+      });
+    });
+  </script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>L'Escale - Covoiturage</title>
+  <meta name="description" content="Covoiturage – site interne de l’Escale (Besançon).">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="icon" href="/assets/img/favicon.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/img/icon-192.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+  <header class="topbar topbar--diapo">
+    <div class="wrap topbar__inner topbar__inner--diapo">
+      <img class="topbar__diapo" src="./assets/img/diapofinale.png" alt="Banderole L’Escale" loading="eager">
+      <img class="topbar__diapo--mobile" src="./assets/img/escalemobile.png" alt="Banderole mobile L’Escale" loading="eager">
+    </div>
+  </header>
+
+  <!-- Je vous conseille de NE PAS l’ajouter au menu principal.
+       Donc pas de lien nav ici. On y accède depuis Proposer / Accueil / Autres. -->
+  <nav class="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__link" href="./index.html">Accueil</a>
+      <a class="nav__link" href="./annonces.html">Annonces</a>
+      <a class="nav__link" href="./calendrier.html">Activités</a>
+      <a class="nav__link" href="./repas.html">Repas</a>
+      <a class="nav__link" href="./proposer.html">Proposer</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="panel__head">
+        <h1>Covoiturage</h1>
+        <span class="muted">Proposer une place / trouver une place.</span>
+      </div>
+
+      <div class="notice">
+        <strong>Fonctionnement :</strong> remplissez l’un des deux formulaires. Les demandes/offres apparaissent automatiquement ci-dessous.
+        Les annonces expirées (dans le passé) sont masquées.
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="grid2">
+        <div class="card">
+          <h3>🚗 Je conduis</h3>
+          <p>Je propose un covoiturage (places disponibles).</p>
+          <a class="btn" id="btnCovoitOffre" href="#" aria-disabled="true">Formulaire “Je conduis”</a>
+        </div>
+
+        <div class="card">
+          <h3>🙋 Je cherche</h3>
+          <p>J’ai besoin d’un covoiturage (demande).</p>
+          <a class="btn btn--ghost" id="btnCovoitDemande" href="#" aria-disabled="true">Formulaire “Je cherche”</a>
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="panel__head">
+        <h2>Offres</h2>
+        <span class="muted">Personnes qui conduisent.</span>
+      </div>
+      <div id="covoitOffresList" class="list"></div>
+
+      <div class="spacer"></div>
+
+      <div class="panel__head">
+        <h2>Demandes</h2>
+        <span class="muted">Personnes qui cherchent une place.</span>
+      </div>
+      <div id="covoitDemandesList" class="list"></div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <a class="link" href="./mentions.html">Mentions & données</a>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

@@ -14,6 +14,23 @@ const REPAS_MAX_AFFICHAGE = 5;
 // 4) Afficher uniquement les repas à venir (true recommandé)
 const REPAS_ONLY_UPCOMING = true;
 
+// ==================== COVOITURAGE (méthode 1 : Sheets publiées en CSV) ====================
+
+// URL CSV publiée de la feuille "covoit_offres"
+const COVOIT_OFFRES_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT5k6A0eD7z06GZfjgfXo6pyiy1xMhd7ovAWZnAEz1y3yV5tkx9vUgWSXAHD87Tn3Z2Ddu5a24lnTUU/pub?gid=0&single=true&output=csv";
+
+// URL CSV publiée de la feuille "covoit_demandes"
+const COVOIT_DEMANDES_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT5k6A0eD7z06GZfjgfXo6pyiy1xMhd7ovAWZnAEz1y3yV5tkx9vUgWSXAHD87Tn3Z2Ddu5a24lnTUU/pub?gid=457608713&single=true&output=csv";
+
+// Lien "Répondre au formulaire" (viewform)
+const FORM_COVOIT_OFFRE_URL = "https://docs.google.com/forms/d/e/1FAIpQLScUGXAPHHtW9O9OGKBbpX_3SxUDYdI8f1yHFROtA7ZJMOREnQ/viewform?usp=publish-editor";
+const FORM_COVOIT_DEMANDE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd10Rj6EPvYkPdPcFebk1BKLZwzqXSeELE-tBk-71Ylz17eCg/viewform?usp=publish-editor";
+
+// Paramètres d’affichage
+const COVOIT_ONLY_UPCOMING = true; // masque automatiquement les entrées passées
+const COVOIT_MAX_AFFICHAGE = 20;   // limite par section
+
+
 let deferredPrompt = null;
 
 /* ==================== UTILS ==================== */
@@ -117,6 +134,65 @@ async function loadJSON(pathOrUrl) {
   const r = await fetch(pathOrUrl, { cache: "no-store" });
   if (!r.ok) throw new Error(`HTTP ${r.status} on ${pathOrUrl}`);
   return await r.json();
+}
+
+async function loadText(url) {
+  const r = await fetch(url, { cache: "no-store" });
+  if (!r.ok) throw new Error(`HTTP ${r.status} on ${url}`);
+  return await r.text();
+}
+
+// Parse CSV simple (gère guillemets, virgules)
+function parseCSV(csvText) {
+  const rows = [];
+  let row = [];
+  let cur = "";
+  let inQuotes = false;
+
+  for (let i = 0; i < csvText.length; i++) {
+    const c = csvText[i];
+    const next = csvText[i + 1];
+
+    if (c === '"' && inQuotes && next === '"') {
+      cur += '"';
+      i++;
+      continue;
+    }
+    if (c === '"') {
+      inQuotes = !inQuotes;
+      continue;
+    }
+    if (c === "," && !inQuotes) {
+      row.push(cur);
+      cur = "";
+      continue;
+    }
+    if ((c === "\n" || c === "\r") && !inQuotes) {
+      if (c === "\r" && next === "\n") i++;
+      row.push(cur);
+      if (row.some(cell => cell.trim() !== "")) rows.push(row);
+      row = [];
+      cur = "";
+      continue;
+    }
+    cur += c;
+  }
+
+  row.push(cur);
+  if (row.some(cell => cell.trim() !== "")) rows.push(row);
+
+  if (!rows.length) return [];
+  const headers = rows[0].map(h => h.trim());
+  return rows.slice(1).map(r => {
+    const obj = {};
+    headers.forEach((h, idx) => obj[h] = (r[idx] ?? "").trim());
+    return obj;
+  });
+}
+
+async function loadCSVObjects(url) {
+  const txt = await loadText(url);
+  return parseCSV(txt);
 }
 
 function renderItem(container, html) {
@@ -263,6 +339,142 @@ function setupRepasFormLink() {
     a.textContent = "Formulaire “Je cuisine” (à venir)";
   }
 }
+
+function setupCovoitFormLinks() {
+  const aOffre = document.getElementById("btnCovoitOffre");
+  const aDemande = document.getElementById("btnCovoitDemande");
+  if (!aOffre && !aDemande) return;
+
+  const ok1 = typeof FORM_COVOIT_OFFRE_URL === "string" && FORM_COVOIT_OFFRE_URL.startsWith("http");
+  if (aOffre) {
+    if (ok1) {
+      aOffre.href = FORM_COVOIT_OFFRE_URL;
+      aOffre.target = "_blank";
+      aOffre.rel = "noopener";
+      aOffre.removeAttribute("aria-disabled");
+      aOffre.textContent = "Formulaire “Je conduis”";
+    } else {
+      aOffre.href = "#";
+      aOffre.setAttribute("aria-disabled", "true");
+      aOffre.addEventListener("click", (e) => e.preventDefault());
+      aOffre.textContent = "Formulaire “Je conduis” (à brancher)";
+    }
+  }
+
+  const ok2 = typeof FORM_COVOIT_DEMANDE_URL === "string" && FORM_COVOIT_DEMANDE_URL.startsWith("http");
+  if (aDemande) {
+    if (ok2) {
+      aDemande.href = FORM_COVOIT_DEMANDE_URL;
+      aDemande.target = "_blank";
+      aDemande.rel = "noopener";
+      aDemande.removeAttribute("aria-disabled");
+      aDemande.textContent = "Formulaire “Je cherche”";
+    } else {
+      aDemande.href = "#";
+      aDemande.setAttribute("aria-disabled", "true");
+      aDemande.addEventListener("click", (e) => e.preventDefault());
+      aDemande.textContent = "Formulaire “Je cherche” (à brancher)";
+    }
+  }
+}
+
+function pick(o, keys) {
+  for (const k of keys) {
+    if (o[k] != null && String(o[k]).trim() !== "") return String(o[k]).trim();
+  }
+  return "";
+}
+
+function normalizeCovoitRow(raw) {
+  // Adaptez si besoin en fonction des intitulés exacts de vos questions Google Forms
+  const prenom = pick(raw, ["Prénom", "Prenom", "prenom"]);
+  const init = pick(raw, ["Initiale", "Initiale du nom", "Nom (initiale)", "Initiale nom"]);
+  const date = pick(raw, ["Date", "date"]);
+  const heure = pick(raw, ["Heure", "heure"]);
+  const depart = pick(raw, ["Départ", "Depart", "Lieu de départ", "Lieu depart"]);
+  const dest = pick(raw, ["Destination", "destination", "Arrivée", "Arrivee"]);
+  const places = pick(raw, ["Places disponibles", "Places", "Nb places", "Places nécessaires", "Places necessaires"]);
+  const contact = pick(raw, ["Contact", "WhatsApp", "Pseudo WhatsApp", "Nom WhatsApp"]);
+
+  // Affichage safe : "Prénom I."
+  const who = prenom ? `${prenom}${init ? " " + init.replace(".", "") + "." : ""}` : "—";
+
+  const tUtc = parseISODateTimeToUTC(date, heure || "00:00"); // vous avez déjà cette fonction :contentReference[oaicite:4]{index=4}
+  return { who, date, heure, depart, dest, places, contact, tUtc };
+}
+
+function covoitCard(item, mode) {
+  // mode = "offre" ou "demande" (pour le libellé places)
+  const when = formatDateHeureFR(item.date, item.heure); // déjà dans votre app.js :contentReference[oaicite:5]{index=5}
+  const traj = `${item.depart || "—"} → ${item.dest || "—"}`;
+
+  const placesLabel =
+    mode === "offre"
+      ? (item.places ? `Places dispo : ${escapeHtml(item.places)}` : "")
+      : (item.places ? `Places demandées : ${escapeHtml(item.places)}` : "");
+
+  const contactLine = item.contact
+    ? `<p class="muted" style="margin-top:8px">Contact : ${escapeHtml(item.contact)}</p>`
+    : `<p class="muted" style="margin-top:8px">Contact : via WhatsApp (groupe)</p>`;
+
+  return `
+    <div class="item">
+      <div class="item__top">
+        <div class="item__left">
+          <span class="badge">${mode === "offre" ? "🚗 Offre" : "🙋 Demande"}</span>
+        </div>
+        <span class="muted">${escapeHtml(when)}</span>
+      </div>
+      <h3>${escapeHtml(item.who)}</h3>
+      <p>${escapeHtml(traj)}</p>
+      ${placesLabel ? `<p class="muted" style="margin-top:6px">${placesLabel}</p>` : ""}
+      ${contactLine}
+    </div>
+  `;
+}
+
+async function initCovoiturage() {
+  const offresC = document.getElementById("covoitOffresList");
+  const demandesC = document.getElementById("covoitDemandesList");
+  if (!offresC && !demandesC) return; // pas sur cette page
+
+  const now = Date.now();
+
+  try {
+    // OFFRES
+    if (offresC) {
+      const raws = await loadCSVObjects(COVOIT_OFFRES_CSV_URL);
+      let items = raws.map(normalizeCovoitRow).filter(x => Number.isFinite(x.tUtc));
+
+      if (COVOIT_ONLY_UPCOMING) items = items.filter(x => x.tUtc >= now);
+      items.sort((a, b) => a.tUtc - b.tUtc);
+      items = items.slice(0, COVOIT_MAX_AFFICHAGE);
+
+      offresC.innerHTML = items.length
+        ? items.map(i => covoitCard(i, "offre")).join("")
+        : `<div class="item"><p class="muted">Aucune offre pour le moment.</p></div>`;
+    }
+
+    // DEMANDES
+    if (demandesC) {
+      const raws = await loadCSVObjects(COVOIT_DEMANDES_CSV_URL);
+      let items = raws.map(normalizeCovoitRow).filter(x => Number.isFinite(x.tUtc));
+
+      if (COVOIT_ONLY_UPCOMING) items = items.filter(x => x.tUtc >= now);
+      items.sort((a, b) => a.tUtc - b.tUtc);
+      items = items.slice(0, COVOIT_MAX_AFFICHAGE);
+
+      demandesC.innerHTML = items.length
+        ? items.map(i => covoitCard(i, "demande")).join("")
+        : `<div class="item"><p class="muted">Aucune demande pour le moment.</p></div>`;
+    }
+  } catch (e) {
+    console.error(e);
+    if (offresC) offresC.innerHTML = `<div class="item"><p class="muted">Données indisponibles.</p></div>`;
+    if (demandesC) demandesC.innerHTML = `<div class="item"><p class="muted">Données indisponibles.</p></div>`;
+  }
+}
+
 
 /* ==================== HOME ==================== */
 
@@ -701,6 +913,9 @@ function initNotificationsUI() {
 setupInstallButton();
 setupRepasFormLink();
 initNotificationsUI();
+setupCovoitFormLinks();
+initCovoiturage();
+
 initHome();
 initAnnonces();
 initCalendrier();
