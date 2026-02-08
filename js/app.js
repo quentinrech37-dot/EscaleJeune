@@ -58,14 +58,11 @@ function parseISODateToUTC(dateStr) {
   if (!dateStr) return NaN;
   const [y, m, d] = String(dateStr).split("-").map(Number);
   if (!y || !m || !d) return NaN;
-  return Date.UTC(y, m - 1, d);
+  return new Date(y, m - 1, d, 0, 0, 0).getTime(); // heure locale
 }
 
 function parseISODateTimeToUTC(dateStr, timeStr) {
-  // dateStr attendu: "YYYY-MM-DD"
-  // timeStr attendu: "HH:MM" (optionnel)
   if (!dateStr) return NaN;
-
   const [y, m, d] = String(dateStr).split("-").map(Number);
   if (!y || !m || !d) return NaN;
 
@@ -76,8 +73,9 @@ function parseISODateTimeToUTC(dateStr, timeStr) {
     mm = Number.isFinite(parts[1]) ? parts[1] : 0;
   }
 
-  return Date.UTC(y, m - 1, d, hh, mm, 0);
+  return new Date(y, m - 1, d, hh, mm, 0).getTime(); // heure locale
 }
+
 
 function formatDateHeureFR(isoDate, hhmm) {
   // isoDate: "2026-02-11", hhmm: "19:00"
@@ -533,7 +531,7 @@ async function initCovoiturage() {
   const demandesC = document.getElementById("covoitDemandesList");
   if (!offresC && !demandesC) return; // pas sur cette page
 
-  const now = Date.now() - new Date().getTimezoneOffset() * 60_000;
+  const now = Date.now();
 
 
   try {
