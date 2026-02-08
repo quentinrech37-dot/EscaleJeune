@@ -385,44 +385,37 @@ function pick(o, keys) {
   return "";
 }
 
-function normalizeCovoitRow(row) {
-  // 1) Tentative par noms "propres"
-  let date = pick(row, ["date", "Date"]);
-  let heure = pick(row, ["heure", "Heure"]);
-  let nom = pick(row, ["nom", "Nom"]);
-  let prenom = pick(row, ["prenom", "Prénom", "Pr\u00E9nom"]);
-  let tel = pick(row, ["tel", "Téléphone", "Telephone", "T\u00E9l\u00E9phone"]);
-  let trajet = pick(row, ["trajet", "Trajet"]);
-  let places = pick(row, ["places", "Places"]);
-  let details = pick(row, ["details", "Détails", "Details"]);
+function normalizeCovoitRow(raw) {
+  // Titres de colonnes Google Forms / Sheets
+  const prenom = pick(raw, ["Prénom", "Prenom", "prenom"]);
+  const init = pick(raw, ["Initiale", "Initiale du nom", "Nom (initiale)", "Initiale nom"]);
 
-  // 2) Fallback Google Forms : colonnes = libellés de questions
-  // (ex: "Date du covoiturage", "Heure de départ", etc.)
-  if (!date) date = pickByKeywords(row, ["date"]);
-  if (!heure) heure = pickByKeywords(row, ["heure"]);
-  if (!nom) nom = pickByKeywords(row, ["nom"]);
-  if (!prenom) prenom = pickByKeywords(row, ["prénom"]) || pickByKeywords(row, ["prenom"]);
-  if (!trajet) trajet = pickByKeywords(row, ["trajet"]);
-  if (!places) places = pickByKeywords(row, ["place"]); // "places", "place(s)", etc.
+  // IMPORTANT : on normalise la date en ISO
+  const dateRaw = pick(raw, ["Date", "date"]);
+  const date = normalizeDateToISO(dateRaw); // <-- la ligne clé
 
-  // Normalisations FR -> ISO / HH:MM
-  date = normalizeDateToISO(date);
-  heure = normalizeHourToHHMM(heure);
+  // Heure (souvent OK même si "19:30")
+  const heure = pick(raw, ["Heure", "heure"]);
 
-  const tUtc = parseISODateTimeToUTC(date, heure);
+  const depart = pick(raw, ["Départ", "Depart", "Lieu de départ", "Lieu depart"]);
+  const dest = pick(raw, ["Destination", "destination", "Arrivée", "Arrivee"]);
 
-  return {
-    date,
-    heure,
-    tUtc,
-    nom: (nom || "").trim(),
-    prenom: (prenom || "").trim(),
-    tel: (tel || "").trim(),
-    trajet: (trajet || "").trim(),
-    places: (places || "").trim(),
-    details: (details || "").trim()
-  };
+  const places = pick(raw, [
+    "Places disponibles", "Places", "Nb places",
+    "Places nécessaires", "Places necessaires"
+  ]);
+
+  const contact = pick(raw, ["Contact", "WhatsApp", "Pseudo WhatsApp", "Nom WhatsApp"]);
+
+  // Affichage
+  const who = prenom ? `${prenom}${init ? " " + init.replace(".", "") + "." : ""}` : "—";
+
+  // Timestamp : doit impérativement se faire sur la date ISO
+  const tUtc = parseISODateTimeToUTC(date, heure || "00:00");
+
+  return { who, date, heure, depart, dest, places, contact, tUtc };
 }
+
 
 
 function normalizeHourToHHMM(v) {
