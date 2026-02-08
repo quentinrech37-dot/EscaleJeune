@@ -474,11 +474,12 @@ function normalizeDateToISO(v) {
   if (!v) return "";
   const s = String(v).trim();
 
-  // Déjà ISO
-  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+  // ISO simple ou ISO avec heure (on garde juste la date)
+  const iso = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (iso) return `${iso[1]}-${iso[2]}-${iso[3]}`;
 
-  // Format FR: DD/MM/YYYY ou D/M/YYYY
-  const m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  // FR: DD/MM/YYYY (optionnellement suivi de l'heure)
+  const m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+.*)?$/);
   if (m) {
     const dd = String(m[1]).padStart(2, "0");
     const mm = String(m[2]).padStart(2, "0");
@@ -486,17 +487,23 @@ function normalizeDateToISO(v) {
     return `${yy}-${mm}-${dd}`;
   }
 
-  return s; // fallback (au pire votre formatDateHeureFR ré-affichera brut)
+  return s;
 }
+
 
 function pickByKeywords(row, keywords) {
   const keys = Object.keys(row || {});
   for (const k of keys) {
     const lk = k.toLowerCase();
+
+    // ⛔ on ignore l'horodatage Google Forms
+    if (lk.includes("horodateur") || lk.includes("timestamp")) continue;
+
     if (keywords.every(w => lk.includes(w))) return row[k];
   }
   return "";
 }
+
 
 
 function covoitCard(item, mode) {
