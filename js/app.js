@@ -385,23 +385,85 @@ function pick(o, keys) {
   return "";
 }
 
-function normalizeCovoitRow(raw) {
-  // Adaptez si besoin en fonction des intitulés exacts de vos questions Google Forms
-  const prenom = pick(raw, ["Prénom", "Prenom", "prenom"]);
-  const init = pick(raw, ["Initiale", "Initiale du nom", "Nom (initiale)", "Initiale nom"]);
-  const date = pick(raw, ["Date", "date"]);
-  const heure = pick(raw, ["Heure", "heure"]);
-  const depart = pick(raw, ["Départ", "Depart", "Lieu de départ", "Lieu depart"]);
-  const dest = pick(raw, ["Destination", "destination", "Arrivée", "Arrivee"]);
-  const places = pick(raw, ["Places disponibles", "Places", "Nb places", "Places nécessaires", "Places necessaires"]);
-  const contact = pick(raw, ["Contact", "WhatsApp", "Pseudo WhatsApp", "Nom WhatsApp"]);
+function normalizeCovoitRow(row) {
+  // 1) Tentative par noms "propres"
+  let date = pick(row, ["date", "Date"]);
+  let heure = pick(row, ["heure", "Heure"]);
+  let nom = pick(row, ["nom", "Nom"]);
+  let prenom = pick(row, ["prenom", "Prénom", "Pr\u00E9nom"]);
+  let tel = pick(row, ["tel", "Téléphone", "Telephone", "T\u00E9l\u00E9phone"]);
+  let trajet = pick(row, ["trajet", "Trajet"]);
+  let places = pick(row, ["places", "Places"]);
+  let details = pick(row, ["details", "Détails", "Details"]);
 
-  // Affichage safe : "Prénom I."
-  const who = prenom ? `${prenom}${init ? " " + init.replace(".", "") + "." : ""}` : "—";
+  // 2) Fallback Google Forms : colonnes = libellés de questions
+  // (ex: "Date du covoiturage", "Heure de départ", etc.)
+  if (!date) date = pickByKeywords(row, ["date"]);
+  if (!heure) heure = pickByKeywords(row, ["heure"]);
+  if (!nom) nom = pickByKeywords(row, ["nom"]);
+  if (!prenom) prenom = pickByKeywords(row, ["prénom"]) || pickByKeywords(row, ["prenom"]);
+  if (!trajet) trajet = pickByKeywords(row, ["trajet"]);
+  if (!places) places = pickByKeywords(row, ["place"]); // "places", "place(s)", etc.
 
-  const tUtc = parseISODateTimeToUTC(date, heure || "00:00"); // vous avez déjà cette fonction :contentReference[oaicite:4]{index=4}
-  return { who, date, heure, depart, dest, places, contact, tUtc };
+  // Normalisations FR -> ISO / HH:MM
+  date = normalizeDateToISO(date);
+  heure = normalizeHourToHHMM(heure);
+
+  const tUtc = parseISODateTimeToUTC(date, heure);
+
+  return {
+    date,
+    heure,
+    tUtc,
+    nom: (nom || "").trim(),
+    prenom: (prenom || "").trim(),
+    tel: (tel || "").trim(),
+    trajet: (trajet || "").trim(),
+    places: (places || "").trim(),
+    details: (details || "").trim()
+  };
 }
+
+
+function normalizeHourToHHMM(v) {
+  if (!v) return "";
+  const s = String(v).trim().toLowerCase().replace("h", ":");
+  // Ex: "19:3" -> "19:03"
+  const m = s.match(/^(\d{1,2}):(\d{1,2})$/);
+  if (!m) return String(v).trim();
+  const hh = String(m[1]).padStart(2, "0");
+  const mm = String(m[2]).padStart(2, "0");
+  return `${hh}:${mm}`;
+}
+
+function normalizeDateToISO(v) {
+  if (!v) return "";
+  const s = String(v).trim();
+
+  // Déjà ISO
+  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+
+  // Format FR: DD/MM/YYYY ou D/M/YYYY
+  const m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (m) {
+    const dd = String(m[1]).padStart(2, "0");
+    const mm = String(m[2]).padStart(2, "0");
+    const yy = m[3];
+    return `${yy}-${mm}-${dd}`;
+  }
+
+  return s; // fallback (au pire votre formatDateHeureFR ré-affichera brut)
+}
+
+function pickByKeywords(row, keywords) {
+  const keys = Object.keys(row || {});
+  for (const k of keys) {
+    const lk = k.toLowerCase();
+    if (keywords.every(w => lk.includes(w))) return row[k];
+  }
+  return "";
+}
+
 
 function covoitCard(item, mode) {
   // mode = "offre" ou "demande" (pour le libellé places)
