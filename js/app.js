@@ -542,7 +542,12 @@ async function initCovoiturage() {
       const raws = await loadCSVObjects(COVOIT_OFFRES_CSV_URL);
       let items = raws.map(normalizeCovoitRow).filter(x => Number.isFinite(x.tUtc));
 
-      if (COVOIT_ONLY_UPCOMING) items = items.filter(x => x.tUtc >= now);
+      if (COVOIT_ONLY_UPCOMING) {
+        const MARGE = 6 * 60 * 60 * 1000; // 6 heures
+        items = items.filter(x => x.tUtc >= now - MARGE);
+      }
+
+
       items.sort((a, b) => a.tUtc - b.tUtc);
       items = items.slice(0, COVOIT_MAX_AFFICHAGE);
 
@@ -556,7 +561,11 @@ async function initCovoiturage() {
       const raws = await loadCSVObjects(COVOIT_DEMANDES_CSV_URL);
       let items = raws.map(normalizeCovoitRow).filter(x => Number.isFinite(x.tUtc));
 
-      if (COVOIT_ONLY_UPCOMING) items = items.filter(x => x.tUtc >= now);
+      if (COVOIT_ONLY_UPCOMING) {
+        const MARGE = 6 * 60 * 60 * 1000; // 6 heures
+        items = items.filter(x => x.tUtc >= now - MARGE);
+      }
+
       items.sort((a, b) => a.tUtc - b.tUtc);
       items = items.slice(0, COVOIT_MAX_AFFICHAGE);
 
