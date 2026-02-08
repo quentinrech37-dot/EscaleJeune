@@ -141,8 +141,17 @@ async function loadText(url) {
   const busted = `${url}${sep}_ts=${Date.now()}`;
   const r = await fetch(busted, { cache: "no-store" });
   if (!r.ok) throw new Error(`HTTP ${r.status} on ${url}`);
-  return await r.text();
+  const txt = await r.text();
+
+  // 🔒 Si Google renvoie une page HTML (permissions / login), ce n'est pas un CSV
+  const t = txt.trim().toLowerCase();
+  if (t.startsWith("<!doctype") || t.startsWith("<html")) {
+    throw new Error("La feuille Google n'est pas publiée en CSV (HTML reçu).");
+  }
+
+  return txt;
 }
+
 
 
 // Parse CSV simple (gère guillemets, virgules)
@@ -449,13 +458,16 @@ function normalizeCovoitRow(raw) {
 function normalizeHourToHHMM(v) {
   if (!v) return "";
   const s = String(v).trim().toLowerCase().replace("h", ":");
-  // Ex: "19:3" -> "19:03"
-  const m = s.match(/^(\d{1,2}):(\d{1,2})$/);
+
+  // Accepte HH:MM ou HH:MM:SS
+  const m = s.match(/^(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?$/);
   if (!m) return String(v).trim();
+
   const hh = String(m[1]).padStart(2, "0");
   const mm = String(m[2]).padStart(2, "0");
   return `${hh}:${mm}`;
 }
+
 
 function normalizeDateToISO(v) {
   if (!v) return "";
