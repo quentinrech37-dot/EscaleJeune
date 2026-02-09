@@ -542,22 +542,40 @@ async function initMesse() {
 
 
     const items = Array.isArray(data.items) ? data.items : [];
-    const dayItems = items.filter(x => (x.day || "") === day);
+
+    const getStr = (obj, keys) => {
+      for (const k of keys) {
+        const v = obj?.[k];
+        if (v !== undefined && v !== null && String(v).trim() !== "") return String(v).trim();
+      }
+      return "";
+    };
+
+    const normLower = (s) => String(s || "").trim().toLowerCase();
+
+    // tolère day/jour + casse + espaces
+    const dayItems = items.filter(x => normLower(getStr(x, ["day", "jour"])) === normLower(day));
+
 
     // Églises présentes = base + celles ajoutées par des gens
     const churches = new Set(MESSE_DEFAULT_CHURCHES);
-    for (const it of dayItems) churches.add(normalizeChurchLabel(it.church));
+    for (const it of dayItems) {
+      const c = normalizeChurchLabel(getStr(it, ["church", "eglise", "église", "churhc", "parish"]));
+      if (c) churches.add(c);
+    }
     const churchesList = [...churches].filter(Boolean).sort((a,b)=>a.localeCompare(b,"fr"));
 
     // Index par église
     const byChurch = new Map();
     for (const c of churchesList) byChurch.set(c, []);
     for (const it of dayItems) {
-      const c = normalizeChurchLabel(it.church);
-      const n = normalizeName(it.name);
+      const c = normalizeChurchLabel(getStr(it, ["church", "eglise", "église", "churhc", "parish"]));
+      const n = normalizeName(getStr(it, ["name", "prenom", "prénom", "who"]));
+      const mo = getStr(it, ["moment", "time", "horaire"]);
+
       if (!c || !n) continue;
       if (!byChurch.has(c)) byChurch.set(c, []);
-      byChurch.get(c).push({ name: n, moment: it.moment || "" });
+      byChurch.get(c).push({ name: n, moment: mo });
     }
 
     // rendu
