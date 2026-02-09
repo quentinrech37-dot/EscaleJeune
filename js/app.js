@@ -32,7 +32,7 @@ const COVOIT_MAX_AFFICHAGE = 20;   // limite par section
 
 // ==================== MESSE (Apps Script Web App) ====================
 
-const MESSE_API_URL = "https://script.google.com/macros/s/AKfycbxpNXft88soDNO74TE-jROU2h_eBernHUDd5fE0JL5KPZAg1oEihifOPgVlx9PC_b3K/exec?mode=list&weekend=2026-02-15";
+const MESSE_API_URL = "https://script.google.com/macros/s/AKfycbzvv0koVbnyfwCPIqFUv1GZB47lmQQldAYYKbXdsC9CmSxc2uKAUBj9HFivmSW5mXSA/exec";
 
 
 
