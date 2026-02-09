@@ -807,16 +807,14 @@ img.item__thumb{
 
 /* ===== Bandeau nouveautés (discret, fermable) ===== */
 .banner{
-  margin: 10px 0 14px;
-  padding: 10px 12px;
-  border-radius: 14px;
-  border: 1px solid rgba(31,111,235,.18);
-  background: rgba(31,111,235,.08);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  margin: 6px 0 10px;        /* moins de place */
+  padding: 8px 10px;         /* moins haut */
+  border-radius: 12px;
+  background: rgba(31,111,235,.06);   /* plus léger */
+  border: 1px solid rgba(31,111,235,.12);
+  font-size: 0.95rem;        /* plus petit */
 }
+
 
 .banner__text{
   color: var(--text);
