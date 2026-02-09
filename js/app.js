@@ -30,7 +30,10 @@ const FORM_COVOIT_DEMANDE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd10Rj
 const COVOIT_ONLY_UPCOMING = true; // masque automatiquement les entrées passées
 const COVOIT_MAX_AFFICHAGE = 20;   // limite par section
 
-console.log("✅ app.js exécuté — TEST:", "v-2026-02-08-18h");
+// ==================== MESSE (Apps Script Web App) ====================
+
+const MESSE_API_URL = "https://script.google.com/macros/s/AKfycbxWcH545fUlgoBwRNtDdu-DgDzh7AvqwnEVCI0e-pGW76Afx-JdtpGG-KaQa1NEEmZ5/exec";
+
 
 
 
@@ -56,6 +59,19 @@ function formatDateFR(iso) {
     month: "long",
   });
 }
+
+function nextSundayISO() {
+  const d = new Date();
+  // 0=dimanche ... 6=samedi
+  const day = d.getDay();
+  const delta = (7 - day) % 7; // jours jusqu'à dimanche
+  const sunday = new Date(d.getFullYear(), d.getMonth(), d.getDate() + delta);
+  const y = sunday.getFullYear();
+  const m = String(sunday.getMonth() + 1).padStart(2, "0");
+  const dd = String(sunday.getDate()).padStart(2, "0");
+  return `${y}-${m}-${dd}`;
+}
+
 
 function parseISODateToUTC(dateStr) {
   if (!dateStr) return NaN;
@@ -153,6 +169,15 @@ async function loadText(url) {
   return txt;
 }
 
+async function postJSON(url, payload) {
+  const r = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!r.ok) throw new Error(`HTTP ${r.status} on POST ${url}`);
+  return await r.json();
+}
 
 
 // Parse CSV simple (gère guillemets, virgules)
@@ -454,6 +479,172 @@ function normalizeCovoitRow(raw) {
   return { who, date, heure, depart, dest, places, contact, tUtc };
 }
 
+const MESSE_DEFAULT_CHURCHES = [
+  "Cathédrale St Jean",
+  "Église St Pierre",
+  "Église St Maurice",
+  "Église Ste Madeleine",
+  "Chapelle ND des Buis",
+  "Église St Louis",
+  "Église du Sacré Cœur",
+  "Église St Joseph",
+  "Église St Hyppolyte",
+  "Église St Martin des Chaprais",
+  "Église St Pie X",
+];
+
+function normalizeChurchLabel(s) {
+  return String(s || "").trim();
+}
+
+function normalizeName(s) {
+  return String(s || "").trim();
+}
+
+async function initMesse() {
+  const grid = document.getElementById("messeGrid");
+  if (!grid) return; // pas sur cette page
+
+  const daySel = document.getElementById("messeDay");
+  const momentSel = document.getElementById("messeMoment");
+  const btnRefresh = document.getElementById("messeRefresh");
+  const label = document.getElementById("messeWeekendLabel");
+
+  const weekend = nextSundayISO();
+  if (label) label.textContent = `Week-end du ${formatDateFR(weekend)}`;
+
+  async function loadAndRender() {
+    const day = (daySel?.value || "dimanche");
+    const moment = (momentSel?.value || "auto");
+
+    grid.innerHTML = `<div class="item"><p class="muted">Chargement…</p></div>`;
+
+    const url = `${MESSE_API_URL}?mode=list&weekend=${encodeURIComponent(weekend)}`;
+    const data = await loadJSON(url);
+
+    const items = Array.isArray(data.items) ? data.items : [];
+    const dayItems = items.filter(x => (x.day || "") === day);
+
+    // Églises présentes = base + celles ajoutées par des gens
+    const churches = new Set(MESSE_DEFAULT_CHURCHES);
+    for (const it of dayItems) churches.add(normalizeChurchLabel(it.church));
+    const churchesList = [...churches].filter(Boolean).sort((a,b)=>a.localeCompare(b,"fr"));
+
+    // Index par église
+    const byChurch = new Map();
+    for (const c of churchesList) byChurch.set(c, []);
+    for (const it of dayItems) {
+      const c = normalizeChurchLabel(it.church);
+      const n = normalizeName(it.name);
+      if (!c || !n) continue;
+      if (!byChurch.has(c)) byChurch.set(c, []);
+      byChurch.get(c).push({ name: n, moment: it.moment || "" });
+    }
+
+    // rendu
+    grid.innerHTML = "";
+    for (const church of churchesList) {
+      const people = byChurch.get(church) || [];
+      const listHtml = people.length
+        ? `<ul style="margin:8px 0 0 18px; color:var(--muted)">
+             ${people.map(p => `<li>${escapeHtml(p.name)}${(p.moment && p.moment !== "auto") ? ` <span class="muted">(${escapeHtml(p.moment)})</span>` : ""}</li>`).join("")}
+           </ul>`
+        : `<p class="muted" style="margin-top:8px">Personne pour l’instant.</p>`;
+
+      const cardId = `messe_${church.replaceAll(" ","_").replaceAll("'","")}`;
+
+      grid.insertAdjacentHTML("beforeend", `
+        <div class="card" id="${escapeHtml(cardId)}">
+          <div class="card__head">
+            <h3 style="margin:4px 0 8px">${escapeHtml(church)}</h3>
+            <span class="badge">${day}</span>
+          </div>
+
+          ${listHtml}
+
+          <div style="margin-top:12px">
+            <button class="btn btn--ghost" data-action="add" data-church="${escapeHtml(church)}">+ Ajouter mon nom</button>
+          </div>
+        </div>
+      `);
+    }
+
+    // bouton "ajouter"
+    grid.querySelectorAll('button[data-action="add"]').forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const church = btn.getAttribute("data-church") || "";
+        const name = prompt("Votre prénom (ou prénom + initiale) :");
+        if (!name) return;
+
+        const payload = {
+          mode: "add",
+          weekend,
+          day,
+          moment,
+          church,
+          name: name.trim()
+        };
+
+        try {
+          btn.disabled = true;
+          await postJSON(MESSE_API_URL, payload);
+          await loadAndRender();
+        } catch (e) {
+          console.error(e);
+          alert("Impossible d’ajouter (réseau / droits).");
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    });
+
+    // ajout "autre église" (petit bouton en bas)
+    grid.insertAdjacentHTML("beforeend", `
+      <div class="card">
+        <div class="card__head">
+          <h3 style="margin:4px 0 8px">Autre église…</h3>
+          <span class="badge">+</span>
+        </div>
+        <p class="muted">Si elle n’est pas dans la liste, vous pouvez l’ajouter en premier.</p>
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+          <button class="btn" id="messeAddOther">+ Ajouter</button>
+        </div>
+      </div>
+    `);
+
+    const addOther = document.getElementById("messeAddOther");
+    addOther?.addEventListener("click", async () => {
+      const church = prompt("Nom de l’église :");
+      if (!church) return;
+      const name = prompt("Votre prénom (ou prénom + initiale) :");
+      if (!name) return;
+
+      try {
+        addOther.disabled = true;
+        await postJSON(MESSE_API_URL, {
+          mode: "add",
+          weekend,
+          day,
+          moment,
+          church: church.trim(),
+          name: name.trim()
+        });
+        await loadAndRender();
+      } catch (e) {
+        console.error(e);
+        alert("Impossible d’ajouter (réseau / droits).");
+      } finally {
+        addOther.disabled = false;
+      }
+    });
+  }
+
+  btnRefresh?.addEventListener("click", loadAndRender);
+  daySel?.addEventListener("change", loadAndRender);
+  momentSel?.addEventListener("change", loadAndRender);
+
+  await loadAndRender();
+}
 
 
 
@@ -1038,7 +1229,7 @@ setupRepasFormLink();
 initNotificationsUI();
 setupCovoitFormLinks();
 initCovoiturage();
-
+initMesse();
 initHome();
 initAnnonces();
 initCalendrier();
