@@ -37,6 +37,7 @@ const MESSE_API_URL = "https://script.google.com/macros/s/AKfycbxWcH545fUlgoBwRN
 
 
 
+
 let deferredPrompt = null;
 
 /* ==================== UTILS ==================== */
