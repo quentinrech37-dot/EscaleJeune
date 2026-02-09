@@ -172,12 +172,13 @@ async function loadText(url) {
 async function postJSON(url, payload) {
   const r = await fetch(url, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "text/plain;charset=utf-8" }, // ✅ évite le preflight
     body: JSON.stringify(payload),
   });
   if (!r.ok) throw new Error(`HTTP ${r.status} on POST ${url}`);
   return await r.json();
 }
+
 
 
 // Parse CSV simple (gère guillemets, virgules)
@@ -520,7 +521,24 @@ async function initMesse() {
     grid.innerHTML = `<div class="item"><p class="muted">Chargement…</p></div>`;
 
     const url = `${MESSE_API_URL}?mode=list&weekend=${encodeURIComponent(weekend)}`;
-    const data = await loadJSON(url);
+
+    let data;
+    try {
+      data = await loadJSON(url);
+    } catch (e) {
+      console.error("Messe: API erreur", e);
+      grid.innerHTML = `
+        <div class="item">
+          <p class="muted">
+            Impossible de charger les présences (API). Ouvrez la console (F12 → Console) pour voir l’erreur.
+          </p>
+          <p class="muted" style="margin-top:6px">
+            Test direct : <a href="${escapeHtml(url)}" target="_blank" rel="noopener">ouvrir l’API</a>
+          </p>
+        </div>`;
+      return;
+    }
+
 
     const items = Array.isArray(data.items) ? data.items : [];
     const dayItems = items.filter(x => (x.day || "") === day);
