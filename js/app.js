@@ -484,9 +484,9 @@ function normalizeCovoitRow(raw) {
 const MESSE_DEFAULT_CHURCHES = [
   "Cathédrale St Jean",
   "Église St Pierre",
-  "Église St Maurice",
   "Église Ste Madeleine",
-  "Chapelle ND des Buis",
+  "Église St Maurice",
+  "Chapelle Notre Dame des Buis",
   "Église St Louis",
   "Église du Sacré Cœur",
   "Église St Joseph",
@@ -563,7 +563,7 @@ async function initMesse() {
       const c = normalizeChurchLabel(getStr(it, ["church", "eglise", "église", "churhc", "parish"]));
       if (c) churches.add(c);
     }
-    const churchesList = [...churches].filter(Boolean).sort((a,b)=>a.localeCompare(b,"fr"));
+    const churchesList = [...churches].filter(Boolean);
 
     // Index par église
     const byChurch = new Map();
