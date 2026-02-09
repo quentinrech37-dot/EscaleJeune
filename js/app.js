@@ -932,6 +932,22 @@ async function initHome() {
   }
 }
 
+function initHomeBanner() {
+  const banner = document.getElementById("homeBanner");
+  const closeBtn = document.getElementById("homeBannerClose");
+  if (!banner || !closeBtn) return; // pas sur la page d'accueil
+
+  const KEY = "escale_home_banner_closed_v1";
+  if (localStorage.getItem(KEY) === "1") {
+    banner.style.display = "none";
+    return;
+  }
+
+  closeBtn.addEventListener("click", () => {
+    banner.style.display = "none";
+    localStorage.setItem(KEY, "1");
+  });
+}
 
 
 /* ==================== ANNONCES ==================== */
@@ -1266,6 +1282,7 @@ setupRepasFormLink();
 initNotificationsUI();
 setupCovoitFormLinks();
 initCovoiturage();
+initHomeBanner();
 initMesse();
 initHome();
 initAnnonces();

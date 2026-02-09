@@ -85,6 +85,16 @@
     <section class="hero">
       <h1>Bienvenue</h1>
       <p>Ici : annonces, prochaines activités, organisation des repas, propositions de sujets et services.</p>
+      <!-- Bandeau nouveautés (fermeture mémorisée) -->
+       <div class="banner" id="homeBanner" role="status" aria-live="polite">
+        <div class="banner__text">
+          <strong>Nouveautés :</strong>
+          <a class="link" href="./covoiturage.html">Covoiturage</a>
+          et
+          <a class="link" href="./messe.html">Messe : qui va où ?</a>
+        </div>
+        <button class="banner__close" id="homeBannerClose" type="button" aria-label="Fermer">×</button>
+      </div>
 
       <button id="btnNotif" class="btn">
         🔔 Activer les notifications
