@@ -5,7 +5,7 @@
     "type": "soiree",
     "titre": "Soirée rock",
     "lieu": "Escale Jeunes",
-    "heure": "19:30",
+    "heure": "19:45",
     "type": "soiree",
     "titre": "Soirée rock",
     "lieu": "Escale Jeunes - grande salle",
@@ -76,10 +76,10 @@
   "image": "./assets/img/calendrier/maraude.jpg"
   },
   {
-  "date": "2026-03-04",
+  "date": "2026-02-25",
   "heure": "19:00",
   "type": "soiree",
-  "titre": "Reprise de l’aumônerie – Soirée sur le Carême",
+  "titre": "Reprise de l’aumônerie - Soirée sur le Carême",
   "lieu": "Escale Jeunes",
   "resume": "Messe à 19h, repas fraternel puis topo du Père Pierre sur le Carême.",
   "details": "L’aumônerie reprend ce mercredi !\n\nRendez-vous à 19h pour la messe, suivie du repas. La soirée se poursuivra avec un topo du Père Pierre sur le Carême : comment vivre concrètement ce temps de préparation à la grande fête de Pâques.\n\nUn beau moment pour entrer ensemble dans ce temps liturgique.",
