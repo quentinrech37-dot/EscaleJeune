@@ -16,17 +16,6 @@
     "image": "https://www.aegc92.org/images/logos/danse-rock.png"
   },
   {
-    "date": "2025-12-11",
-    "heure": "19:30",
-    "type": "repas",
-    "titre": "Repas de Noël et décoration",
-    "lieu": "Escale Jeunes - grande salle",
-    "resume": "Repas festif",
-    "details": "Possibilité d’apporter un dessert à partager. Le repas sera suivi d'un temps pour décorer l'Escale !",
-    "contact": null,
-    "image": "https://cdn.iris-etourism.io/uploads/crt_centre_val_de_loire/1ee/noel-chateau-royal-amboise-credit-adt-touraine-jc-coutand-2034-39-2.webp"
-  },
-  {
     "date": "2026-01-21",
     "heure": "20:00",
     "type": "messe",
@@ -86,7 +75,43 @@
   "contact": "Père Pierre",
   "lien": null,
   "image": "./assets/img/calendrier/careme.jpg"
-}
+  },
+  {
+  "date": "2026-03-07",
+  "heure": "11:00",
+  "type": "sortie",
+  "titre": "Journée jardinage à l'Escale",
+  "lieu": "Escale Jeunes (Besançon)",
+  "resume": "Journée jardinage pour refaire une beauté à la cour !",
+  "details": "De 11h à 15h : désherbage, démoussage, nettoyage, plantage + tout ce que vous voulez en -age. Le repas est offert, n'hésitez pas à vous signaler auprès des organisateurs pour ajuster au mieux le nombre de convives. ",
+  "contact": "Aurore",
+  "image": "./assets/img/calendrier/jardinage.jpg",
+  "fichiers": [
+    { "label": "Affiche de l'évênement", "url": "./assets/files/Retraite_AfficheJardinage.pdf" }
+    ]
+  },
+  {
+    "date": "2026-03-04",
+    "heure": "20:30",
+    "type": "soiree",
+    "titre": "Partage biblique autour des Psaumes",
+    "lieu": "Escale Jeunes",
+    "resume": "Présenté par Clément Le Grand, le beau, le charismatique, d'une culture inéfable, bref un chad",
+    "details": "Pas de divulgachage (dixit Clément), le partage est précédé d'une messe (19h-19h45) et d'un repas (19h45-20h30) (tarif libre à partir de 2€).",
+    "contact": "Clément",
+    "image":"./assets/img/calendrier/partagebiblique.jpg"
+  },
+  {
+    "date": "2026-04-01",
+    "heure": "20:30",
+    "type": "soiree",
+    "titre": "Partage biblique sur St Jean",
+    "lieu": "Escale Jeunes",
+    "resume": "Présenté par Clément",
+    "details": "Pas de divulgation (dixit Clément), le partage est précédé d'une messe (19h-19h45) et d'un repas (19h45-20h30) (tarif libre à partir de 2€).",
+    "contact": "Clément",
+    "image":"./assets/img/calendrier/saintjean.jpg"
+  }
 
 
 ]

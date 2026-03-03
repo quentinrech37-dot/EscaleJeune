@@ -33,6 +33,16 @@
   "contact": null,
   "lien": null,
   "image": null
+},
+  {
+  "date": "2026-04-08",
+  "categorie": "info",
+  "titre": "Besoin de 2 accompgnateurs pour Taizé !",
+  "texte": "Avec les animateurs de préparation à la confirmation des lycéens, nous recherchons deux personnes de 20 ans ou plus pour accompagner à Taizé. Il ne s'agit que des premières 24h (8-9 avril). Il n'y aura aucun temps de partage à animer.",
+  "resume": "Besoin de 2 accompagnateur pour les premières 24h (8 - 9 avril)",
+  "contact": "Alice Fontan",
+  "lien": null,
+  "image": "./assets/img/annonces/taizele.jpg"
 }
 
 ]
