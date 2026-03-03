@@ -87,7 +87,7 @@
   "contact": "Aurore",
   "image": "./assets/img/calendrier/jardinage.jpg",
   "fichiers": [
-    { "label": "Affiche de l'évênement", "url": "./assets/files/Retraite_AfficheJardinage.pdf" }
+    { "label": "Affiche de l'évênement", "url": "./assets/files/AfficheJardinage.pdf" }
     ]
   },
   {
