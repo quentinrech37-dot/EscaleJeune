@@ -1,13 +1,9 @@
 [
   {
-    "date": "2026-02-27",
-    "heure": "20:00",
+    "date": "2026-03-27",
     "type": "soiree",
     "titre": "Soirée rock",
-    "lieu": "Escale Jeunes",
     "heure": "19:45",
-    "type": "soiree",
-    "titre": "Soirée rock",
     "lieu": "Escale Jeunes - grande salle",
     "resume": "Initiation + pratique, ambiance simple et joyeuse.",
     "details": "Ouvert à tous niveaux. Si vous pouvez, apportez une boisson ou quelque chose à partager.",
@@ -111,6 +107,43 @@
     "details": "Pas de divulgation (dixit Clément), le partage est précédé d'une messe (19h-19h45) et d'un repas (19h45-20h30) (tarif libre à partir de 2€).",
     "contact": "Clément",
     "image":"./assets/img/calendrier/saintjean.jpg"
+  },
+  {
+    "date": "2026-04-01",
+    "heure": "20:45",
+    "type": "soiree",
+    "titre": "Partage biblique sur la vie de Ste Jeanne-Antide",
+    "lieu": "Escale Jeunes",
+    "resume": "A travers le témoignage de Sœur Yvelise (Sœurs de la Charité). ",
+    "image":"./assets/img/calendrier/SainteJeanneAntide.jpg"
+  },
+  {
+    "date": "2026-04-02",
+    "heure": "21:00",
+    "type": "messe",
+    "titre": "Nuit d'adoration",
+    "lieu": "Escale Jeunes",
+    "resume": "Adoration toute la nuit du Jeudi Saint au Vendredi (de 21h à 7h30). ",
+    "image":"./assets/img/calendrier/adoration.jpg"
+  },
+  {
+    "date": "2026-03-18",
+    "heure": "19:00",
+    "type": "messe",
+    "titre": "Sacrement du pardon",
+    "lieu": "Escale Jeunes",
+    "resume": "Possibilité de recevoir le sacrement de réconciliation à l'Escale Jeunes. ",
+    "image":"./assets/img/calendrier/Reconciliation.jpg"
+  },
+  {
+    "date": "2026-04-03",
+    "heure": "19:00",
+    "type": "messe",
+    "titre": "Chemin de Croix",
+    "lieu": "Escale Jeunes",
+    "resume": "Tous les vendredis de Carême après la messe de 19h. ",
+    "details":"Vendredi Saint - 3 avril - de 12h à 13h - bol de riz.",
+    "image":"./assets/img/calendrier/CheminDeCroix.jpg"
   }
 
 
