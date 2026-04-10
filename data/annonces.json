@@ -33,28 +33,6 @@
   "contact": null,
   "lien": null,
   "image": null
-},
-  {
-  "date": "2026-04-08",
-  "categorie": "info",
-  "titre": "Besoin de 2 accompagnateurs pour Taizé",
-  "texte": "Avec les animateurs de préparation à la confirmation des lycéens, nous recherchons deux personnes de 20 ans ou plus pour accompagner à Taizé. Il ne s'agit que des premières 24h (8-9 avril). Il n'y aura aucun temps de partage à animer. (contact : Alice Fontan)",
-  "resume": "Besoin de 2 accompagnateur pour les premières 24h (8 - 9 avril)",
-  "contact": "Alice Fontan",
-  "lien": null,
-  "image": "./assets/img/annonces/taize.jpg"
-},
-{
-  "date": "2026-03-05",
-  "categorie": "info",
-  "titre": "Les inscriptions du pèlerinage à Taizé sont ouvertes !",
-  "resume": "Le pélé diocésain à Taizé est lancé : inscriptions auprès du doyenné (ou directement via Taizé).",
-  "texte": "Le pèlerinage à Taizé est lancé et les inscriptions sont ouvertes.\n\nVous pouvez vous inscrire auprès de votre doyenné, ou rejoindre le groupe quand vous le souhaitez en vous inscrivant directement auprès de Taizé.\n\nPour rappel, Taizé est une communauté chrétienne œcuménique en Bourgogne, connue pour ses temps de prière (chants méditatifs), le silence, les enseignements bibliques et les rencontres avec des jeunes du monde entier. C’est un temps fort de foi, de fraternité et de simplicité. Contact : rassemblements.jeunes@diocese-besancon.fr, sur Insta : @jeunes.diocese.besancon",
-  "image": "./assets/img/annonces/taize.jpg",
-  "fichiers": [
-  {"label":"Affiche de l'évênement", "url":"./assets/files/taize.pdf"}
-  ]
-
 }
 
 ]
