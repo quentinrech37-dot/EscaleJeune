@@ -9,7 +9,7 @@
     "details": "Ouvert à tous niveaux. Si vous pouvez, apportez une boisson ou quelque chose à partager.",
     "contact": "Benoit",
     "lien": null,
-    "image": "https://www.aegc92.org/images/logos/danse-rock.png"
+    "image": "./assets/img/calendrier/SoireeRock.png"
   },
   {
     "date": "2026-04-29",
@@ -33,7 +33,7 @@
     "details": "Ouvert à tous niveaux. 3€ l'entrée. Du covoiturage est possible, n'hésitez pas à contacter les organisateurs pour plus d'informations.",
     "contact": "Benoit",
     "lien": null,
-    "image": "https://www.aegc92.org/images/logos/danse-rock.png"
+    "image": "./assets/img/calendrier/SoireeRockDijon.png"
   },
   {
     "date": "2026-01-21",
