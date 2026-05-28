@@ -1288,3 +1288,180 @@ initHome();
 initAnnonces();
 initCalendrier();
 initRepas();
+
+/* ==================== VIE DE L'ESCALE ==================== */
+
+async function initVie() {
+  const grid = document.getElementById("vieGrid");
+  if (!grid) return;
+
+  let articles = [];
+  try {
+    articles = (await loadJSON("./data/vie.json")).sort(byDateDesc);
+  } catch (err) {
+    console.error(err);
+    grid.innerHTML = `<div class="item"><p class="muted">Données indisponibles.</p></div>`;
+    return;
+  }
+
+  if (!articles.length) {
+    grid.innerHTML = `<div class="item"><p class="muted">Aucun article pour le moment.</p></div>`;
+    return;
+  }
+
+  // --- Rendu des cartes ---
+  grid.innerHTML = "";
+  articles.forEach((a) => {
+    const coverHtml = a.couverture
+      ? `<div class="vie-card__cover">
+           <img src="${escapeHtml(a.couverture)}" alt="" loading="lazy">
+         </div>`
+      : "";
+
+    const nbPhotos = Array.isArray(a.photos) ? a.photos.length : 0;
+    const photoHint = nbPhotos > 0
+      ? `<span class="vie-card__hint">📷 ${nbPhotos} photo${nbPhotos > 1 ? "s" : ""}</span>`
+      : "";
+
+    grid.insertAdjacentHTML("beforeend", `
+      <div class="vie-card" data-id="${escapeHtml(a.id)}" role="button" tabindex="0">
+        ${coverHtml}
+        <div class="vie-card__body">
+          <div class="vie-card__meta">
+            <span class="badge">${escapeHtml(a.categorie || "article")}</span>
+            ${a.date ? `<span class="muted">${escapeHtml(formatDateFR(a.date))}</span>` : ""}
+          </div>
+          <h3>${escapeHtml(a.titre || "")}</h3>
+          <p>${escapeHtml(a.resume || "")}</p>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:4px">
+            ${a.auteur ? `<span class="muted" style="font-size:.85rem">— ${escapeHtml(a.auteur)}</span>` : ""}
+            ${photoHint}
+          </div>
+        </div>
+      </div>
+    `);
+  });
+
+  // --- Construction de la modale (une seule fois) ---
+  if (!document.getElementById("vieModal")) {
+    document.body.insertAdjacentHTML("beforeend", `
+      <div class="vie-modal" id="vieModal" role="dialog" aria-modal="true">
+        <div class="vie-modal__overlay" id="vieModalOverlay"></div>
+        <div class="vie-modal__inner">
+          <div class="vie-modal__header">
+            <div style="flex:1;min-width:0">
+              <h2 id="vieModalTitle"></h2>
+              <div class="vie-modal__header-meta">
+                <span class="badge" id="vieModalCat"></span>
+                <span class="muted" id="vieModalDate"></span>
+                <span class="muted" id="vieModalAuteur"></span>
+              </div>
+            </div>
+            <button class="vie-modal__close" id="vieModalClose" aria-label="Fermer">×</button>
+          </div>
+          <div id="vieModalCarousel"></div>
+          <div class="vie-modal__content" id="vieModalContent"></div>
+        </div>
+      </div>
+    `);
+  }
+
+  const modal = document.getElementById("vieModal");
+
+  function buildCarousel(container, photos, couverture) {
+    const list = photos.length
+      ? photos
+      : (couverture ? [{ url: couverture, legende: "" }] : []);
+
+    if (!list.length) { container.innerHTML = ""; return; }
+
+    const slidesHtml = list.map(p => `
+      <div class="vie-carousel__slide">
+        <img src="${escapeHtml(p.url)}" alt="${escapeHtml(p.legende || "")}" loading="lazy">
+        ${p.legende ? `<div class="vie-carousel__legend">${escapeHtml(p.legende)}</div>` : ""}
+      </div>
+    `).join("");
+
+    const arrowsHtml = list.length > 1 ? `
+      <button class="vie-carousel__btn vie-carousel__btn--prev" aria-label="Précédent">&#8249;</button>
+      <button class="vie-carousel__btn vie-carousel__btn--next" aria-label="Suivant">&#8250;</button>
+    ` : "";
+
+    const dotsHtml = list.length > 1 ? `
+      <div class="vie-carousel__dots">
+        ${list.map((_, i) => `
+          <button class="vie-carousel__dot${i === 0 ? " is-active" : ""}"
+                  data-dot="${i}" aria-label="Photo ${i + 1}"></button>
+        `).join("")}
+      </div>
+    ` : "";
+
+    container.innerHTML = `
+      <div class="vie-carousel">
+        <div class="vie-carousel__viewport">
+          <div class="vie-carousel__track" id="vieCarouselTrack">${slidesHtml}</div>
+        </div>
+        ${arrowsHtml}
+        ${dotsHtml}
+      </div>
+    `;
+
+    if (list.length > 1) {
+      let idx = 0;
+      const track = container.querySelector("#vieCarouselTrack");
+      const dots  = container.querySelectorAll(".vie-carousel__dot");
+
+      function goTo(n) {
+        idx = ((n % list.length) + list.length) % list.length;
+        track.style.transform = `translateX(-${idx * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle("is-active", i === idx));
+      }
+
+      container.querySelector(".vie-carousel__btn--prev").addEventListener("click", () => goTo(idx - 1));
+      container.querySelector(".vie-carousel__btn--next").addEventListener("click", () => goTo(idx + 1));
+      dots.forEach(d => d.addEventListener("click", () => goTo(Number(d.dataset.dot))));
+    }
+  }
+
+  function openModal(article) {
+    document.getElementById("vieModalTitle").textContent  = article.titre || "";
+    document.getElementById("vieModalCat").textContent    = article.categorie || "article";
+    document.getElementById("vieModalDate").textContent   = article.date ? formatDateFR(article.date) : "";
+    document.getElementById("vieModalAuteur").textContent = article.auteur ? `— ${article.auteur}` : "";
+    document.getElementById("vieModalContent").textContent = article.contenu || "";
+
+    buildCarousel(
+      document.getElementById("vieModalCarousel"),
+      Array.isArray(article.photos) ? article.photos : [],
+      article.couverture || ""
+    );
+
+    modal.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    modal.scrollTop = 0;
+  }
+
+  function closeModal() {
+    modal.classList.remove("is-open");
+    document.body.style.overflow = "";
+  }
+
+  // Ouverture des cartes
+  grid.querySelectorAll(".vie-card").forEach(card => {
+    const openCard = () => {
+      const a = articles.find(x => x.id === card.dataset.id);
+      if (a) openModal(a);
+    };
+    card.addEventListener("click", openCard);
+    card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") openCard(); });
+  });
+
+  // Fermeture
+  document.getElementById("vieModalClose").addEventListener("click", closeModal);
+  document.getElementById("vieModalOverlay").addEventListener("click", closeModal);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+  });
+}
+
+initVie();

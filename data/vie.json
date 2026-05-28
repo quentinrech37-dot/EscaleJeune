@@ -1,0 +1,29 @@
+[
+  {
+    "id": "babyfoot-2026-04",
+    "date": "2026-04-29",
+    "categorie": "soirée",
+    "titre": "Quid du grand tournoi de Baby-foot ?",
+    "auteur": "Martin",
+    "resume": "Mercredi 29 avril, la halle de l'Escale s'est transformée en arène de baby-foot. Retour sur une soirée haletante, avec équipes constituées au sort et esprit de compétition bien tempéré.",
+    "contenu": "Il y a des soirées qui resteront dans les mémoires. Mercredi 29 avril en est clairement une.\n\nLa halle de l'Escale avait été entièrement réaménagée pour l'occasion : quatre tables de baby-foot alignées, le mölkky sorti du placard, et la table de ping-pong repositionnée dans un coin stratégique. Les équipes, constituées aléatoirement au moment de l'arrivée des participants, ont rapidement pris goût à la compétition.\n\nLe format en poules puis élimination directe a permis à chacun de jouer plusieurs fois, y compris aux moins aguerris. Le niveau, très hétérogène en début de soirée, s'est curieusement homogénéisé au fil des parties — preuve que l'endroit inspire.\n\nLa finale a réuni deux équipes qui n'auraient probablement jamais été associées autrement, et s'est jouée dans un silence relatif, ponctué de cris retenus et de commentaires techniques de qualité variable.\n\nMerci à tous ceux qui se sont inscrits, et encore bravo aux vainqueurs qui sauront — on l'espère — rester modestes jusqu'à la prochaine édition.",
+    "couverture": "./assets/img/calendrier/tournoibaby.png",
+    "photos": [
+      { "url": "./assets/img/calendrier/tournoibaby.png", "legende": "Les tables en pleine action" }
+    ]
+  },
+  {
+    "id": "soiree-rock-2026-05",
+    "date": "2026-05-29",
+    "categorie": "soirée",
+    "titre": "Soirée rock — initiation et bonne humeur",
+    "auteur": "Benoit",
+    "resume": "Vendredi 29 mai, la grande salle de l'Escale a résonné au son du rock. Initiation pour les débutants, pratique libre pour les autres : une soirée rythmée et joyeuse.",
+    "contenu": "Rien de tel qu'une soirée rock pour terminer la semaine.\n\nLe principe était simple : une heure d'initiation pour ceux qui ne connaissaient pas les bases, puis une heure de pratique libre en musique. En pratique, les niveaux se sont vite mélangés, ce qui est précisément l'idée.\n\nUne vingtaine de participants se sont retrouvés dans la grande salle, certains pour la première fois, d'autres déjà rodés. Les plus expérimentés ont joué le jeu de l'initiation avec beaucoup de patience et de bonne humeur — ce qui n'est pas toujours gagné d'avance sur un parquet.\n\nLa soirée s'est terminée avec quelques morbiflettes improvisées et des perspectives d'une prochaine édition à Dijon, le 19 juin. Rendez-vous est donc pris.",
+    "couverture": "./assets/img/calendrier/SoireeRock.png",
+    "photos": [
+      { "url": "./assets/img/calendrier/SoireeRock.png", "legende": "Affiche de la soirée" },
+      { "url": "./assets/img/calendrier/SoireeRockDijon.png", "legende": "Prochaine étape : Dijon, 19 juin" }
+    ]
+  }
+]
