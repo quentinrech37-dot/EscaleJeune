@@ -1,5 +1,18 @@
 [
   {
+  "id": "photo-groupe-2026",
+  "date": "2026-05-27",
+  "categorie": "communauté",
+  "titre": "Photo de groupe - fin d'année 2026",
+  "auteur": "L'Escale",
+  "resume": "...",
+  "contenu": "...",
+  "couverture": "./assets/img/vie/photo_escale_2026.jpg",
+  "photos": [
+    { "url": "./assets/img/vie/photo_escale_2026.jpg", "legende": "L'Escale Jeunes - mai 2026" }
+  ]
+},
+  {
   "id": "pelerinage-bourgogne-pentecote-2026",
   "date": "2026-05-23",
   "categorie": "pèlerinage",
