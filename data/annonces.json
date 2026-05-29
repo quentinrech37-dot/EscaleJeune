@@ -14,6 +14,16 @@
   ]
 
 },
+
+  {
+  "date": "2026-05-29",
+  "categorie": "info",
+  "titre": "Nouvelle page : Vie de l'Escale",
+  "resume": "Un nouvel espace pour retrouver les articles et les souvenirs de la communauté.",
+  "texte": "Le site s'enrichit d'une nouvelle page : « Vie de l'Escale ».\n\nVous y trouverez des articles rédigés après les événements de la communauté — pèlerinages, soirées, sorties, week-ends… — avec photos et récits.\n\nLe premier article est déjà en ligne : retour sur le pèlerinage de Pentecôte en Bourgogne, de Moutiers-Saint-Jean à Vézelay.\n\nLa page est accessible depuis le menu de navigation, rubrique « Vie de l'Escale ».",
+  "lien": null,
+  "image": null
+},
   {
   "date": null,
   "categorie": "info",
