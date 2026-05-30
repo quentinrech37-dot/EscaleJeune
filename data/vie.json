@@ -9,7 +9,8 @@
   "contenu": "...",
   "couverture": "./assets/img/vie/photo_escale_2026.jpg",
   "photos": [
-    { "url": "./assets/img/vie/photo_escale_2026.jpg", "legende": "L'Escale Jeunes - mai 2026" }
+    { "url": "./assets/img/vie/photo_escale_2026.jpg", "legende": "L'Escale Jeunes - mai 2026" },
+    { "url": "./assets/img/vie/photo_escale_prenoms_2026.jpg", "legende": "Prénoms" }
   ]
 },
   {
