@@ -12,6 +12,18 @@
     "image": "./assets/img/calendrier/SoireeRock.png"
   },
   {
+  "date": "2026-06-10",
+  "heure": "19:00",
+  "type": "soiree",
+  "titre": "Fête de fin d'année de l'Escale !",
+  "lieu": "Escale Jeunes - Besançon",
+  "resume": "Dernière soirée avant la reprise de septembre — venez nombreux !",
+  "details": "La soirée de fin d'année approche ! Plusieurs activités seront proposées au fil de la soirée, et un repas sera organisé — les détails seront communiqués prochainement.\n\nC'est la dernière soirée avant la reprise de septembre : une bonne raison de ne pas manquer ça.",
+  "contact": "Père Pierre - escalejeunes@diocese-besancon.fr",
+  "lien": null,
+  "image": "./assets/img/calendrier/fete_escale.jpg"
+  },
+  {
     "date": "2026-04-29",
     "type": "soiree",
     "titre": "Tournoi de Baby-foot",
