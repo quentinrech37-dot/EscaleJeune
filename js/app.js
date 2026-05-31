@@ -1292,7 +1292,9 @@ initRepas();
 /* ==================== VIE DE L'ESCALE ==================== */
 
 async function initVie() {
-  const grid = document.getElementById("vieGrid");
+  const grid   = document.getElementById("vieGrid");
+  const search = document.getElementById("vieSearch");
+  const filter = document.getElementById("vieFilter");
   if (!grid) return;
 
   let articles = [];
@@ -1309,38 +1311,77 @@ async function initVie() {
     return;
   }
 
-  // --- Rendu des cartes ---
-  grid.innerHTML = "";
-  articles.forEach((a) => {
-    const coverHtml = a.couverture
-      ? `<div class="vie-card__cover">
-           <img src="${escapeHtml(a.couverture)}" alt="" loading="lazy">
-         </div>`
-      : "";
+  // --- Peuplement dynamique du filtre ---
+  if (filter) {
+    const cats = [...new Set(articles.map(a => a.categorie || "article").filter(Boolean))].sort();
+    cats.forEach(cat => {
+      const opt = document.createElement("option");
+      opt.value = cat;
+      opt.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
+      filter.appendChild(opt);
+    });
+  }
 
-    const nbPhotos = Array.isArray(a.photos) ? a.photos.length : 0;
-    const photoHint = nbPhotos > 0
-      ? `<span class="vie-card__hint">📷 ${nbPhotos} photo${nbPhotos > 1 ? "s" : ""}</span>`
-      : "";
+  // --- Fonction de rendu filtrée ---
+  function draw() {
+    const q   = (search?.value || "").trim().toLowerCase();
+    const cat = filter?.value || "all";
 
-    grid.insertAdjacentHTML("beforeend", `
-      <div class="vie-card" data-id="${escapeHtml(a.id)}" role="button" tabindex="0">
-        ${coverHtml}
-        <div class="vie-card__body">
-          <div class="vie-card__meta">
-            <span class="badge">${escapeHtml(a.categorie || "article")}</span>
-            ${a.date ? `<span class="muted">${escapeHtml(formatDateFR(a.date))}</span>` : ""}
-          </div>
-          <h3>${escapeHtml(a.titre || "")}</h3>
-          <p>${escapeHtml(a.resume || "")}</p>
-          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:4px">
-            ${a.auteur ? `<span class="muted" style="font-size:.85rem">— ${escapeHtml(a.auteur)}</span>` : ""}
-            ${photoHint}
+    const shown = articles.filter(a => {
+      const okCat = cat === "all" || (a.categorie || "article") === cat;
+      const blob  = `${a.titre || ""} ${a.resume || ""} ${a.contenu || ""} ${a.auteur || ""}`.toLowerCase();
+      const okQ   = !q || blob.includes(q);
+      return okCat && okQ;
+    });
+
+    grid.innerHTML = "";
+
+    if (!shown.length) {
+      grid.innerHTML = `<div class="item"><p class="muted">Aucun résultat.</p></div>`;
+      return;
+    }
+
+    shown.forEach((a) => {
+      const coverHtml = a.couverture
+        ? `<div class="vie-card__cover">
+             <img src="${escapeHtml(a.couverture)}" alt="" loading="lazy">
+           </div>`
+        : "";
+
+      const nbPhotos = Array.isArray(a.photos) ? a.photos.length : 0;
+      const photoHint = nbPhotos > 0
+        ? `<span class="vie-card__hint">📷 ${nbPhotos} photo${nbPhotos > 1 ? "s" : ""}</span>`
+        : "";
+
+      grid.insertAdjacentHTML("beforeend", `
+        <div class="vie-card" data-id="${escapeHtml(a.id)}" role="button" tabindex="0">
+          ${coverHtml}
+          <div class="vie-card__body">
+            <div class="vie-card__meta">
+              <span class="badge">${escapeHtml(a.categorie || "article")}</span>
+              ${a.date ? `<span class="muted">${escapeHtml(formatDateFR(a.date))}</span>` : ""}
+            </div>
+            <h3>${escapeHtml(a.titre || "")}</h3>
+            <p>${escapeHtml(a.resume || "")}</p>
+            <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:4px">
+              ${a.auteur ? `<span class="muted" style="font-size:.85rem">— ${escapeHtml(a.auteur)}</span>` : ""}
+              ${photoHint}
+            </div>
           </div>
         </div>
-      </div>
-    `);
-  });
+      `);
+    });
+
+    // Ré-attacher les listeners après chaque rendu
+    grid.querySelectorAll(".vie-card").forEach(card => {
+      const openCard = () => {
+        const art = articles.find(x => x.id === card.dataset.id);
+        if (art) openModal(art);
+      };
+      card.addEventListener("click", openCard);
+      card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") openCard(); });
+    });
+  }
 
   // --- Construction de la modale (une seule fois) ---
   if (!document.getElementById("vieModal")) {
@@ -1424,10 +1465,10 @@ async function initVie() {
   }
 
   function openModal(article) {
-    document.getElementById("vieModalTitle").textContent  = article.titre || "";
-    document.getElementById("vieModalCat").textContent    = article.categorie || "article";
-    document.getElementById("vieModalDate").textContent   = article.date ? formatDateFR(article.date) : "";
-    document.getElementById("vieModalAuteur").textContent = article.auteur ? `— ${article.auteur}` : "";
+    document.getElementById("vieModalTitle").textContent   = article.titre || "";
+    document.getElementById("vieModalCat").textContent     = article.categorie || "article";
+    document.getElementById("vieModalDate").textContent    = article.date ? formatDateFR(article.date) : "";
+    document.getElementById("vieModalAuteur").textContent  = article.auteur ? `— ${article.auteur}` : "";
     document.getElementById("vieModalContent").textContent = article.contenu || "";
 
     buildCarousel(
@@ -1446,22 +1487,19 @@ async function initVie() {
     document.body.style.overflow = "";
   }
 
-  // Ouverture des cartes
-  grid.querySelectorAll(".vie-card").forEach(card => {
-    const openCard = () => {
-      const a = articles.find(x => x.id === card.dataset.id);
-      if (a) openModal(a);
-    };
-    card.addEventListener("click", openCard);
-    card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") openCard(); });
-  });
+  // Listeners recherche + filtre
+  search?.addEventListener("input", draw);
+  filter?.addEventListener("change", draw);
 
-  // Fermeture
+  // Fermeture de la modale
   document.getElementById("vieModalClose").addEventListener("click", closeModal);
   document.getElementById("vieModalOverlay").addEventListener("click", closeModal);
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
   });
+
+  // Premier rendu
+  draw();
 }
 
 initVie();
