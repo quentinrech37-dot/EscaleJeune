@@ -1,15 +1,18 @@
 [
   {
-    "date": "2026-05-29",
+    "date": "2026-10-02",
     "type": "soiree",
     "titre": "Soirée rock",
-    "heure": "19:45",
+    "heure": "20:00",
     "lieu": "Escale Jeunes - grande salle",
     "resume": "Initiation + pratique, ambiance simple et joyeuse.",
     "details": "Ouvert à tous niveaux. Si vous pouvez, apportez une boisson ou quelque chose à partager.",
     "contact": "Benoit",
     "lien": null,
-    "image": "./assets/img/calendrier/SoireeRock.png"
+    "image": "./assets/img/calendrier/SoireeRock.png",
+    "fichiers": [
+    { "label": "Affiche de l'évènement", "url": "./assets/files/SoireeRock_Affiche.pdf" }
+    ]
   },
   {
   "date": "2026-06-10",
