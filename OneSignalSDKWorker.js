@@ -4,7 +4,7 @@
 importScripts("https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js");
 
 // 2) Votre SW de cache (copiez-collez ici le contenu actuel de sw.js)
-const CACHE = "escale-v157";
+const CACHE = "escale-v158";
 
 const ASSETS = [
   "/",
