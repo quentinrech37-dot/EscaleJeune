@@ -3,11 +3,9 @@
   "date": null,
   "categorie": "info",
   "titre": "Bienvenue sur le site interne de L'Escale !",
-  "texte": "Ce site est un outil interne destiné à faciliter la vie de la communauté de l’Escale Jeunes à Besançon. Vous y trouverez les annonces, les prochaines activités, ainsi que l’organisation des repas du mercredi soir. Il permet aussi à chacun de proposer un sujet de réflexion ou une activité, afin de faire vivre la communauté de manière simple et participative. Voir lien ci-dessous pour plus d'informations à propos de l'Escale Jeunes.",
+  "texte": "Ce site est un outil interne non officiel destiné à faciliter la vie de la communauté de l’Escale Jeunes à Besançon. Vous y trouverez les annonces, les prochaines activités, ainsi que l’organisation des repas du mercredi soir. Il permet aussi à chacun de proposer un sujet de réflexion ou une activité, afin de faire vivre la communauté de manière simple et participative. Voir lien ci-dessous pour plus d'informations à propos de l'Escale Jeunes.",
   "resume": "Un espace simple pour suivre la vie de l’Escale, s’informer et participer à l’organisation des mercredis.",
-  "contact": "Père Pierre - 03 81 81 10 18 - escalejeunes@diocese-besancon.fr",
   "lien": "https://www.diocese-besancon.fr/agir-participer/tu-es-jeune-tourne-vers-l-avenir/escale-jeunes",
-  "image": "https://www.diocese-besancon.fr/agir-participer/tu-es-jeune-tourne-vers-l-avenir/escale-jeunes/@@minisite_properties/++widget++form.widgets.logo/@@download/escale%20jeunes_logo.jpg",
   "fichiers": [
   {"label":"Présentation et mode d'emploi du site", "url":"./assets/files/SiteEscale_ModeDEmploi.pdf"},
   { "label": "Affiche publicitaire", "url": "./assets/files/Affiche_4_V7.pdf" }
