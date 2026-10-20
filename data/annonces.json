@@ -1,46 +1,39 @@
 [
   {
-  "date": null,
-  "categorie": "info",
-  "titre": "Bienvenue sur le site interne de L'Escale !",
-  "texte": "Ce site est un outil interne non officiel destiné à faciliter la vie de la communauté de l’Escale Jeunes à Besançon. Vous y trouverez les annonces, les prochaines activités, ainsi que l’organisation des repas du mercredi soir. Il permet aussi à chacun de proposer un sujet de réflexion ou une activité, afin de faire vivre la communauté de manière simple et participative. Voir lien ci-dessous pour plus d'informations à propos de l'Escale Jeunes.",
-  "resume": "Un espace simple pour suivre la vie de l’Escale, s’informer et participer à l’organisation des mercredis.",
-  "lien": "https://www.diocese-besancon.fr/agir-participer/tu-es-jeune-tourne-vers-l-avenir/escale-jeunes",
-  "fichiers": [
-  {"label":"Présentation et mode d'emploi du site", "url":"./assets/files/SiteEscale_ModeDEmploi.pdf"},
-  { "label": "Affiche publicitaire", "url": "./assets/files/Affiche_4_V7.pdf" }
-  ]
-
-},
-
+    "date": null,
+    "categorie": "info",
+    "titre": "Bienvenue sur le site de petites annonces de l'aumônerie !",
+    "texte": "Ce site est un outil interne non officiel destiné à faciliter la vie de la communauté de l’aumônerie à Besançon. Vous y trouverez les annonces, les prochaines activités, ainsi que l’organisation des repas du mercredi soir. Il permet aussi à chacun de proposer un sujet de réflexion ou une activité, afin de faire vivre la communauté de manière simple et participative.",
+    "resume": "Un espace simple pour suivre la vie de la communauté, s’informer et participer à l’organisation des mercredis.",
+    "lien": null
+  },
   {
-  "date": "2026-05-29",
-  "categorie": "info",
-  "titre": "Nouvelle page : Vie de l'Escale",
-  "resume": "Un nouvel espace pour retrouver les articles et les souvenirs de la communauté.",
-  "texte": "Le site s'enrichit d'une nouvelle page : « Vie de l'Escale ».\n\nVous y trouverez des articles rédigés après les événements de la communauté — pèlerinages, soirées, sorties, week-ends… — avec photos et récits.\n\nLe premier article est déjà en ligne : retour sur le pèlerinage de Pentecôte en Bourgogne, de Moutiers-Saint-Jean à Vézelay.\n\nLa page est accessible depuis le menu de navigation, rubrique « Vie de l'Escale ».",
-  "lien": null,
-  "image": null
-},
+    "date": "2026-05-29",
+    "categorie": "info",
+    "titre": "Nouvelle page : Vie de la communauté",
+    "resume": "Un nouvel espace pour retrouver les articles et les souvenirs de la communauté.",
+    "texte": "Le site s'enrichit d'une nouvelle page : « Vie de la communauté ».\n\nVous y trouverez des articles rédigés après les événements de la communauté — pèlerinages, soirées, sorties, week-ends… — avec photos et récits.\n\nLe premier article est déjà en ligne : retour sur le pèlerinage de Pentecôte en Bourgogne, de Moutiers-Saint-Jean à Vézelay.\n\nLa page est accessible depuis le menu de navigation, rubrique « Vie de la communauté ».",
+    "lien": null,
+    "image": null
+  },
   {
-  "date": null,
-  "categorie": "info",
-  "titre": "Installer la version mobile de L’Escale !",
-  "texte": "Il est possible d’installer le site de L’Escale directement sur votre téléphone, comme une application.\n\nSur iPhone (Safari) :\n1. Ouvrez le site dans Safari.\n2. Appuyez sur l’icône « Partager » (le carré avec la flèche).\n3. Choisissez « Sur l’écran d’accueil ».\n4. Validez : l’icône apparaît sur votre téléphone.\n\nSur Android (Chrome) :\n1. Ouvrez le site dans Chrome.\n2. Appuyez sur les trois points en haut à droite.\n3. Sélectionnez « Ajouter à l’écran d’accueil ».\n4. Confirmez l’installation.\n\nVous aurez ensuite un accès rapide, sans passer par le navigateur, avec une interface identique à une application !",
-  "resume": "Ajoutez L’Escale à l’écran d’accueil de votre téléphone pour ne rien rater !",
-  "contact": "Quentin RECH — quentin.rech37@gmail.com",
-  "lien": null,
-  "image": "./assets/img/annonces/screenversionmobile.jpeg"
-},
+    "date": null,
+    "categorie": "info",
+    "titre": "Installer la version mobile du site !",
+    "texte": "Il est possible d’installer le site directement sur votre téléphone, comme une application.\n\nSur iPhone (Safari) :\n1. Ouvrez le site dans Safari.\n2. Appuyez sur l’icône « Partager » (le carré avec la flèche).\n3. Choisissez « Sur l’écran d’accueil ».\n4. Validez : l’icône apparaît sur votre téléphone.\n\nSur Android (Chrome) :\n1. Ouvrez le site dans Chrome.\n2. Appuyez sur les trois points en haut à droite.\n3. Sélectionnez « Ajouter à l’écran d’accueil ».\n4. Confirmez l’installation.\n\nVous aurez ensuite un accès rapide, sans passer par le navigateur, avec une interface identique à une application !",
+    "resume": "Ajoutez le site à l’écran d’accueil de votre téléphone pour ne rien rater !",
+    "contact": "Quentin RECH — quentin.rech37@gmail.com",
+    "lien": null,
+    "image": "./assets/img/annonces/screenversionmobile.jpeg"
+  },
   {
-  "date": null,
-  "categorie": "messe",
-  "titre": "Messe de semaine",
-  "texte": "Tous les jours en semaine : messe de 19h00 à 19h45, en la chapelle de l'Escale Jeunes. Le mercredi la messe est suivie d'un repas !",
-  "resume": "19h-19h45",
-  "contact": null,
-  "lien": null,
-  "image": null
-}
-
+    "date": null,
+    "categorie": "messe",
+    "titre": "Messe de semaine",
+    "texte": "Tous les jours en semaine : messe de 19h00 à 19h45, en la chapelle de l'aumônerie. Le mercredi la messe est suivie d'un repas !",
+    "resume": "19h-19h45",
+    "contact": null,
+    "lien": null,
+    "image": null
+  }
 ]

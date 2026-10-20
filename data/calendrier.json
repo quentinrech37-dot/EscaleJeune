@@ -4,34 +4,30 @@
     "type": "soiree",
     "titre": "Soirée rock",
     "heure": "20:00",
-    "lieu": "Escale Jeunes - grande salle",
+    "lieu": "Aumônerie - grande salle",
     "resume": "Initiation + pratique, ambiance simple et joyeuse.",
     "details": "Ouvert à tous niveaux. Si vous pouvez, apportez une boisson ou quelque chose à partager.",
     "contact": "Benoit",
     "lien": null,
-    "image": "./assets/img/calendrier/SoireeRock.png",
-    "fichiers": [
-    { "label": "Affiche de l'évènement", "url": "./assets/files/SoireeRock_Affiche.pdf" }
-    ]
+    "image": "./assets/img/calendrier/SoireeRock.png"
   },
   {
-  "date": "2026-06-10",
-  "heure": "19:00",
-  "type": "soiree",
-  "titre": "Fête de fin d'année de l'Escale !",
-  "lieu": "Escale Jeunes - Besançon",
-  "resume": "Dernière soirée avant la reprise de septembre — venez nombreux !",
-  "details": "La soirée de fin d'année approche ! Plusieurs activités seront proposées au fil de la soirée, et un repas sera organisé — les détails seront communiqués prochainement.\n\nC'est la dernière soirée avant la reprise de septembre : une bonne raison de ne pas manquer ça.",
-  "contact": "Père Pierre - escalejeunes@diocese-besancon.fr",
-  "lien": null,
-  "image": "./assets/img/calendrier/fete_escale.jpg"
+    "date": "2026-06-10",
+    "heure": "19:00",
+    "type": "soiree",
+    "titre": "Fête de fin d'année !",
+    "lieu": "Aumônerie - Besançon",
+    "resume": "Dernière soirée avant la reprise de septembre — venez nombreux !",
+    "details": "La soirée de fin d'année approche ! Plusieurs activités seront proposées au fil de la soirée, et un repas sera organisé — les détails seront communiqués prochainement.\n\nC'est la dernière soirée avant la reprise de septembre : une bonne raison de ne pas manquer ça.",
+    "lien": null,
+    "image": "./assets/img/calendrier/fete_fin_annee.jpg"
   },
   {
     "date": "2026-04-29",
     "type": "soiree",
     "titre": "Tournoi de Baby-foot",
     "heure": "20:00",
-    "lieu": "Escale Jeunes - halle",
+    "lieu": "Aumônerie - halle",
     "resume": "Le tournoi de l'année !",
     "details": "Le tournoi de baby-foot aura lieu le mercredi 29 avril. Des équipes de deux joueurs, constituées aléatoirement, s’affronteront jusqu’à désigner un duo vainqueur ! Entre les matchs, vous pourrez également profiter de parties de mölkky et de ping-pong. Pensez à vous inscrire à l’avance (inscriptions via WhatsApp).",
     "contact": "Martin",
@@ -55,74 +51,70 @@
     "heure": "20:00",
     "type": "messe",
     "titre": "Adoration eucharistique",
-    "lieu": "Chapelle de l'Escale",
+    "lieu": "Chapelle de l'aumônerie",
     "resume": "Temps de prière silencieuse",
     "details": "Vous pouvez venir pour 10 minutes comme pour toute l’heure. Fin vers 21h. Possibilité de se confesser.",
-    "contact": "Père Pierre",
-    "image":"https://wp.fr.aleteia.org/wp-content/uploads/sites/6/2017/11/web3-shrine-of-our-lady-of-la-salette-blessed-sacrament-eucharistic-adoration-godong-fr465275a.jpg"
+    "image": "https://wp.fr.aleteia.org/wp-content/uploads/sites/6/2017/11/web3-shrine-of-our-lady-of-la-salette-blessed-sacrament-eucharistic-adoration-godong-fr465275a.jpg"
   },
   {
     "date": "2026-01-07",
     "heure": "19:00",
     "type": "repas",
-    "titre": "Soirée Voeux de l'Escale",
-    "lieu": "Chapelle des soeurs de la Sainte Famille (6 rue du Palais) pour la messe, Escale Jeunes pour le dîner.",
+    "titre": "Soirée Voeux",
+    "lieu": "Chapelle des soeurs de la Sainte Famille (6 rue du Palais) pour la messe, l'aumônerie pour le dîner.",
     "resume": null,
-    "details": "Invitation aux voeux de l'Escale Jeunes. 19h : messe, 20h : vin chaud, repas (morbiflette/galettes des rois) et animation à l'Escale. Tarif libre à partir de 5€. ",
-    "contact": "Père Pierre - escalejeunes@diocese-besancon.fr",
-    "image":"./assets/img/calendrier/soireevoeux.JPG"
+    "details": "Invitation aux voeux. 19h : messe, 20h : vin chaud, repas (morbiflette/galettes des rois) et animation à l'aumônerie. Tarif libre à partir de 5€. ",
+    "image": null
   },
   {
     "date": "2026-01-17",
-    "heure":null,
+    "heure": null,
     "type": "sortie",
     "titre": "Week-end de récollection",
-    "lieu":"Foyer Sainte Anne (Montferrand-le-Château)",
+    "lieu": "Foyer Sainte Anne (Montferrand-le-Château)",
     "resume": "Un week-end spirituel les 17–18 janvier 2026 autour de l’Esprit Saint, prêché par le père Pierre Imbert.",
-    "details": "Le week-end des 17 et 18 janvier 2026, l’Escale Jeunes organise un week-end de récollection, une « mini-retraite » sur le thème de l’Esprit Saint.\n\nCe temps spirituel sera prêché par le père Pierre Imbert et se déroulera au foyer Sainte-Anne, à Montferrand-le-Château.\n\nCe week-end est ouvert à tous : n’hésitez pas à inviter des amis pour vivre un moment vraiment ressourçant, fait de prière, d’enseignements et de fraternité.\n\nPour toute question ou besoin de transport, des solutions de covoiturage pourront être organisées. Il est également possible de venir par ses propres moyens. Le lien pour l'inscription est disponible ci-dessous.",
-    "contact": "Père Pierre - escalejeunes@diocese-besancon.fr",
+    "details": "Le week-end des 17 et 18 janvier 2026, l’aumônerie organise un week-end de récollection, une « mini-retraite » sur le thème de l’Esprit Saint.\n\nCe temps spirituel sera prêché par le père Pierre Imbert et se déroulera au foyer Sainte-Anne, à Montferrand-le-Château.\n\nCe week-end est ouvert à tous : n’hésitez pas à inviter des amis pour vivre un moment vraiment ressourçant, fait de prière, d’enseignements et de fraternité.\n\nPour toute question ou besoin de transport, des solutions de covoiturage pourront être organisées. Il est également possible de venir par ses propres moyens. Le lien pour l'inscription est disponible ci-dessous.",
     "lien": "https://besanconpublic.enoria.app/pubinsc/auth?type=event&t=bb6259dee2ee7ee",
-    "image": "./assets/img/calendrier/weekend_recollection.jpg",
+    "image": "./assets/img/calendrier/weekend_recollection.jpg"
+  },
+  {
+    "date": "2026-02-11",
+    "heure": "19:00",
+    "type": "sortie",
+    "titre": "Maraude avec l'asso Saint-Vincent-de-Paul",
+    "lieu": "Aumônerie (Besançon)",
+    "resume": "Soirée maraude : cuisine + rencontre des personnes de la rue (invitation au repas de 20h).",
+    "details": "Rendez-vous à 19h. Deux équipes au choix : 1 équipe en cuisine, 1 équipe à la rencontre des personnes de la rue pour les inviter à manger à 20h. Merci de vous manifester avant le 10/02 si vous êtes intéressé(e), afin de transmettre les noms à l'association Saint-Vincent-de-Paul. Priorité pour aller dans la rue : étudiants de l'aumônerie n'ayant pas pu y aller la dernière fois ; sinon, si vous êtes motivé(e), faites signe et on voit. Il est toujours possible d'aider à faire à manger.",
+    "contact": "Marion",
+    "lien": null,
+    "image": "./assets/img/calendrier/maraude.jpg"
+  },
+  {
+    "date": "2026-02-25",
+    "heure": "19:00",
+    "type": "soiree",
+    "titre": "Reprise de l’aumônerie - Soirée sur le Carême",
+    "lieu": "Aumônerie",
+    "resume": "Messe à 19h, repas puis topo sur le Carême.",
+    "details": "L’aumônerie reprend ce mercredi !\n\nRendez-vous à 19h pour la messe, suivie du repas. La soirée se poursuivra avec un topo sur le Carême : comment vivre concrètement ce temps de préparation à la grande fête de Pâques.",
+    "lien": null,
+    "image": "./assets/img/calendrier/careme.jpg"
+  },
+  {
+    "date": "2026-03-07",
+    "heure": "11:00",
+    "type": "sortie",
+    "titre": "Journée jardinage à l'aumônerie",
+    "lieu": "Aumônerie (Besançon)",
+    "resume": "Journée jardinage pour refaire une beauté à la cour !",
+    "details": "De 11h à 15h : désherbage, démoussage, nettoyage, plantage + tout ce que vous voulez en -age. Le repas est offert, n'hésitez pas à vous signaler auprès des organisateurs pour ajuster au mieux le nombre de convives. ",
+    "contact": "Aurore",
+    "image": "./assets/img/calendrier/jardinage.jpg",
     "fichiers": [
-    { "label": "Compte rendu - Les 7 dons de l'Esprit Saint", "url": "./assets/files/Retraite_FoyerSteAnne_2026.pdf" }
-    ]
-  },
-  {
-  "date": "2026-02-11",
-  "heure": "19:00",
-  "type": "sortie",
-  "titre": "Maraude avec l'asso Saint-Vincent-de-Paul",
-  "lieu": "Escale Jeunes (Besançon)",
-  "resume": "Soirée maraude : cuisine + rencontre des personnes de la rue (invitation au repas de 20h).",
-  "details": "Rendez-vous à 19h. Deux équipes au choix : 1 équipe en cuisine, 1 équipe à la rencontre des personnes de la rue pour les inviter à manger à 20h. Merci de vous manifester avant le 10/02 si vous êtes intéressé(e), afin de transmettre les noms à l'association Saint-Vincent-de-Paul. Priorité pour aller dans la rue : étudiants de l'aumônerie n'ayant pas pu y aller la dernière fois ; sinon, si vous êtes motivé(e), faites signe et on voit. Il est toujours possible d'aider à faire à manger.",
-  "contact": "Marion",
-  "lien": null,
-  "image": "./assets/img/calendrier/maraude.jpg"
-  },
-  {
-  "date": "2026-02-25",
-  "heure": "19:00",
-  "type": "soiree",
-  "titre": "Reprise de l’aumônerie - Soirée sur le Carême",
-  "lieu": "Escale Jeunes",
-  "resume": "Messe à 19h, repas puis topo du Père Pierre sur le Carême.",
-  "details": "L’aumônerie reprend ce mercredi !\n\nRendez-vous à 19h pour la messe, suivie du repas. La soirée se poursuivra avec un topo du Père Pierre sur le Carême : comment vivre concrètement ce temps de préparation à la grande fête de Pâques.",
-  "contact": "Père Pierre",
-  "lien": null,
-  "image": "./assets/img/calendrier/careme.jpg"
-  },
-  {
-  "date": "2026-03-07",
-  "heure": "11:00",
-  "type": "sortie",
-  "titre": "Journée jardinage à l'Escale",
-  "lieu": "Escale Jeunes (Besançon)",
-  "resume": "Journée jardinage pour refaire une beauté à la cour !",
-  "details": "De 11h à 15h : désherbage, démoussage, nettoyage, plantage + tout ce que vous voulez en -age. Le repas est offert, n'hésitez pas à vous signaler auprès des organisateurs pour ajuster au mieux le nombre de convives. ",
-  "contact": "Aurore",
-  "image": "./assets/img/calendrier/jardinage.jpg",
-  "fichiers": [
-    { "label": "Affiche de l'évênement", "url": "./assets/files/AfficheJardinage.pdf" }
+      {
+        "label": "Affiche de l'évênement",
+        "url": "./assets/files/AfficheJardinage.pdf"
+      }
     ]
   },
   {
@@ -130,61 +122,58 @@
     "heure": "20:30",
     "type": "soiree",
     "titre": "Partage biblique autour des Psaumes",
-    "lieu": "Escale Jeunes",
+    "lieu": "Aumônerie",
     "resume": "Présenté par Clément Le Grand, le beau, le charismatique, d'une culture inéfable, bref un chad",
     "details": "Pas de divulgachage (dixit Clément), le partage est précédé d'une messe (19h-19h45) et d'un repas (19h45-20h30) (tarif libre à partir de 2€).",
     "contact": "Clément",
-    "image":"./assets/img/calendrier/partagebiblique.jpg"
+    "image": "./assets/img/calendrier/partagebiblique.jpg"
   },
   {
     "date": "2026-04-01",
     "heure": "20:30",
     "type": "soiree",
     "titre": "Partage biblique sur St Jean",
-    "lieu": "Escale Jeunes",
+    "lieu": "Aumônerie",
     "resume": "Présenté par Clément",
     "details": "Pas de divulgation (dixit Clément), le partage est précédé d'une messe (19h-19h45) et d'un repas (19h45-20h30) (tarif libre à partir de 2€).",
     "contact": "Clément",
-    "image":"./assets/img/calendrier/saintjean.jpg"
+    "image": "./assets/img/calendrier/saintjean.jpg"
   },
   {
     "date": "2026-04-01",
     "heure": "20:45",
     "type": "soiree",
     "titre": "Partage biblique sur la vie de Ste Jeanne-Antide",
-    "lieu": "Escale Jeunes",
+    "lieu": "Aumônerie",
     "resume": "A travers le témoignage de Sœur Yvelise (Sœurs de la Charité). ",
-    "image":"./assets/img/calendrier/SteJeanneAntide.jpg"
+    "image": "./assets/img/calendrier/SteJeanneAntide.jpg"
   },
   {
     "date": "2026-04-02",
     "heure": "21:00",
     "type": "messe",
     "titre": "Nuit d'adoration",
-    "lieu": "Escale Jeunes",
+    "lieu": "Aumônerie",
     "resume": "Adoration toute la nuit du Jeudi Saint au Vendredi (de 21h à 7h30). ",
-    "image":"./assets/img/calendrier/adoration.jpg"
+    "image": "./assets/img/calendrier/adoration.jpg"
   },
   {
     "date": "2026-03-18",
     "heure": "19:00",
     "type": "messe",
     "titre": "Sacrement du pardon",
-    "lieu": "Escale Jeunes",
-    "resume": "Possibilité de recevoir le sacrement de réconciliation à l'Escale Jeunes. ",
-    "image":"./assets/img/calendrier/Reconciliation.jpg"
+    "lieu": "Aumônerie",
+    "resume": "Possibilité de recevoir le sacrement de réconciliation à l'aumônerie. ",
+    "image": "./assets/img/calendrier/Reconciliation.jpg"
   },
   {
     "date": "2026-04-03",
     "heure": "19:00",
     "type": "messe",
     "titre": "Chemin de Croix",
-    "lieu": "Escale Jeunes",
+    "lieu": "Aumônerie",
     "resume": "Tous les vendredis de Carême après la messe de 19h. ",
-    "details":"Vendredi Saint - 3 avril - de 12h à 13h - bol de riz.",
-    "image":"./assets/img/calendrier/CheminDeCroix.jpg"
+    "details": "Vendredi Saint - 3 avril - de 12h à 13h - bol de riz.",
+    "image": "./assets/img/calendrier/CheminDeCroix.jpg"
   }
-
-
 ]
-
