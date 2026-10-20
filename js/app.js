@@ -937,7 +937,7 @@ function initHomeBanner() {
   const closeBtn = document.getElementById("homeBannerClose");
   if (!banner || !closeBtn) return; // pas sur la page d'accueil
 
-  const KEY = "escale_home_banner_closed_v1";
+  const KEY = "aumonerie_home_banner_closed_v1";
   if (localStorage.getItem(KEY) === "1") {
     banner.style.display = "none";
     return;
@@ -1289,7 +1289,7 @@ initAnnonces();
 initCalendrier();
 initRepas();
 
-/* ==================== VIE DE L'ESCALE ==================== */
+/* ==================== VIE DE LA COMMUNAUTÉ ==================== */
 
 async function initVie() {
   const grid   = document.getElementById("vieGrid");
