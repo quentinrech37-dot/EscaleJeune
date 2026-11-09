@@ -1,0 +1,4 @@
+Pages Repas et Proposer une activité, conservées sans être publiées.
+Le dossier commence par un tiret bas : GitHub Pages (Jekyll) ne le publie pas.
+Pour les remettre en ligne : copier ces fichiers à la racine du site, rétablir les liens du menu
+et les deux cartes de l'accueil, puis retirer la note.

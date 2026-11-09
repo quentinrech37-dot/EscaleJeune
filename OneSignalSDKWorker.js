@@ -4,7 +4,7 @@
 importScripts("https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js");
 
 // 2) Votre SW de cache (copiez-collez ici le contenu actuel de sw.js)
-const CACHE = "aumonerie-v162";
+const CACHE = "aumonerie-v163";
 
 const ASSETS = [
   "/",
@@ -12,8 +12,6 @@ const ASSETS = [
   "/messe.html",
   "/annonces.html",
   "/calendrier.html",
-  "/repas.html",
-  "/proposer.html",
   "/mentions.html",
   "/css/styles.css",
   "/js/app.js",
