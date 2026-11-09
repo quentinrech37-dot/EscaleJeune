@@ -12,6 +12,17 @@
     "image": "./assets/img/calendrier/SoireeRock.png"
   },
   {
+    "date": "2026-11-11",
+    "heure": "19:00",
+    "type": "repas",
+    "titre": "Repas des régions",
+    "lieu": "Aumônerie",
+    "resume": "Messe à 19h, repas à 19h45 : chacun apporte une spécialité de sa région !",
+    "details": "Mercredi 11 novembre, la soirée aura un format un peu spécial. Messe à 19h00 comme d'habitude, puis repas à 19h45.\n\nPour ce repas des régions, chacun rapporte un petit quelque chose qui vient de chez lui ou qui est typique de sa région, pour partager le dîner ensemble ! Salé ou sucré, c'est vous qui voyez.\n\nAprès le repas, place aux jeux de société.",
+    "lien": null,
+    "image": "./assets/img/calendrier/RepasRegions.png"
+  },
+  {
     "date": "2026-06-10",
     "heure": "19:00",
     "type": "soiree",
