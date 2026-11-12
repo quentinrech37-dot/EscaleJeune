@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "9a67d191-0758-4de6-8663-2c990b530109",
+        safari_web_id: "web.onesignal.auto.4eb8ce3a-dc5a-4285-aae8-d5934d20e23e",
+        notifyButton: {
+          enable: false,
+        },
+      });
+    });
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Aumônerie - Cuisiner pour la tablée</title>
+  <meta name="description" content="Recettes mises à l'échelle pour 50, 60 ou 70 personnes : quantités, liste de courses par rayon et budget estimé.">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Icônes -->
+  <link rel="icon" href="/assets/img/favicon.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/img/icon-192.png">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Aperçu lors du partage -->
+  <meta property="og:title" content="Aumônerie - Cuisiner pour la tablée">
+  <meta property="og:description" content="Recettes mises à l'échelle pour 50, 60 ou 70 personnes : quantités, liste de courses par rayon et budget estimé.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://escale-besancon.fr/cuisine.html">
+  <meta property="og:image" content="https://escale-besancon.fr/assets/img/icon-1200.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aumônerie - Cuisiner pour la tablée">
+  <meta name="twitter:description" content="Recettes mises à l'échelle pour 50, 60 ou 70 personnes : quantités, liste de courses par rayon et budget estimé.">
+  <meta name="twitter:image" content="https://escale-besancon.fr/assets/img/icon-1200.png">
+</head>
+
+<body>
+  <header class="topbar topbar--diapo">
+    <div class="wrap topbar__inner topbar__inner--diapo">
+
+      <!-- Version ORDI -->
+      <img class="topbar__diapo"
+           src="./assets/img/diapofinale.png"
+           alt="Bannière Aumônerie"
+           loading="eager">
+
+      <!-- Version MOBILE -->
+      <img class="topbar__diapo--mobile"
+           src="./assets/img/bandeau-mobile.png"
+           alt="Bannière mobile Aumônerie"
+           loading="eager">
+
+    </div>
+  </header>
+
+  <nav class="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__link" href="./index.html">Accueil</a>
+      <a class="nav__link" href="./annonces.html">Annonces</a>
+      <a class="nav__link" href="./calendrier.html">Activités</a>
+      <a class="nav__link" href="./vie.html">Vie de la communauté</a>
+      <a class="nav__link nav__link--active" href="./outils.html">Outils</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="panel__head">
+        <h1>Cuisiner pour la tablée</h1>
+        <span class="muted">Recettes mises à l'échelle</span>
+      </div>
+
+      <p class="muted">Choisissez le nombre de convives et le menu : l'outil calcule les quantités, la liste de courses par rayon et un budget indicatif.</p>
+
+      <h2 class="step">1. Combien de personnes ?</h2>
+      <div class="seg" role="group" aria-label="Nombre de convives">
+        <button type="button" class="btn" data-n="50">50</button>
+        <button type="button" class="btn" data-n="60">60</button>
+        <button type="button" class="btn" data-n="70">70</button>
+        <label class="muted">Autre :
+          <input type="number" id="nAutre" class="input input--n" min="4" max="300" inputmode="numeric" placeholder="ex. 35">
+        </label>
+      </div>
+
+      <h2 class="step">2. Quel menu ?</h2>
+      <div id="menuChoix"></div>
+
+      <h2 class="step">3. Appétit des convives</h2>
+      <select id="appetit" class="select" aria-label="Appétit des convives">
+        <option value="0.85">Léger (moins 15 %)</option>
+        <option value="1" selected>Normal</option>
+        <option value="1.15">Gros appétits (plus 15 %)</option>
+      </select>
+    </section>
+
+    <div class="spacer"></div>
+
+    <section id="resultats" class="panel hidden">
+      <div class="panel__head">
+        <h1>Votre liste</h1>
+        <span class="muted">Quantités arrondies à l'achat</span>
+      </div>
+
+      <div id="resume" class="stats"></div>
+
+      <div class="actions">
+        <button type="button" id="btnCopier" class="btn btn--small">📋 Copier la liste</button>
+        <button type="button" id="btnPartager" class="btn btn--small">📤 Partager</button>
+        <button type="button" id="btnLien" class="btn btn--ghost btn--small">🔗 Copier le lien du menu</button>
+        <button type="button" id="btnImprimer" class="btn btn--ghost btn--small">🖨️ Imprimer</button>
+        <button type="button" id="btnRaz" class="btn btn--ghost btn--small">Tout décocher</button>
+      </div>
+
+      <h2>Liste de courses</h2>
+      <div id="listeCourses"></div>
+
+      <h2 style="margin-top:22px">Détail par recette</h2>
+      <div id="detailRecettes" class="list"></div>
+
+      <details id="prixDetails" class="outils-details">
+        <summary>Régler les prix</summary>
+        <p class="muted">Les prix par défaut sont des moyennes indicatives. Corrigez-les avec ceux de votre magasin : ils sont enregistrés sur cet appareil uniquement.</p>
+        <div id="prixTable"></div>
+        <p><button type="button" id="btnPrixRaz" class="btn btn--ghost btn--small">Remettre les prix par défaut</button></p>
+      </details>
+
+      <p class="notice" style="margin-top:16px">
+        <strong>À savoir :</strong> les quantités sont indicatives (repas du soir, jeunes adultes) et à ajuster avec votre expérience. Le budget est une estimation, pas un devis.
+      </p>
+    </section>
+
+    <div id="flash" class="flash hidden" role="status" aria-live="polite"></div>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <a class="link" href="./mentions.html">Mentions & données</a>
+        <span class="muted">•</span>
+        <span class="muted">Site non officiel et indépendant</span>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="/js/cuisine.js"></script>
+</body>
+
+</html>

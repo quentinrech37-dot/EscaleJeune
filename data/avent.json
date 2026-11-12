@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "note": "Contenu indexé par le nombre de jours avant Noël (28 à 1) : les fêtes fixes tombent donc toujours au bon jour quelle que soit l'année.",
+  "dimanches": [
+    {
+      "nom": "1er dimanche de l'Avent",
+      "theme": "Veiller"
+    },
+    {
+      "nom": "2e dimanche de l'Avent",
+      "theme": "Préparer le chemin"
+    },
+    {
+      "nom": "3e dimanche de l'Avent (Gaudete)",
+      "theme": "Se réjouir"
+    },
+    {
+      "nom": "4e dimanche de l'Avent",
+      "theme": "Accueillir"
+    }
+  ],
+  "jours": {
+    "28": {
+      "geste": "Prendre dix minutes de silence, sans téléphone ni musique, pour entrer dans l'Avent.",
+      "intention": "Pour que le bruit de l'année s'apaise."
+    },
+    "27": {
+      "geste": "Répondre enfin à un message en attente depuis trop longtemps.",
+      "intention": "Pour les amitiés que l'on laisse dormir."
+    },
+    "26": {
+      "geste": "Choisir une intention pour tout l'Avent et la noter à un endroit où vous la reverrez.",
+      "intention": "Pour la personne ou la situation que vous portez."
+    },
+    "25": {
+      "geste": "Ranger ou donner un objet dont vous ne vous servez plus.",
+      "intention": "Pour apprendre à se contenter de l'essentiel."
+    },
+    "24": {
+      "geste": "Appeler quelqu'un de votre famille plutôt que lui écrire.",
+      "intention": "Pour les liens que l'on tient pour acquis."
+    },
+    "23": {
+      "geste": "Lire l'Évangile du jour lentement et ne retenir qu'une seule phrase.",
+      "intention": "Pour entendre une parole précise plutôt que beaucoup de mots."
+    },
+    "22": {
+      "geste": "Remercier à voix haute quelqu'un avec qui vous étudiez ou travaillez.",
+      "intention": "Pour ceux dont on ne voit plus l'effort."
+    },
+    "21": {
+      "geste": "Marcher vingt minutes dehors, sans destination.",
+      "intention": "Pour la patience et la beauté de ce qui nous entoure."
+    },
+    "20": {
+      "geste": "Préparer quelque chose à manger pour quelqu'un d'autre.",
+      "intention": "Pour les tables où l'on se retrouve."
+    },
+    "19": {
+      "geste": "Saint Nicolas : glisser un petit mot ou une petite attention à quelqu'un, sans signer.",
+      "intention": "Pour la générosité discrète."
+    },
+    "18": {
+      "geste": "Faire un premier pas vers une personne avec qui vous êtes en froid.",
+      "intention": "Pour les relations blessées."
+    },
+    "17": {
+      "geste": "Immaculée Conception : confier votre journée à Marie par un Je vous salue Marie.",
+      "intention": "Pour ceux qui disent oui à ce qu'ils ne comprennent pas encore."
+    },
+    "16": {
+      "geste": "Se coucher une heure plus tôt que d'habitude.",
+      "intention": "Pour ceux qui veillent la nuit : soignants, gardiens, malades."
+    },
+    "15": {
+      "geste": "Écrire à la main une carte à quelqu'un qui est seul.",
+      "intention": "Pour les personnes isolées."
+    },
+    "14": {
+      "geste": "Proposer votre aide pour un petit service concret.",
+      "intention": "Pour ceux qui ont besoin d'un coup de main."
+    },
+    "13": {
+      "geste": "Faire un don, même modeste, à une association que vous connaissez.",
+      "intention": "Pour ceux qui n'ont pas de quoi fêter Noël."
+    },
+    "12": {
+      "geste": "Passer un moment dans une église ouverte, en silence.",
+      "intention": "Pour la paix du cœur."
+    },
+    "11": {
+      "geste": "Éteindre les écrans pendant un repas entier.",
+      "intention": "Pour la présence à ceux qui sont là."
+    },
+    "10": {
+      "geste": "Noter trois choses de cette année dont vous êtes reconnaissant.",
+      "intention": "En action de grâce."
+    },
+    "9": {
+      "geste": "Pardonner par écrit à quelqu'un, même sans lui envoyer le message.",
+      "intention": "Pour la guérison de ce que l'on porte."
+    },
+    "8": {
+      "geste": "Dès ce soir, les vêpres chantent les antiennes « O » : lire ou écouter l'antienne « O Sagesse ».",
+      "intention": "Pour demander la sagesse."
+    },
+    "7": {
+      "geste": "Lire ou écouter l'antienne « O Adonaï ».",
+      "intention": "Pour ceux qui cherchent une règle juste et un guide."
+    },
+    "6": {
+      "geste": "Lire ou écouter l'antienne « O Rejeton de Jessé ».",
+      "intention": "Pour les peuples qui espèrent une paix durable."
+    },
+    "5": {
+      "geste": "Lire ou écouter l'antienne « O Clef de David ».",
+      "intention": "Pour ceux qui sont enfermés dans une épreuve."
+    },
+    "4": {
+      "geste": "Lire ou écouter l'antienne « O Orient ».",
+      "intention": "Pour ceux qui vivent dans l'obscurité ou le doute."
+    },
+    "3": {
+      "geste": "Lire ou écouter l'antienne « O Roi des nations ».",
+      "intention": "Pour la concorde entre les peuples."
+    },
+    "2": {
+      "geste": "Lire ou écouter l'antienne « O Emmanuel ».",
+      "intention": "Pour que Dieu soit réellement avec nous."
+    },
+    "1": {
+      "geste": "Veille de Noël : préparer la table ou la crèche, puis prendre un moment de calme avant la messe.",
+      "intention": "Pour accueillir celui qui vient."
+    }
+  }
+}

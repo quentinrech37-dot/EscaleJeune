@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://escale-besancon.fr/sitemap.xml

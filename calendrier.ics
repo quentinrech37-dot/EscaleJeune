@@ -1,0 +1,227 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Aumonerie Besancon//Activites//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Aumônerie - Activités
+X-WR-TIMEZONE:Europe/Paris
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VTIMEZONE
+TZID:Europe/Paris
+X-LIC-LOCATION:Europe/Paris
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:2026-01-07-soiree-voeux@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;TZID=Europe/Paris:20260107T190000
+DTEND;TZID=Europe/Paris:20260107T210000
+SUMMARY:Soirée Voeux
+LOCATION:Chapelle des soeurs de la Sainte Famille (6 rue du Palais) pour la
+  messe\, l'aumônerie pour le dîner.
+DESCRIPTION:Invitation aux voeux. 19h : messe\, 20h : vin chaud\, repas (mo
+ rbiflette/galettes des rois) et animation à l'aumônerie. Tarif libre à 
+ partir de 5€. 
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-01-17-week-end-de-recollection@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;VALUE=DATE:20260117
+DTEND;VALUE=DATE:20260118
+SUMMARY:Week-end de récollection
+LOCATION:Foyer Sainte Anne (Montferrand-le-Château)
+DESCRIPTION:Un week-end spirituel les 17–18 janvier 2026 autour de l’Es
+ prit Saint\, prêché par le père Pierre Imbert.\n\nLe week-end des 17 et
+  18 janvier 2026\, l’aumônerie organise un week-end de récollection\, 
+ une « mini-retraite » sur le thème de l’Esprit Saint.\n\nCe temps spi
+ rituel sera prêché par le père Pierre Imbert et se déroulera au foyer 
+ Sainte-Anne\, à Montferrand-le-Château.\n\nCe week-end est ouvert à tou
+ s : n’hésitez pas à inviter des amis pour vivre un moment vraiment res
+ sourçant\, fait de prière\, d’enseignements et de fraternité.\n\nPour
+  toute question ou besoin de transport\, des solutions de covoiturage pour
+ ront être organisées. Il est également possible de venir par ses propre
+ s moyens. Le lien pour l'inscription est disponible ci-dessous.\n\nhttps:/
+ /besanconpublic.enoria.app/pubinsc/auth?type=event&t=bb6259dee2ee7ee
+URL:https://besanconpublic.enoria.app/pubinsc/auth?type=event&t=bb6259dee2e
+ e7ee
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-01-21-adoration-eucharistique@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;TZID=Europe/Paris:20260121T200000
+DTEND;TZID=Europe/Paris:20260121T210000
+SUMMARY:Adoration eucharistique
+LOCATION:Chapelle de l'aumônerie
+DESCRIPTION:Temps de prière silencieuse\n\nVous pouvez venir pour 10 minut
+ es comme pour toute l’heure. Fin vers 21h. Possibilité de se confesser.
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-02-11-maraude-avec-l-asso-saint-vincent-de-pau@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;TZID=Europe/Paris:20260211T190000
+DTEND;TZID=Europe/Paris:20260211T230000
+SUMMARY:Maraude avec l'asso Saint-Vincent-de-Paul
+LOCATION:Aumônerie (Besançon)
+DESCRIPTION:Soirée maraude : cuisine + rencontre des personnes de la rue (
+ invitation au repas de 20h).\n\nRendez-vous à 19h. Deux équipes au choix
+  : 1 équipe en cuisine\, 1 équipe à la rencontre des personnes de la ru
+ e pour les inviter à manger à 20h. Merci de vous manifester avant le 10/
+ 02 si vous êtes intéressé(e)\, afin de transmettre les noms à l'associ
+ ation Saint-Vincent-de-Paul. Priorité pour aller dans la rue : étudiants
+  de l'aumônerie n'ayant pas pu y aller la dernière fois \; sinon\, si vo
+ us êtes motivé(e)\, faites signe et on voit. Il est toujours possible d'
+ aider à faire à manger.\n\nContact : Marion
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-02-25-reprise-de-l-aumonerie-soiree-sur-le-car@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;TZID=Europe/Paris:20260225T190000
+DTEND;TZID=Europe/Paris:20260225T220000
+SUMMARY:Reprise de l’aumônerie - Soirée sur le Carême
+LOCATION:Aumônerie
+DESCRIPTION:Messe à 19h\, repas puis topo sur le Carême.\n\nL’aumôneri
+ e reprend ce mercredi !\n\nRendez-vous à 19h pour la messe\, suivie du re
+ pas. La soirée se poursuivra avec un topo sur le Carême : comment vivre 
+ concrètement ce temps de préparation à la grande fête de Pâques.
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-03-04-partage-biblique-autour-des-psaumes@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;TZID=Europe/Paris:20260304T203000
+DTEND;TZID=Europe/Paris:20260304T233000
+SUMMARY:Partage biblique autour des Psaumes
+LOCATION:Aumônerie
+DESCRIPTION:Présenté par Clément Le Grand\, le beau\, le charismatique\,
+  d'une culture inéfable\, bref un chad\n\nPas de divulgachage (dixit Clé
+ ment)\, le partage est précédé d'une messe (19h-19h45) et d'un repas (1
+ 9h45-20h30) (tarif libre à partir de 2€).\n\nContact : Clément
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-03-07-journee-jardinage-a-l-aumonerie@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;TZID=Europe/Paris:20260307T110000
+DTEND;TZID=Europe/Paris:20260307T150000
+SUMMARY:Journée jardinage à l'aumônerie
+LOCATION:Aumônerie (Besançon)
+DESCRIPTION:Journée jardinage pour refaire une beauté à la cour !\n\nDe 
+ 11h à 15h : désherbage\, démoussage\, nettoyage\, plantage + tout ce qu
+ e vous voulez en -age. Le repas est offert\, n'hésitez pas à vous signal
+ er auprès des organisateurs pour ajuster au mieux le nombre de convives. 
+ \n\nContact : Aurore
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-03-18-sacrement-du-pardon@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;TZID=Europe/Paris:20260318T190000
+DTEND;TZID=Europe/Paris:20260318T200000
+SUMMARY:Sacrement du pardon
+LOCATION:Aumônerie
+DESCRIPTION:Possibilité de recevoir le sacrement de réconciliation à l'a
+ umônerie. 
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-04-01-partage-biblique-sur-st-jean@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;TZID=Europe/Paris:20260401T203000
+DTEND;TZID=Europe/Paris:20260401T233000
+SUMMARY:Partage biblique sur St Jean
+LOCATION:Aumônerie
+DESCRIPTION:Présenté par Clément\n\nPas de divulgation (dixit Clément)\
+ , le partage est précédé d'une messe (19h-19h45) et d'un repas (19h45-2
+ 0h30) (tarif libre à partir de 2€).\n\nContact : Clément
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-04-01-partage-biblique-sur-la-vie-de-ste-jeann@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;TZID=Europe/Paris:20260401T204500
+DTEND;TZID=Europe/Paris:20260401T234500
+SUMMARY:Partage biblique sur la vie de Ste Jeanne-Antide
+LOCATION:Aumônerie
+DESCRIPTION:A travers le témoignage de Sœur Yvelise (Sœurs de la Charit
+ é). 
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-04-02-nuit-d-adoration@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;TZID=Europe/Paris:20260402T210000
+DTEND;TZID=Europe/Paris:20260402T220000
+SUMMARY:Nuit d'adoration
+LOCATION:Aumônerie
+DESCRIPTION:Adoration toute la nuit du Jeudi Saint au Vendredi (de 21h à 7
+ h30). 
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-04-03-chemin-de-croix@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;TZID=Europe/Paris:20260403T190000
+DTEND;TZID=Europe/Paris:20260403T200000
+SUMMARY:Chemin de Croix
+LOCATION:Aumônerie
+DESCRIPTION:Tous les vendredis de Carême après la messe de 19h. \n\nVendr
+ edi Saint - 3 avril - de 12h à 13h - bol de riz.
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-04-29-tournoi-de-baby-foot@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;TZID=Europe/Paris:20260429T200000
+DTEND;TZID=Europe/Paris:20260429T230000
+SUMMARY:Tournoi de Baby-foot
+LOCATION:Aumônerie - halle
+DESCRIPTION:Le tournoi de l'année !\n\nLe tournoi de baby-foot aura lieu l
+ e mercredi 29 avril. Des équipes de deux joueurs\, constituées aléatoir
+ ement\, s’affronteront jusqu’à désigner un duo vainqueur ! Entre les
+  matchs\, vous pourrez également profiter de parties de mölkky et de pin
+ g-pong. Pensez à vous inscrire à l’avance (inscriptions via WhatsApp).
+ \n\nContact : Martin
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-06-10-fete-de-fin-d-annee@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;TZID=Europe/Paris:20260610T190000
+DTEND;TZID=Europe/Paris:20260610T220000
+SUMMARY:Fête de fin d'année !
+LOCATION:Aumônerie - Besançon
+DESCRIPTION:Dernière soirée avant la reprise de septembre — venez nombr
+ eux !\n\nLa soirée de fin d'année approche ! Plusieurs activités seront
+  proposées au fil de la soirée\, et un repas sera organisé — les dét
+ ails seront communiqués prochainement.\n\nC'est la dernière soirée avan
+ t la reprise de septembre : une bonne raison de ne pas manquer ça.
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-11-13-soiree-rock@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;TZID=Europe/Paris:20261113T200000
+DTEND;TZID=Europe/Paris:20261113T230000
+SUMMARY:Soirée rock
+LOCATION:Aumônerie - grande salle
+DESCRIPTION:Initiation + pratique\, ambiance simple et joyeuse.\n\nOuvert 
+ à tous niveaux. Si vous pouvez\, apportez une boisson ou quelque chose à
+  partager.\n\nContact : Benoit
+END:VEVENT
+BEGIN:VEVENT
+UID:2026-11-20-soiree-rock-de-dijon@aumonerie-besancon
+DTSTAMP:20261112T193119Z
+DTSTART;TZID=Europe/Paris:20261120T200000
+DTEND;TZID=Europe/Paris:20261120T230000
+SUMMARY:Soirée rock de Dijon
+LOCATION:9 bis Boulevard Voltaire\, Dijon
+DESCRIPTION:Initiation + pratique\, ambiance simple et joyeuse.\n\nOuvert 
+ à tous niveaux. 3€ l'entrée. Du covoiturage est possible\, n'hésitez 
+ pas à contacter les organisateurs pour plus d'informations.\n\nContact : 
+ Benoit
+END:VEVENT
+END:VCALENDAR

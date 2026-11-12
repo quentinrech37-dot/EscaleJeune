@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "9a67d191-0758-4de6-8663-2c990b530109",
+        safari_web_id: "web.onesignal.auto.4eb8ce3a-dc5a-4285-aae8-d5934d20e23e",
+        notifyButton: {
+          enable: false,
+        },
+      });
+    });
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Aumônerie - Outils</title>
+  <meta name="description" content="Outils pratiques : liturgie du jour, calendrier de l'Avent, repas pour grandes tablées, ajout des activités à votre agenda.">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Icônes -->
+  <link rel="icon" href="/assets/img/favicon.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/img/icon-192.png">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Aperçu lors du partage -->
+  <meta property="og:title" content="Aumônerie - Outils">
+  <meta property="og:description" content="Outils pratiques : liturgie du jour, calendrier de l'Avent, repas pour grandes tablées, ajout des activités à votre agenda.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://escale-besancon.fr/outils.html">
+  <meta property="og:image" content="https://escale-besancon.fr/assets/img/icon-1200.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aumônerie - Outils">
+  <meta name="twitter:description" content="Outils pratiques : liturgie du jour, calendrier de l'Avent, repas pour grandes tablées, ajout des activités à votre agenda.">
+  <meta name="twitter:image" content="https://escale-besancon.fr/assets/img/icon-1200.png">
+</head>
+
+<body>
+  <header class="topbar topbar--diapo">
+    <div class="wrap topbar__inner topbar__inner--diapo">
+
+      <!-- Version ORDI -->
+      <img class="topbar__diapo"
+           src="./assets/img/diapofinale.png"
+           alt="Bannière Aumônerie"
+           loading="eager">
+
+      <!-- Version MOBILE -->
+      <img class="topbar__diapo--mobile"
+           src="./assets/img/bandeau-mobile.png"
+           alt="Bannière mobile Aumônerie"
+           loading="eager">
+
+    </div>
+  </header>
+
+  <nav class="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__link" href="./index.html">Accueil</a>
+      <a class="nav__link" href="./annonces.html">Annonces</a>
+      <a class="nav__link" href="./calendrier.html">Activités</a>
+      <a class="nav__link" href="./vie.html">Vie de la communauté</a>
+      <a class="nav__link nav__link--active" href="./outils.html">Outils</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Outils</h1>
+      <p>De petits outils pratiques, gratuits et sans inscription.</p>
+
+      <div class="hero__grid">
+        <a class="card" href="./liturgie.html">
+          <div class="card__head">
+            <h2>Liturgie du jour</h2>
+            <img src="./assets/img/messe.png" alt="" class="card__icon">
+          </div>
+          <p>Lectures de la messe, temps liturgique et couleur du jour.</p>
+        </a>
+
+        <a class="card" href="./avent.html">
+          <div class="card__head">
+            <h2>Calendrier de l'Avent</h2>
+            <img src="./assets/img/annonce.png" alt="" class="card__icon">
+          </div>
+          <p>Un geste et une intention par jour jusqu'à Noël.</p>
+        </a>
+
+        <a class="card" href="./cuisine.html">
+          <div class="card__head">
+            <h2>Cuisiner pour la tablée</h2>
+            <img src="./assets/img/repas.png" alt="" class="card__icon">
+          </div>
+          <p>Recettes pour 50, 60 ou 70 personnes, liste de courses et budget.</p>
+        </a>
+
+        <a class="card" href="./calendrier.html">
+          <div class="card__head">
+            <h2>Dans votre agenda</h2>
+            <img src="./assets/img/prochainesactivites.png" alt="" class="card__icon">
+          </div>
+          <p>Ajoutez une activité à votre agenda ou abonnez-vous à toutes.</p>
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <a class="link" href="./mentions.html">Mentions & données</a>
+        <span class="muted">•</span>
+        <span class="muted">Site non officiel et indépendant</span>
+      </div>
+    </footer>
+  </main>
+
+
+</body>
+
+</html>

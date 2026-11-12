@@ -72,6 +72,7 @@
       <a class="nav__link" href="./annonces.html">Annonces</a>
       <a class="nav__link nav__link--active" href="./calendrier.html">Activités</a>
       <a class="nav__link" href="./vie.html">Vie de la communauté</a>
+      <a class="nav__link" href="./outils.html">Outils</a>
     </div>
   </nav>
 
@@ -92,12 +93,20 @@
         </select>
       </div>
 
+      <div class="agenda-bar">
+        <button type="button" id="btnIcsAll" class="btn btn--small">📅 Tout ajouter à mon agenda</button>
+        <a id="linkSubscribe" class="btn btn--ghost btn--small" href="/calendrier.ics">🔄 S'abonner (mise à jour automatique)</a>
+        <span class="muted agenda-bar__hint">Compatible Apple, Google et Outlook. Heures de Besançon.</span>
+      </div>
+
       <div id="eventsList" class="list"></div>
     </section>
 
     <footer class="footer">
       <div class="footer__inner">
         <a class="link" href="./mentions.html">Mentions & données</a>
+        <span class="muted">•</span>
+        <span class="muted">Site non officiel et indépendant</span>
       </div>
     </footer>
   </main>

@@ -1,3 +1,8 @@
+import {
+  eventsToICS, eventICSFileName, googleCalendarURL, downloadText,
+  subscribeURL, injectEventJSONLD, parseLocal,
+} from "./agenda.js";
+
 /* ==================== CONFIG ==================== */
 
 // 1) URL de l'Apps Script Web App (endpoint JSON pour les repas)
@@ -937,7 +942,7 @@ function initHomeBanner() {
   const closeBtn = document.getElementById("homeBannerClose");
   if (!banner || !closeBtn) return; // pas sur la page d'accueil
 
-  const KEY = "aumonerie_home_banner_closed_v1";
+  const KEY = "aumonerie_home_banner_closed_v2";
   if (localStorage.getItem(KEY) === "1") {
     banner.style.display = "none";
     return;
@@ -1062,6 +1067,16 @@ async function initCalendrier() {
 
     events = [...upcoming, ...past, ...invalid];
 
+    // Données structurées pour les moteurs de recherche
+    try { injectEventJSONLD(upcoming); } catch (e) { console.warn(e); }
+
+    // Barre « agenda » (ajout global + abonnement)
+    const btnAll = document.getElementById("btnIcsAll");
+    const linkSub = document.getElementById("linkSubscribe");
+    if (linkSub) linkSub.href = subscribeURL();
+    btnAll?.addEventListener("click", () => {
+      downloadText("activites-a-venir.ics", eventsToICS(upcoming));
+    });
 
   } catch (err) {
     console.error(err);
@@ -1136,12 +1151,26 @@ async function initCalendrier() {
             ${e.lien ? `<p style="margin-top:10px"><a href="${escapeHtml(e.lien)}" target="_blank" rel="noopener">Lien</a></p>` : ""}
             ${e.contact ? `<p class="muted" style="margin-top:10px">Contact : ${escapeHtml(e.contact)}</p>` : ""}
             ${renderFilesBlock(e)}
+            ${(!isPast && parseLocal(e.date, e.heure))
+              ? `<p class="agenda-actions">
+                   <button type="button" class="btn btn--small" data-ics="${events.indexOf(e)}">📅 Ajouter à mon agenda</button>
+                   <a class="btn btn--ghost btn--small" href="${escapeHtml(googleCalendarURL(e) || "#")}" target="_blank" rel="noopener">Google Agenda</a>
+                 </p>`
+              : ""}
           </div>
         </details>
       `);
     });
 
   }
+
+  // Ajout d'une activité à l'agenda (délégation : fonctionne après chaque redessin)
+  list.addEventListener("click", (ev) => {
+    const btn = ev.target.closest("[data-ics]");
+    if (!btn) return;
+    const e = events[Number(btn.dataset.ics)];
+    if (e) downloadText(eventICSFileName(e), eventsToICS([e]));
+  });
 
   filter?.addEventListener("change", draw);
   draw();

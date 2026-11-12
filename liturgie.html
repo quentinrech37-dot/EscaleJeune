@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "9a67d191-0758-4de6-8663-2c990b530109",
+        safari_web_id: "web.onesignal.auto.4eb8ce3a-dc5a-4285-aae8-d5934d20e23e",
+        notifyButton: {
+          enable: false,
+        },
+      });
+    });
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Aumônerie - Liturgie du jour</title>
+  <meta name="description" content="Lectures de la messe du jour, temps liturgique, couleur et année liturgique.">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Icônes -->
+  <link rel="icon" href="/assets/img/favicon.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/img/icon-192.png">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Aperçu lors du partage -->
+  <meta property="og:title" content="Aumônerie - Liturgie du jour">
+  <meta property="og:description" content="Lectures de la messe du jour, temps liturgique, couleur et année liturgique.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://escale-besancon.fr/liturgie.html">
+  <meta property="og:image" content="https://escale-besancon.fr/assets/img/icon-1200.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aumônerie - Liturgie du jour">
+  <meta name="twitter:description" content="Lectures de la messe du jour, temps liturgique, couleur et année liturgique.">
+  <meta name="twitter:image" content="https://escale-besancon.fr/assets/img/icon-1200.png">
+</head>
+
+<body>
+  <header class="topbar topbar--diapo">
+    <div class="wrap topbar__inner topbar__inner--diapo">
+
+      <!-- Version ORDI -->
+      <img class="topbar__diapo"
+           src="./assets/img/diapofinale.png"
+           alt="Bannière Aumônerie"
+           loading="eager">
+
+      <!-- Version MOBILE -->
+      <img class="topbar__diapo--mobile"
+           src="./assets/img/bandeau-mobile.png"
+           alt="Bannière mobile Aumônerie"
+           loading="eager">
+
+    </div>
+  </header>
+
+  <nav class="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__link" href="./index.html">Accueil</a>
+      <a class="nav__link" href="./annonces.html">Annonces</a>
+      <a class="nav__link" href="./calendrier.html">Activités</a>
+      <a class="nav__link" href="./vie.html">Vie de la communauté</a>
+      <a class="nav__link nav__link--active" href="./outils.html">Outils</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="panel__head">
+        <h1>Liturgie du jour</h1>
+        <span class="muted" id="litDate"></span>
+      </div>
+
+      <div class="lit-nav">
+        <button type="button" id="litPrev" class="btn btn--small btn--ghost" aria-label="Jour précédent">←</button>
+        <input type="date" id="litPick" class="input" aria-label="Choisir une date">
+        <button type="button" id="litToday" class="btn btn--small">Aujourd'hui</button>
+        <button type="button" id="litNext" class="btn btn--small btn--ghost" aria-label="Jour suivant">→</button>
+      </div>
+
+      <h2 class="lit-titre" id="litTitre"></h2>
+      <p><span id="litCouleur" class="lit-chip"></span></p>
+      <p class="muted" id="litMeta"></p>
+      <ul id="litFetes" class="lit-fetes hidden"></ul>
+
+      <div id="litMesses" class="lit-messes"></div>
+      <div id="litLectures"></div>
+
+      <p class="muted" style="margin-top:16px">
+        Textes liturgiques : © AELF (Association épiscopale liturgique pour les pays francophones), affichés depuis
+        <a class="link" id="litAelf" href="https://www.aelf.org" target="_blank" rel="noopener">aelf.org</a>.
+        Le temps liturgique et la couleur sont calculés sur ce site ; une fête locale peut en modifier la couleur.
+      </p>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <a class="link" href="./mentions.html">Mentions & données</a>
+        <span class="muted">•</span>
+        <span class="muted">Site non officiel et indépendant</span>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="/js/liturgie.js"></script>
+</body>
+
+</html>

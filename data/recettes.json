@@ -1,0 +1,273 @@
+{
+  "version": 1,
+  "note": "Quantités indicatives pour 10 convives (repas du soir, jeunes adultes), à ajuster avec votre expérience. unite : g, ml ou pc (pièce). prix : en euros par kg, par litre ou par pièce selon l'unité (estimations modifiables dans la page).",
+  "rayons": [
+    "Viandes",
+    "Fruits et légumes",
+    "Crèmerie et œufs",
+    "Épicerie",
+    "Boulangerie"
+  ],
+  "categories": [
+    { "id": "plat", "nom": "Plats" },
+    { "id": "accompagnement", "nom": "Accompagnements et pain" },
+    { "id": "dessert", "nom": "Desserts" }
+  ],
+  "ingredients": {
+    "boeuf_hache":    { "nom": "Bœuf haché",                         "unite": "g",  "rayon": "Viandes",            "prix": 9.5 },
+    "paleron":        { "nom": "Bœuf à braiser (paleron, gîte)",     "unite": "g",  "rayon": "Viandes",            "prix": 13.0 },
+    "lardons":        { "nom": "Lardons fumés",                      "unite": "g",  "rayon": "Viandes",            "prix": 9.0 },
+
+    "oignon":         { "nom": "Oignons",                            "unite": "g",  "rayon": "Fruits et légumes",  "prix": 1.8 },
+    "carotte":        { "nom": "Carottes",                           "unite": "g",  "rayon": "Fruits et légumes",  "prix": 1.3 },
+    "ail":            { "nom": "Ail (gousses)",                      "unite": "pc", "rayon": "Fruits et légumes",  "prix": 0.06 },
+    "champignon":     { "nom": "Champignons de Paris",               "unite": "g",  "rayon": "Fruits et légumes",  "prix": 4.5 },
+    "pomme_de_terre": { "nom": "Pommes de terre",                    "unite": "g",  "rayon": "Fruits et légumes",  "prix": 1.4 },
+    "poivron":        { "nom": "Poivrons",                           "unite": "g",  "rayon": "Fruits et légumes",  "prix": 3.5 },
+    "pomme":          { "nom": "Pommes",                             "unite": "g",  "rayon": "Fruits et légumes",  "prix": 2.2 },
+    "salade":         { "nom": "Salades (pieds)",                    "unite": "pc", "rayon": "Fruits et légumes",  "prix": 1.0 },
+
+    "lait":           { "nom": "Lait",                               "unite": "ml", "rayon": "Crèmerie et œufs",   "prix": 1.0 },
+    "beurre":         { "nom": "Beurre",                             "unite": "g",  "rayon": "Crèmerie et œufs",   "prix": 8.0 },
+    "creme":          { "nom": "Crème liquide",                      "unite": "ml", "rayon": "Crèmerie et œufs",   "prix": 3.2 },
+    "gruyere":        { "nom": "Gruyère ou emmental râpé",           "unite": "g",  "rayon": "Crèmerie et œufs",   "prix": 8.0 },
+    "morbier":        { "nom": "Morbier",                            "unite": "g",  "rayon": "Crèmerie et œufs",   "prix": 12.0 },
+    "oeuf":           { "nom": "Œufs",                               "unite": "pc", "rayon": "Crèmerie et œufs",   "prix": 0.25 },
+
+    "pates_lasagnes": { "nom": "Feuilles de lasagnes sèches",        "unite": "g",  "rayon": "Épicerie",           "prix": 2.6 },
+    "pates":          { "nom": "Pâtes sèches",                       "unite": "g",  "rayon": "Épicerie",           "prix": 1.6 },
+    "riz":            { "nom": "Riz",                                "unite": "g",  "rayon": "Épicerie",           "prix": 2.0 },
+    "tomates":        { "nom": "Tomates concassées (conserve)",      "unite": "g",  "rayon": "Épicerie",           "prix": 1.8 },
+    "concentre":      { "nom": "Concentré de tomate",                "unite": "g",  "rayon": "Épicerie",           "prix": 4.0 },
+    "haricots":       { "nom": "Haricots rouges (conserve, égouttés)","unite": "g", "rayon": "Épicerie",           "prix": 2.4 },
+    "mais":           { "nom": "Maïs (conserve, égoutté)",           "unite": "g",  "rayon": "Épicerie",           "prix": 3.0 },
+    "farine":         { "nom": "Farine",                             "unite": "g",  "rayon": "Épicerie",           "prix": 1.0 },
+    "sucre":          { "nom": "Sucre",                              "unite": "g",  "rayon": "Épicerie",           "prix": 1.3 },
+    "maizena":        { "nom": "Fécule de maïs",                     "unite": "g",  "rayon": "Épicerie",           "prix": 3.5 },
+    "chocolat":       { "nom": "Chocolat noir pâtissier",            "unite": "g",  "rayon": "Épicerie",           "prix": 8.0 },
+    "huile":          { "nom": "Huile",                              "unite": "ml", "rayon": "Épicerie",           "prix": 4.0 },
+    "vinaigre":       { "nom": "Vinaigre",                           "unite": "ml", "rayon": "Épicerie",           "prix": 3.5 },
+    "moutarde":       { "nom": "Moutarde",                           "unite": "g",  "rayon": "Épicerie",           "prix": 4.5 },
+    "vin_rouge":      { "nom": "Vin rouge de cuisine",               "unite": "ml", "rayon": "Épicerie",           "prix": 3.5 },
+    "vin_blanc":      { "nom": "Vin blanc de cuisine",               "unite": "ml", "rayon": "Épicerie",           "prix": 3.5 },
+    "bouillon":       { "nom": "Bouillon de bœuf (cubes)",           "unite": "pc", "rayon": "Épicerie",           "prix": 0.12 },
+    "herbes":         { "nom": "Herbes et épices (thym, laurier, muscade, poivre…)", "unite": "g", "rayon": "Épicerie", "prix": 25.0 },
+    "sel":            { "nom": "Sel",                                "unite": "g",  "rayon": "Épicerie",           "prix": 0.8 },
+
+    "baguette":       { "nom": "Baguettes",                          "unite": "pc", "rayon": "Boulangerie",        "prix": 0.95 }
+  },
+  "recettes": [
+    {
+      "id": "lasagnes",
+      "nom": "Lasagnes bolognaise",
+      "categorie": "plat",
+      "pour": 10,
+      "lignes": [
+        ["boeuf_hache", 1200], ["oignon", 400], ["carotte", 300], ["ail", 4],
+        ["concentre", 90], ["tomates", 1200], ["vin_rouge", 200], ["huile", 40],
+        ["herbes", 8], ["sel", 25],
+        ["pates_lasagnes", 500],
+        ["lait", 1000], ["beurre", 80], ["farine", 80],
+        ["gruyere", 250]
+      ],
+      "materiel": [
+        { "label": "plats GN 1/1 (environ 12 parts chacun)", "par": 12 }
+      ],
+      "planning": [
+        "La veille : sauce bolognaise (mijoter 1 h 30) et béchamel, à refroidir et à garder au frais.",
+        "Le jour même : montage en couches (sauce, feuilles, béchamel, fromage), puis cuisson 40 à 45 minutes à 180 °C.",
+        "Laisser reposer 10 minutes avant de découper."
+      ],
+      "astuces": [
+        "Une sauce faite la veille est meilleure et vous libère du temps le jour du repas.",
+        "Prévoir plusieurs fournées si votre four n'accueille que 2 ou 3 plats à la fois."
+      ]
+    },
+    {
+      "id": "parmentier",
+      "nom": "Hachis Parmentier",
+      "categorie": "plat",
+      "pour": 10,
+      "lignes": [
+        ["boeuf_hache", 1300], ["oignon", 450], ["carotte", 250], ["ail", 3],
+        ["concentre", 50], ["bouillon", 2], ["herbes", 6], ["huile", 30], ["sel", 25],
+        ["pomme_de_terre", 2800], ["lait", 350], ["beurre", 150],
+        ["gruyere", 200]
+      ],
+      "materiel": [
+        { "label": "plats GN 1/1 (environ 12 parts chacun)", "par": 12 }
+      ],
+      "planning": [
+        "La veille : viande hachée cuite avec oignons et carottes, à refroidir.",
+        "Le jour même : purée (pommes de terre à l'eau salée, lait chaud, beurre), montage viande puis purée puis fromage, gratiner 30 minutes à 190 °C.",
+        "Éplucher les pommes de terre prend du temps : prévoir plusieurs personnes ou une éplucheuse."
+      ],
+      "astuces": [
+        "Pour 70 personnes, environ 20 kg de pommes de terre : un bon moment pour demander de l'aide."
+      ]
+    },
+    {
+      "id": "bourguignon",
+      "nom": "Bœuf bourguignon",
+      "categorie": "plat",
+      "pour": 10,
+      "lignes": [
+        ["paleron", 2000], ["lardons", 300], ["oignon", 500], ["carotte", 600],
+        ["champignon", 400], ["ail", 4], ["farine", 50], ["concentre", 40],
+        ["vin_rouge", 1500], ["bouillon", 2], ["huile", 60], ["herbes", 6], ["sel", 25]
+      ],
+      "materiel": [
+        { "label": "grandes marmites ou cocottes (environ 25 parts chacune)", "par": 25 }
+      ],
+      "planning": [
+        "La veille : saisir la viande, déglacer, mouiller au vin et au bouillon, mijoter 3 h à feu doux.",
+        "Le jour même : réchauffer doucement, ajouter les champignons poêlés à part en fin de cuisson.",
+        "Servir avec pâtes, riz ou pommes de terre : ajoutez un accompagnement dans votre menu."
+      ],
+      "astuces": [
+        "Il est meilleur réchauffé : à préparer entièrement la veille.",
+        "Saisir la viande par petites quantités pour qu'elle colore au lieu de bouillir."
+      ]
+    },
+    {
+      "id": "morbiflette",
+      "nom": "Morbiflette",
+      "categorie": "plat",
+      "pour": 10,
+      "lignes": [
+        ["pomme_de_terre", 2600], ["oignon", 500], ["lardons", 450],
+        ["morbier", 750], ["vin_blanc", 250], ["creme", 400],
+        ["huile", 30], ["herbes", 4], ["sel", 20]
+      ],
+      "materiel": [
+        { "label": "plats GN 1/1 (environ 12 parts chacun)", "par": 12 }
+      ],
+      "planning": [
+        "Cuire les pommes de terre en rondelles à moitié, faire revenir oignons et lardons, déglacer au vin blanc.",
+        "Monter en couches avec la crème et le morbier, cuire 35 à 40 minutes à 200 °C."
+      ],
+      "astuces": [
+        "Spécialité franc-comtoise : elle plaît toujours et ne demande aucun accompagnement, sauf une salade."
+      ]
+    },
+    {
+      "id": "chili",
+      "nom": "Chili con carne",
+      "categorie": "plat",
+      "pour": 10,
+      "lignes": [
+        ["boeuf_hache", 1300], ["oignon", 600], ["poivron", 500], ["ail", 4],
+        ["concentre", 80], ["tomates", 1600], ["haricots", 1000], ["mais", 400],
+        ["huile", 40], ["herbes", 10], ["sel", 20]
+      ],
+      "materiel": [
+        { "label": "grandes marmites ou cocottes (environ 25 parts chacune)", "par": 25 }
+      ],
+      "planning": [
+        "Faire revenir oignons, poivrons et viande, ajouter épices, tomates, concentré, puis haricots et maïs.",
+        "Mijoter 1 h 15 à feu doux ; à servir avec du riz."
+      ],
+      "astuces": [
+        "Doser le piment à part sur la table plutôt que dans la marmite."
+      ]
+    },
+    {
+      "id": "pates",
+      "nom": "Pâtes",
+      "categorie": "accompagnement",
+      "pour": 10,
+      "lignes": [["pates", 1000], ["sel", 80]],
+      "materiel": [
+        { "label": "litres d'eau de cuisson (10 L pour 1 kg de pâtes)", "par": 0, "litres_par_10": 10 }
+      ],
+      "planning": ["Cuire en plusieurs fois dans de très grandes marmites, égoutter et huiler légèrement pour éviter qu'elles ne collent."],
+      "astuces": []
+    },
+    {
+      "id": "riz",
+      "nom": "Riz",
+      "categorie": "accompagnement",
+      "pour": 10,
+      "lignes": [["riz", 800], ["sel", 30]],
+      "materiel": [],
+      "planning": ["Cuire à l'eau salée ou au four en plats couverts (2 volumes d'eau pour 1 de riz)."],
+      "astuces": []
+    },
+    {
+      "id": "pdt_vapeur",
+      "nom": "Pommes de terre vapeur",
+      "categorie": "accompagnement",
+      "pour": 10,
+      "lignes": [["pomme_de_terre", 2000], ["beurre", 60], ["herbes", 2], ["sel", 20]],
+      "materiel": [],
+      "planning": ["Cuire à la vapeur ou à l'eau salée 20 à 25 minutes, puis beurrer et persiller."],
+      "astuces": []
+    },
+    {
+      "id": "salade",
+      "nom": "Salade verte",
+      "categorie": "accompagnement",
+      "pour": 10,
+      "lignes": [["salade", 3], ["huile", 80], ["vinaigre", 30], ["moutarde", 20], ["sel", 8]],
+      "materiel": [],
+      "planning": ["Laver la veille, essorer, garder au frais dans des bacs ; assaisonner au dernier moment."],
+      "astuces": []
+    },
+    {
+      "id": "pain",
+      "nom": "Pain",
+      "categorie": "accompagnement",
+      "pour": 10,
+      "lignes": [["baguette", 3]],
+      "materiel": [],
+      "planning": ["À commander à l'avance chez le boulanger dès que le nombre de convives dépasse 40."],
+      "astuces": []
+    },
+    {
+      "id": "religieuses",
+      "nom": "Religieuses au chocolat",
+      "categorie": "dessert",
+      "pour": 10,
+      "lignes": [
+        ["lait", 775], ["beurre", 90], ["farine", 140], ["oeuf", 9], ["sucre", 130],
+        ["maizena", 50], ["chocolat", 300], ["creme", 80], ["sel", 3]
+      ],
+      "materiel": [
+        { "label": "plaques de four (environ 20 choux par plaque, soit 10 religieuses)", "par": 10 }
+      ],
+      "planning": [
+        "Plusieurs jours avant : pâte à choux, dresser et cuire les choux, puis les congeler (ils se conservent bien).",
+        "La veille : crème pâtissière au chocolat, glaçage ; garnir et assembler les religieuses le plus tard possible pour qu'elles restent croustillantes.",
+        "Prévoir une journée entière pour 70 pièces."
+      ],
+      "astuces": [
+        "Garnir les choux seulement le jour même ou la veille pour éviter qu'ils ne ramollissent.",
+        "Quantités indicatives : à comparer avec votre recette habituelle."
+      ]
+    },
+    {
+      "id": "mousse",
+      "nom": "Mousse au chocolat",
+      "categorie": "dessert",
+      "pour": 10,
+      "lignes": [["chocolat", 330], ["oeuf", 10], ["sucre", 60], ["sel", 1]],
+      "materiel": [
+        { "label": "grands saladiers (environ 20 parts chacun)", "par": 20 }
+      ],
+      "planning": ["La veille : préparer, répartir en bacs ou verrines, garder au frais jusqu'au service."],
+      "astuces": ["Attention aux œufs crus pour les personnes fragiles : à signaler."]
+    },
+    {
+      "id": "crumble",
+      "nom": "Crumble aux pommes",
+      "categorie": "dessert",
+      "pour": 10,
+      "lignes": [["pomme", 1600], ["sucre", 160], ["beurre", 150], ["farine", 150]],
+      "materiel": [
+        { "label": "plats GN 1/1 (environ 15 parts chacun)", "par": 15 }
+      ],
+      "planning": ["Éplucher et couper les pommes, étaler la pâte sablée, cuire 35 minutes à 180 °C."],
+      "astuces": ["Se sert tiède ou froid ; la pâte à crumble se congèle crue."]
+    }
+  ]
+}

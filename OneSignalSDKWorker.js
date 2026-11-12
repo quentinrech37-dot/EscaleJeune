@@ -13,8 +13,18 @@ const ASSETS = [
   "/annonces.html",
   "/calendrier.html",
   "/mentions.html",
+  "/outils.html",
+  "/cuisine.html",
+  "/liturgie.html",
+  "/avent.html",
   "/css/styles.css",
   "/js/app.js",
+  "/js/agenda.js",
+  "/js/cuisine.js",
+  "/js/cuisine-calc.js",
+  "/js/liturgie.js",
+  "/js/liturgie-calc.js",
+  "/js/avent.js",
   "/manifest.webmanifest",
   "/assets/img/favicon.png",
   "/assets/img/icon-192.png",
@@ -30,6 +40,8 @@ const ASSETS = [
   "/assets/img/sortie.png",
   "/data/annonces.json",
   "/data/calendrier.json",
+  "/data/recettes.json",
+  "/data/avent.json",
 ];
 
 self.addEventListener("install", (event) => {
@@ -67,6 +79,21 @@ self.addEventListener("fetch", (event) => {
       } catch {
         const cached = await caches.match(req);
         return cached || caches.match("/index.html");
+      }
+    })());
+    return;
+  }
+
+  // Données et agenda : réseau d'abord (jamais de données périmées), cache en secours
+  if (url.pathname.startsWith("/data/") || url.pathname.endsWith(".ics")) {
+    event.respondWith((async () => {
+      try {
+        const fresh = await fetch(req);
+        const cache = await caches.open(CACHE);
+        cache.put(req, fresh.clone());
+        return fresh;
+      } catch {
+        return (await caches.match(req)) || Response.error();
       }
     })());
     return;
