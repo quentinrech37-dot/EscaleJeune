@@ -1149,3 +1149,9 @@ img.item__thumb{
   body{background:#fff;}
   .panel, .item{box-shadow:none; border:none;}
 }
+
+/* Recettes : filtres et repères de difficulté / prix */
+.menu-filtres{margin:0 0 10px;}
+.menu-filtres .is-active{background:rgba(31,111,235,.12); border-color:rgba(31,111,235,.45);}
+.menu-choix span{display:flex; flex-direction:column; line-height:1.25;}
+.menu-choix__meta{color:var(--muted); font-size:.78rem; font-weight:400;}

@@ -16,6 +16,7 @@ const state = {
   recettes: new Set(),
   prix: {},
   coches: {},
+  filtre: "tous",
 };
 let DATA = null;
 
@@ -62,10 +63,41 @@ function courses() {
 
 /* ---------- Rendu ---------- */
 
+const NIVEAUX = { 1: "Facile", 2: "Moyen", 3: "Difficile" };
+const FILTRES = [
+  ["tous", "Tout"],
+  ["terroir", "Terroir"],
+  ["facile", "Facile"],
+  ["eco", "Peu cher"],
+];
+
+// Coût par personne aux prix actuels (non arrondis, indicatif)
+function coutParPersonne(r) {
+  const total = r.lignes.reduce((s, [k, q]) => {
+    const ing = DATA.ingredients[k];
+    return s + (ing.unite === "pc" ? q * prixDe(k) : (q / 1000) * prixDe(k));
+  }, 0);
+  return total / r.pour;
+}
+
+function correspond(r) {
+  const f = state.filtre;
+  if (f === "terroir") return (r.tags || []).includes("terroir");
+  if (f === "facile") return r.difficulte === 1;
+  if (f === "eco") return (r.tags || []).includes("economique");
+  return true;
+}
+
 function renderChoixMenu() {
   const box = document.getElementById("menuChoix");
-  box.innerHTML = DATA.categories.map((c) => {
-    const items = DATA.recettes.filter((r) => r.categorie === c.id);
+  const barre = `
+    <div class="seg menu-filtres" role="group" aria-label="Filtrer les recettes">
+      ${FILTRES.map(([id, nom]) => `<button type="button" class="btn btn--small ${state.filtre === id ? "is-active" : ""}" data-filtre="${id}">${nom}</button>`).join("")}
+    </div>`;
+  const groupes = DATA.categories.map((c) => {
+    // une recette déjà choisie reste visible même si le filtre l'écarte
+    const items = DATA.recettes.filter((r) => r.categorie === c.id && (correspond(r) || state.recettes.has(r.id)));
+    if (!items.length) return "";
     return `
       <fieldset class="menu-groupe">
         <legend>${esc(c.nom)}</legend>
@@ -73,11 +105,14 @@ function renderChoixMenu() {
           ${items.map((r) => `
             <label class="menu-choix">
               <input type="checkbox" data-recette="${esc(r.id)}" ${state.recettes.has(r.id) ? "checked" : ""}>
-              <span>${esc(r.nom)}</span>
+              <span>${esc(r.nom)}
+                <small class="menu-choix__meta">${NIVEAUX[r.difficulte] || ""} · env. ${nf.format(coutParPersonne(r))} € par pers.</small>
+              </span>
             </label>`).join("")}
         </div>
       </fieldset>`;
   }).join("");
+  box.innerHTML = barre + (groupes || `<p class="muted">Aucune recette ne correspond à ce filtre.</p>`);
 }
 
 function renderBoutonsN() {
@@ -228,6 +263,7 @@ function lireURL() {
 }
 
 function tout() {
+  renderChoixMenu();
   renderBoutonsN();
   renderResultats();
   majURL();
@@ -270,6 +306,12 @@ async function init() {
   });
 
   // Choix des recettes
+  root.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-filtre]");
+    if (!b) return;
+    state.filtre = b.dataset.filtre;
+    renderChoixMenu();
+  });
   root.addEventListener("change", (e) => {
     const cb = e.target.closest("[data-recette]");
     if (!cb) return;
