@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "9a67d191-0758-4de6-8663-2c990b530109",
+        safari_web_id: "web.onesignal.auto.4eb8ce3a-dc5a-4285-aae8-d5934d20e23e",
+        notifyButton: {
+          enable: false,
+        },
+      });
+    });
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Aumônerie - Planifier un pèlerinage</title>
+  <meta name="description" content="Planificateur de pèlerinage : étapes et horaires, repas et courses, budget, répartition des tâches et matériel pour un groupe qui marche.">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Icônes -->
+  <link rel="icon" href="/assets/img/favicon.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/img/icon-192.png">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Aperçu lors du partage -->
+  <meta property="og:title" content="Aumônerie - Planifier un pèlerinage">
+  <meta property="og:description" content="Planificateur de pèlerinage : étapes et horaires, repas et courses, budget, répartition des tâches et matériel pour un groupe qui marche.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cathobesac.fr/pelerinage.html">
+  <meta property="og:image" content="https://cathobesac.fr/assets/img/icon-1200.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aumônerie - Planifier un pèlerinage">
+  <meta name="twitter:description" content="Planificateur de pèlerinage : étapes et horaires, repas et courses, budget, répartition des tâches et matériel pour un groupe qui marche.">
+  <meta name="twitter:image" content="https://cathobesac.fr/assets/img/icon-1200.png">
+</head>
+
+<body>
+  <header class="topbar topbar--diapo">
+    <div class="wrap topbar__inner topbar__inner--diapo">
+
+      <!-- Version ORDI -->
+      <img class="topbar__diapo"
+           src="./assets/img/diapofinale.png"
+           alt="Bannière Aumônerie"
+           loading="eager">
+
+      <!-- Version MOBILE -->
+      <img class="topbar__diapo--mobile"
+           src="./assets/img/bandeau-mobile.png"
+           alt="Bannière mobile Aumônerie"
+           loading="eager">
+
+    </div>
+  </header>
+
+  <nav class="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__link" href="./index.html">Accueil</a>
+      <a class="nav__link" href="./annonces.html">Annonces</a>
+      <a class="nav__link" href="./calendrier.html">Activités</a>
+      <a class="nav__link" href="./vie.html">Vie de la communauté</a>
+      <a class="nav__link nav__link--active" href="./outils.html">Outils</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="panel pe-config">
+      <div class="panel__head">
+        <h1>Planifier un pèlerinage</h1>
+        <span class="muted">Étapes, repas, budget, tâches</span>
+      </div>
+      <p class="muted">Indiquez votre groupe et votre parcours : l'outil calcule les horaires, les courses, le budget et répartit les tâches équitablement.</p>
+
+      <h2 class="step">1. Le groupe</h2>
+      <textarea id="pePrenoms" class="input" placeholder="Un prénom par ligne" aria-label="Prénoms des marcheurs"></textarea>
+      <div class="form-grille">
+        <label>Places de chaque tente
+          <input id="peTentes" class="input" type="text" inputmode="numeric" placeholder="ex. 1, 2, 3">
+        </label>
+      </div>
+
+      <h2 class="step">2. Le parcours</h2>
+      <div class="form-grille">
+        <label>Nombre de jours
+          <input id="peJours" class="input" type="number" min="1" max="14" inputmode="numeric" value="3">
+        </label>
+        <label>Date de départ (facultatif)
+          <input id="peDate" class="input" type="date">
+        </label>
+        <label>Heure de départ
+          <input id="peDepart" class="input" type="time" value="08:00">
+        </label>
+        <label>Allure
+          <select id="peAllure" class="select"></select>
+        </label>
+        <label>Pauses par jour (min)
+          <input id="pePauses" class="input" type="number" min="0" max="480" inputmode="numeric" value="90">
+        </label>
+        <label>Météo
+          <select id="peChaleur" class="select">
+            <option value="normal" selected>Normale</option>
+            <option value="chaud">Chaude (plus d'eau)</option>
+          </select>
+        </label>
+      </div>
+      <div id="peEtapes"></div>
+
+      <h2 class="step">3. Les repas</h2>
+      <div class="pe-checks">
+        <label><input type="checkbox" id="peRechaud"> Un réchaud est autorisé</label>
+        <label><input type="checkbox" id="pePainFourni"> Le pain est fourni par l'organisation</label>
+        <label><input type="checkbox" id="peSoupeFournie"> La soupe est fournie par l'organisation</label>
+      </div>
+
+      <h2 class="step">4. Le budget</h2>
+      <div class="form-grille">
+        <label>Nourriture prévue par personne (€)
+          <input id="peBudget" class="input" type="number" min="0" step="1" inputmode="decimal" value="25">
+        </label>
+        <label>Inscription par personne (€)
+          <input id="peInscription" class="input" type="number" min="0" step="1" inputmode="decimal" value="40">
+        </label>
+        <label>Essence, total du groupe (€)
+          <input id="peEssence" class="input" type="number" min="0" step="1" inputmode="decimal" placeholder="0">
+        </label>
+      </div>
+    </section>
+
+    <div class="spacer"></div>
+
+    <section class="panel">
+      <div id="peActions" class="actions hidden">
+        <button type="button" id="peCopier" class="btn btn--small">Copier le résumé</button>
+        <button type="button" id="peLien" class="btn btn--small">Copier le lien</button>
+        <button type="button" id="peIcs" class="btn btn--ghost btn--small">Ajouter à mon agenda</button>
+        <button type="button" id="peImprimer" class="btn btn--ghost btn--small">Imprimer</button>
+        <button type="button" id="peRaz" class="btn btn--ghost btn--small">Tout effacer</button>
+      </div>
+      <div id="peResultats"></div>
+      <p class="notice" style="margin-top:16px"><strong>À savoir :</strong> horaires, quantités et prix sont des estimations à ajuster avec votre expérience. Le lien partagé contient les prénoms saisis : ne le diffusez qu'aux personnes concernées.</p>
+    </section>
+
+    <div id="flash" class="flash hidden" role="status" aria-live="polite"></div>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <a class="link" href="./mentions.html">Mentions & données</a>
+        <span class="muted">•</span>
+        <span class="muted">Site non officiel et indépendant</span>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="/js/pelerinage.js"></script>
+</body>
+
+</html>

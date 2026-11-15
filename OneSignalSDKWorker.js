@@ -4,7 +4,7 @@
 importScripts("https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js");
 
 // 2) Votre SW de cache (copiez-collez ici le contenu actuel de sw.js)
-const CACHE = "aumonerie-v166";
+const CACHE = "aumonerie-v165";
 
 const ASSETS = [
   "/",
@@ -17,6 +17,8 @@ const ASSETS = [
   "/cuisine.html",
   "/liturgie.html",
   "/avent.html",
+  "/tournoi.html",
+  "/pelerinage.html",
   "/css/styles.css",
   "/js/app.js",
   "/js/agenda.js",
@@ -25,6 +27,10 @@ const ASSETS = [
   "/js/liturgie.js",
   "/js/liturgie-calc.js",
   "/js/avent.js",
+  "/js/tournoi.js",
+  "/js/tournoi-calc.js",
+  "/js/pelerinage.js",
+  "/js/pelerinage-calc.js",
   "/manifest.webmanifest",
   "/assets/img/favicon.png",
   "/assets/img/icon-192.png",
@@ -42,6 +48,7 @@ const ASSETS = [
   "/data/calendrier.json",
   "/data/recettes.json",
   "/data/avent.json",
+  "/data/pelerinage.json",
 ];
 
 self.addEventListener("install", (event) => {

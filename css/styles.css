@@ -1155,3 +1155,54 @@ img.item__thumb{
 .menu-filtres .is-active{background:rgba(31,111,235,.12); border-color:rgba(31,111,235,.45);}
 .menu-choix span{display:flex; flex-direction:column; line-height:1.25;}
 .menu-choix__meta{color:var(--muted); font-size:.78rem; font-weight:400;}
+
+/* ==================== TOURNOI ET PÈLERINAGE ==================== */
+.form-grille{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin:8px 0;}
+.form-grille label{display:flex; flex-direction:column; gap:4px; font-size:.92rem; color:var(--muted);}
+.form-grille .input, .form-grille .select{flex:0 0 auto; width:100%; box-sizing:border-box;}
+textarea.input{min-height:120px; resize:vertical; font:inherit;}
+.tr-table-wrap{overflow-x:auto;}
+.tr-table{width:100%; border-collapse:collapse; font-size:.92rem;}
+.tr-table th, .tr-table td{padding:6px 8px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top;}
+.tr-table th{color:var(--muted); font-weight:600;}
+.tr-equipes{columns:2; column-gap:24px; padding-left:22px; margin:6px 0;}
+.tr-poules{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px;}
+.tr-poule{border:1px solid var(--line); border-radius:14px; padding:8px 12px; background:#fff;}
+.tr-poule h3{margin:4px 0 6px;}
+.tr-tag{display:inline-block; min-width:20px; text-align:center; margin-right:6px; padding:1px 6px; border-radius:8px; background:rgba(31,111,235,.12); font-weight:700; font-size:.8rem;}
+.tr-tour{margin:10px 0 14px;}
+.tr-alerte{color:#b42318; font-weight:600; font-size:.9rem;}
+.tr-vainqueur{padding:10px 14px; border-radius:14px; background:rgba(22,163,74,.12); border:1px solid rgba(22,163,74,.35);}
+.matchs{list-style:none; margin:6px 0; padding:0; display:grid; gap:6px;}
+.match{display:grid; grid-template-columns:64px 1fr; gap:10px; align-items:center; padding:8px 10px; border:1px solid var(--line); border-radius:12px; background:#fff;}
+.match__heure{display:flex; flex-direction:column; font-weight:700; font-variant-numeric:tabular-nums;}
+.match__heure small{font-weight:400; color:var(--muted);}
+.match__equipes{display:flex; flex-wrap:wrap; align-items:center; gap:6px;}
+.match__a, .match__b{flex:1 1 90px;}
+.match__a{text-align:right;}
+.match__tiret{color:var(--muted);}
+.match .is-win{font-weight:700;}
+.match .tr-alerte{flex-basis:100%;}
+.match--bye{grid-template-columns:1fr; background:rgba(17,24,39,.03);}
+.score{width:52px; padding:6px; text-align:center; border:1px solid var(--line); border-radius:8px; font:inherit; box-sizing:border-box;}
+.pe-etape{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:8px 0;}
+.pe-etape strong{min-width:52px;}
+.pe-etape [data-champ='nom']{flex:1 1 180px;}
+.pe-etape label{display:flex; align-items:center; gap:6px; color:var(--muted);}
+.pe-checks{display:grid; gap:6px; margin:8px 0;}
+.pe-checks label{display:flex; gap:8px; align-items:center;}
+.pe-budget{list-style:none; padding:0; margin:6px 0; display:grid; gap:4px;}
+.pe-budget li{display:flex; justify-content:space-between; gap:12px; padding:6px 10px; border-radius:10px; background:rgba(17,24,39,.03);}
+.pe-budget__total{background:rgba(31,111,235,.10) !important;}
+.pe-taches th{font-size:.8rem;}
+.pe-materiel{list-style:none; padding:0; margin:6px 0; display:grid; gap:4px;}
+.pe-materiel li{display:flex; justify-content:space-between; gap:12px; align-items:center; padding:6px 8px; border-radius:10px;}
+.pe-materiel li.is-done{opacity:.5;}
+.pe-qui{font-weight:700; white-space:nowrap;}
+@media (max-width:520px){.tr-equipes{columns:1;} .match{grid-template-columns:1fr;} .match__a, .match__b{flex:1 1 100%; text-align:left;} .match__equipes{justify-content:flex-start;}}
+@media print{
+  #trCompare, .tr-config, .pe-config, #peActions, .score{border:none;}
+  .tr-config, .pe-config{display:none !important;}
+  .score{width:auto;}
+  details[open] > summary{display:none;}
+}

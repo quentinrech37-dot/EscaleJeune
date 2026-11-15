@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "9a67d191-0758-4de6-8663-2c990b530109",
+        safari_web_id: "web.onesignal.auto.4eb8ce3a-dc5a-4285-aae8-d5934d20e23e",
+        notifyButton: {
+          enable: false,
+        },
+      });
+    });
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Aumônerie - Tournoi</title>
+  <meta name="description" content="Organisez un tournoi : équipes tirées au sort, poules, planning des matchs, classements et tableau final, sans inscription.">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Icônes -->
+  <link rel="icon" href="/assets/img/favicon.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/img/icon-192.png">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <!-- Aperçu lors du partage -->
+  <meta property="og:title" content="Aumônerie - Tournoi">
+  <meta property="og:description" content="Organisez un tournoi : équipes tirées au sort, poules, planning des matchs, classements et tableau final, sans inscription.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cathobesac.fr/tournoi.html">
+  <meta property="og:image" content="https://cathobesac.fr/assets/img/icon-1200.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aumônerie - Tournoi">
+  <meta name="twitter:description" content="Organisez un tournoi : équipes tirées au sort, poules, planning des matchs, classements et tableau final, sans inscription.">
+  <meta name="twitter:image" content="https://cathobesac.fr/assets/img/icon-1200.png">
+</head>
+
+<body>
+  <header class="topbar topbar--diapo">
+    <div class="wrap topbar__inner topbar__inner--diapo">
+
+      <!-- Version ORDI -->
+      <img class="topbar__diapo"
+           src="./assets/img/diapofinale.png"
+           alt="Bannière Aumônerie"
+           loading="eager">
+
+      <!-- Version MOBILE -->
+      <img class="topbar__diapo--mobile"
+           src="./assets/img/bandeau-mobile.png"
+           alt="Bannière mobile Aumônerie"
+           loading="eager">
+
+    </div>
+  </header>
+
+  <nav class="nav">
+    <div class="wrap nav__inner">
+      <a class="nav__link" href="./index.html">Accueil</a>
+      <a class="nav__link" href="./annonces.html">Annonces</a>
+      <a class="nav__link" href="./calendrier.html">Activités</a>
+      <a class="nav__link" href="./vie.html">Vie de la communauté</a>
+      <a class="nav__link nav__link--active" href="./outils.html">Outils</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="panel tr-config">
+      <div class="panel__head">
+        <h1>Tournoi</h1>
+        <span class="muted">Baby-foot, ping-pong, pétanque…</span>
+      </div>
+      <p class="muted">Collez les participants : l'outil forme les équipes au hasard, organise les poules, calcule le planning des matchs et tient les classements à jour.</p>
+
+      <h2 class="step">1. Les participants</h2>
+      <textarea id="trNoms" class="input" placeholder="Un prénom par ligne" aria-label="Participants"></textarea>
+      <div class="form-grille">
+        <label>Joueurs par équipe
+          <select id="trTaille" class="select">
+            <option value="1">1 (chacun pour soi, ou équipes déjà formées)</option>
+            <option value="2" selected>2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+        <label>S'il reste des joueurs
+          <select id="trReste" class="select">
+            <option value="trio" selected>Ils complètent des équipes (trios)</option>
+            <option value="remplacant">Ils restent remplaçants</option>
+          </select>
+        </label>
+      </div>
+
+      <h2 class="step">2. Le format</h2>
+      <div id="trCompare"></div>
+      <div class="form-grille">
+        <label>Format
+          <select id="trFormat" class="select">
+            <option value="auto" selected>Choix automatique</option>
+            <option value="poules">Poules puis phase finale</option>
+            <option value="elim">Élimination directe</option>
+            <option value="championnat">Tous contre tous</option>
+          </select>
+        </label>
+        <label>Tables ou terrains
+          <input id="trTables" class="input" type="number" min="1" max="20" inputmode="numeric" value="2">
+        </label>
+        <label>Durée d'un match (min)
+          <input id="trDuree" class="input" type="number" min="1" max="240" inputmode="numeric" value="10">
+        </label>
+        <label>Heure de début
+          <input id="trDebut" class="input" type="time" value="14:00">
+        </label>
+        <label>Nombre de poules (0 = auto)
+          <input id="trPoules" class="input" type="number" min="0" max="30" inputmode="numeric" placeholder="auto">
+        </label>
+        <label>Qualifiés par poule (0 = auto)
+          <input id="trQualifies" class="input" type="number" min="0" max="8" inputmode="numeric" placeholder="auto">
+        </label>
+      </div>
+
+      <details class="outils-details">
+        <summary>Le vocabulaire en deux mots</summary>
+        <p><strong>Poule :</strong> petit groupe d'équipes où chacune joue contre toutes les autres. <strong>Phase finale :</strong> les meilleurs de chaque poule se retrouvent dans un tableau où l'on est éliminé en cas de défaite. <strong>Élimination directe :</strong> un tableau dès le début, une défaite et on sort. <strong>Tous contre tous :</strong> une seule poule, chacun joue contre chacun.</p>
+        <p class="muted">Plus il y a de poules et de matchs, plus chacun joue : l'élimination directe est la plus rapide mais ne garantit qu'un seul match par équipe.</p>
+      </details>
+
+      <div class="actions">
+        <button type="button" id="trLancer" class="btn">Lancer le tirage</button>
+        <button type="button" id="trRefaire" class="btn btn--ghost btn--small hidden">Refaire le tirage</button>
+        <button type="button" id="trRaz" class="btn btn--ghost btn--small">Tout effacer</button>
+      </div>
+    </section>
+
+    <div class="spacer"></div>
+
+    <section id="trResultats" class="panel hidden"></section>
+
+    <section class="panel actions-panel">
+      <div class="actions">
+        <button type="button" id="trLien" class="btn btn--small">Copier le lien du tournoi</button>
+        <button type="button" id="trCopier" class="btn btn--ghost btn--small">Copier le planning</button>
+        <button type="button" id="trImprimer" class="btn btn--ghost btn--small">Imprimer</button>
+      </div>
+      <p class="muted">Le lien contient le tirage et les scores : toute personne qui l'ouvre voit le même tournoi. Rien n'est enregistré sur un serveur.</p>
+    </section>
+
+    <div id="flash" class="flash hidden" role="status" aria-live="polite"></div>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <a class="link" href="./mentions.html">Mentions & données</a>
+        <span class="muted">•</span>
+        <span class="muted">Site non officiel et indépendant</span>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="/js/tournoi.js"></script>
+</body>
+
+</html>

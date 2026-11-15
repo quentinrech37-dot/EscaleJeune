@@ -1,0 +1,248 @@
+{
+ "version": 1,
+ "note": "Valeurs indicatives, par personne et par jour de marche. unite : g, ml ou pc. prix : euros par kg, par litre ou par pièce. cond : rechaud = seulement si un réchaud est autorisé ; pain = exclu si le pain est fourni ; soupe = exclu si la soupe est fournie.",
+ "aliments": [
+  {
+   "id": "pain",
+   "nom": "Pain",
+   "unite": "g",
+   "pj": 250,
+   "prix": 3.8,
+   "rayon": "Boulangerie",
+   "cond": "pain"
+  },
+  {
+   "id": "biscottes",
+   "nom": "Biscottes ou biscuits secs",
+   "unite": "g",
+   "pj": 100,
+   "prix": 3.0,
+   "rayon": "Épicerie"
+  },
+  {
+   "id": "pate_tartiner",
+   "nom": "Pâte à tartiner",
+   "unite": "g",
+   "pj": 40,
+   "prix": 6.0,
+   "rayon": "Épicerie"
+  },
+  {
+   "id": "confiture",
+   "nom": "Confiture",
+   "unite": "g",
+   "pj": 30,
+   "prix": 3.5,
+   "rayon": "Épicerie"
+  },
+  {
+   "id": "pate",
+   "nom": "Pâté en conserve (1er prix)",
+   "unite": "g",
+   "pj": 120,
+   "prix": 6.0,
+   "rayon": "Épicerie"
+  },
+  {
+   "id": "thon",
+   "nom": "Thon ou sardines en boîte",
+   "unite": "g",
+   "pj": 80,
+   "prix": 11.0,
+   "rayon": "Épicerie"
+  },
+  {
+   "id": "mayo",
+   "nom": "Mayonnaise en tube",
+   "unite": "g",
+   "pj": 30,
+   "prix": 4.5,
+   "rayon": "Épicerie"
+  },
+  {
+   "id": "fromage",
+   "nom": "Fromage (portions ou emmental)",
+   "unite": "g",
+   "pj": 60,
+   "prix": 9.0,
+   "rayon": "Crèmerie"
+  },
+  {
+   "id": "saucisson",
+   "nom": "Saucisson sec",
+   "unite": "g",
+   "pj": 50,
+   "prix": 14.0,
+   "rayon": "Charcuterie"
+  },
+  {
+   "id": "crudites",
+   "nom": "Tomates, carottes, concombre",
+   "unite": "g",
+   "pj": 150,
+   "prix": 2.5,
+   "rayon": "Fruits et légumes"
+  },
+  {
+   "id": "fruits",
+   "nom": "Fruits frais",
+   "unite": "g",
+   "pj": 200,
+   "prix": 2.5,
+   "rayon": "Fruits et légumes"
+  },
+  {
+   "id": "fruits_secs",
+   "nom": "Fruits secs et oléagineux",
+   "unite": "g",
+   "pj": 60,
+   "prix": 10.0,
+   "rayon": "Épicerie"
+  },
+  {
+   "id": "barres",
+   "nom": "Barres de céréales ou biscuits sucrés",
+   "unite": "g",
+   "pj": 80,
+   "prix": 7.0,
+   "rayon": "Épicerie"
+  },
+  {
+   "id": "chocolat",
+   "nom": "Chocolat",
+   "unite": "g",
+   "pj": 30,
+   "prix": 9.0,
+   "rayon": "Épicerie"
+  },
+  {
+   "id": "pates",
+   "nom": "Pâtes ou riz",
+   "unite": "g",
+   "pj": 90,
+   "prix": 1.8,
+   "rayon": "Épicerie",
+   "cond": "rechaud"
+  },
+  {
+   "id": "lentilles",
+   "nom": "Lentilles ou légumes secs",
+   "unite": "g",
+   "pj": 60,
+   "prix": 2.8,
+   "rayon": "Épicerie",
+   "cond": "rechaud"
+  },
+  {
+   "id": "soupe",
+   "nom": "Soupe déshydratée (sachets de 1 L pour 4)",
+   "unite": "pc",
+   "pj": 0.25,
+   "prix": 1.3,
+   "rayon": "Épicerie",
+   "cond": "soupe"
+  },
+  {
+   "id": "cafe_the",
+   "nom": "Café, thé ou chocolat en poudre",
+   "unite": "g",
+   "pj": 10,
+   "prix": 14.0,
+   "rayon": "Épicerie",
+   "cond": "rechaud"
+  }
+ ],
+ "taches": [
+  "Remplir les gourdes et l'eau du groupe",
+  "Ravitaillement et courses",
+  "Préparer les repas",
+  "Vaisselle et rangement",
+  "Serre-file (dernier du groupe)",
+  "Intention et prière du soir"
+ ],
+ "paquetage": {
+  "individuel": [
+   {
+    "cat": "Marche",
+    "items": [
+     "Chaussures de marche déjà portées",
+     "Chaussettes (3 paires)",
+     "Sac à dos de 35 à 45 L",
+     "Gourde ou poche à eau (1,5 L)",
+     "Casquette ou chapeau",
+     "Lunettes de soleil et crème solaire",
+     "Veste de pluie ou poncho",
+     "Sacs étanches pour protéger les affaires"
+    ]
+   },
+   {
+    "cat": "Couchage",
+    "items": [
+     "Sac de couchage adapté à la saison",
+     "Tapis de sol",
+     "Lampe frontale et piles de rechange",
+     "Bouchons d'oreilles"
+    ]
+   },
+   {
+    "cat": "Vêtements",
+    "items": [
+     "T-shirts respirants (2)",
+     "Pantalon ou short de marche",
+     "Polaire ou pull chaud",
+     "Tenue sèche pour le soir",
+     "Sous-vêtements de rechange",
+     "Sandales ou tongs pour le soir"
+    ]
+   },
+   {
+    "cat": "Hygiène et santé",
+    "items": [
+     "Trousse de toilette",
+     "Serviette microfibre",
+     "Papier toilette et mouchoirs",
+     "Pansements anti-ampoules et crème anti-frottement",
+     "Médicaments personnels",
+     "Répulsif contre les insectes"
+    ]
+   },
+   {
+    "cat": "Spirituel",
+    "items": [
+     "Chapelet ou livret de prières",
+     "Livret de chants du pèlerinage",
+     "Carnet et stylo"
+    ]
+   },
+   {
+    "cat": "Divers",
+    "items": [
+     "Papiers d'identité",
+     "Espèces et carte bancaire",
+     "Téléphone et chargeur",
+     "Couvert, gobelet et couteau",
+     "Sac poubelle",
+     "Épingles à nourrice pour faire sécher le linge"
+    ]
+   }
+  ],
+  "collectif": [
+   "Pharmacie de groupe (désinfectant, compresses, bandes, ciseaux, couverture de survie)",
+   "Tentes et sardines en nombre suffisant",
+   "Réchaud, gaz et briquet (si autorisé)",
+   "Gourdes de réserve ou bidon d'eau",
+   "Carte et batterie externe commune",
+   "Sacs poubelle",
+   "Couteau, planche et ouvre-boîte",
+   "Bâche ou nappe pour le pique-nique",
+   "Savon vaisselle et éponge",
+   "Corde à linge et pinces"
+  ]
+ },
+ "astuces": [
+  "Repérez les points d'eau de chaque étape avant de partir : on ne porte alors que la quantité nécessaire jusqu'au suivant.",
+  "Le premier jour, partez plus doucement que prévu : c'est le plus fatigant et celui où naissent les ampoules.",
+  "Vérifiez auprès de l'organisation ce qui est fourni (pain, soupe, eau) et si un réchaud est autorisé : cela change les repas.",
+  "Prévoyez une marge de 10 à 15 % sur les horaires, qui sont des estimations."
+ ]
+}
