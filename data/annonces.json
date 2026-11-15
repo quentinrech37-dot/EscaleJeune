@@ -8,6 +8,32 @@
     "lien": null
   },
   {
+    "date": null,
+    "categorie": "info",
+    "titre": "Un chapelet tous les samedi matin !",
+    "texte": "Pour celles et ceux qui souhaitent découvrir la prière du chapelet, ou bien simplement le prier plus régulièrement, un chapelet est récité dans la chapelle de l'Escale Jeunes à Besançon tous les samedi matin à 11h.",
+    "resume": "Tous les samedi matin à 11h dans la chapelle.",
+    "lien": null
+  },
+  {
+    "date": "2026-11-15",
+    "categorie": "info",
+    "titre": "Nouvelle page : Outils",
+    "resume": "Liturgie du jour, calendrier de l'Avent, repas pour grandes tablées et ajout des activités à votre agenda.",
+    "texte": "Le site s'enrichit d'une nouvelle page : « Outils », accessible depuis le menu de navigation. Ce sont de petits outils pratiques, gratuits, sans inscription et sans compte.\n\nLiturgie du jour : les lectures de la messe, le temps liturgique, la couleur du jour et l'année liturgique, avec la possibilité de naviguer d'un jour à l'autre. Les textes sont ceux de l'AELF.\n\nCalendrier de l'Avent : une case par jour, du 29 novembre à la veille de Noël, avec un geste simple à accomplir et une intention de prière. Chaque case s'ouvre le jour même, et vous pouvez recevoir un rappel chaque matin dans votre agenda.\n\nCuisiner pour la tablée : pour 50, 60 ou 70 personnes (ou un autre nombre), choisissez un menu parmi une trentaine de recettes, du plat de terroir à la raclette, du plus économique au plus ambitieux. L'outil calcule les quantités, la liste de courses par rayon, le matériel nécessaire et un budget indicatif, avec des prix que vous pouvez corriger, pratique pour nos cuisiniers du mercredi soir !\n\nDans votre agenda : sur la page Activités, chaque événement à venir peut être ajouté à votre agenda en un clic (Apple, Google, Outlook), et vous pouvez vous abonner pour recevoir automatiquement les nouvelles activités.\n\nLes quantités et les prix de l'outil de cuisine sont donnés à titre indicatif.",
+    "lien": "https://cathobesac.fr/outils.html",
+    "image": null
+  },
+  {
+    "date": "2026-11-15",
+    "categorie": "info",
+    "titre": "Le site change d'adresse : ce qui a changé et pourquoi",
+    "resume": "Nouvelle adresse cathobesac.fr, deux pages retirées, plus de référence à l'Escale. Je vous explique.",
+    "texte": "Plusieurs choses ont changé sur le site ces derniers jours, et je vous explique pourquoi.\n\nCe site est une initiative personnelle : je le tiens seul, et il n'a jamais été édité ni validé par l'Escale, le diocèse ou une structure pastorale.\n\nL'aumônerie fait partie de l'Escale, qui m'a demandé que le site ne soit plus présenté sous son nom. J'ai donc retiré les références à l'Escale, et l'adresse est passée de escale-besancon.fr à cathobesac.fr, puisque l'ancienne contenait son nom. L'ancienne adresse affiche un message et renvoie vers la nouvelle. Si vous aviez ajouté le site à l'écran d'accueil de votre téléphone, supprimez l'ancienne icône, réinstallez le site depuis la nouvelle adresse et réactivez les notifications.\n\nJ'ai aussi retiré les pages « Repas » et « Proposer une activité ». Elles servaient à s'inscrire pour cuisiner le mercredi et à proposer des sujets ou des activités, ce qui revient aux organisateurs et non à un site comme celui-ci. Pour cuisiner un mercredi ou suggérer une idée, il vaut mieux leur écrire directement.\n\nLe reste continue : annonces, activités, covoiturage, « Messe : qui va où ? ». Je continue aussi d'ajouter des choses, comme la nouvelle page « Outils ». Si vous avez une idée d'outil utile, écrivez-moi, je suis preneur.",
+    "lien": null,
+    "image": null
+  },
+  {
     "date": "2026-05-29",
     "categorie": "info",
     "titre": "Nouvelle page : Vie de la communauté",
