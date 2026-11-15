@@ -1,15 +1,21 @@
 [
   {
-    "date": "2026-11-13",
+    "date": "2026-12-11",
     "type": "soiree",
     "titre": "Soirée rock",
     "heure": "20:00",
-    "lieu": "Aumônerie - grande salle",
-    "resume": "Initiation + pratique, ambiance simple et joyeuse.",
+    "lieu": "Aumônerie - salle St Matthieu",
+    "resume": "Initiation et pratique, ambiance simple et joyeuse.",
     "details": "Ouvert à tous niveaux. Si vous pouvez, apportez une boisson ou quelque chose à partager.",
     "contact": "Benoit",
     "lien": null,
-    "image": "./assets/img/calendrier/SoireeRock.png"
+    "image": "./assets/img/calendrier/SoireeRock.png",
+    "fichiers": [
+      {
+        "label": "Affiche de l'évènement",
+        "url": "./assets/files/Affiche_SoireeRock_11.12.2026.pdf"
+      }
+    ]
   },
   {
     "date": "2026-06-10",
@@ -17,7 +23,7 @@
     "type": "soiree",
     "titre": "Fête de fin d'année !",
     "lieu": "Aumônerie - Besançon",
-    "resume": "Dernière soirée avant la reprise de septembre — venez nombreux !",
+    "resume": "Dernière soirée avant la reprise de septembre, venez nombreux !",
     "details": "La soirée de fin d'année approche ! Plusieurs activités seront proposées au fil de la soirée, et un repas sera organisé — les détails seront communiqués prochainement.\n\nC'est la dernière soirée avant la reprise de septembre : une bonne raison de ne pas manquer ça.",
     "lien": null,
     "image": "./assets/img/calendrier/fete_fin_annee.jpg"
@@ -112,7 +118,7 @@
     "image": "./assets/img/calendrier/jardinage.jpg",
     "fichiers": [
       {
-        "label": "Affiche de l'évênement",
+        "label": "Affiche de l'évènement",
         "url": "./assets/files/AfficheJardinage.pdf"
       }
     ]
